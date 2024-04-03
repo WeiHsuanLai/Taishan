@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style>
+		body {
+			text-align: center;
+		}
+
+		table {
+			margin: 1rem;
+			display: inline-block;
+		}
+
+		table,
+		tr,
+		td {
+			border: 1px solid #000;
+		}
+
+		table td {
+			width: 200px;
+			height: 200px;
+		}
+
+		.onebox {
+			background-color: red;
+		}
+
+		.twobox {
+			background-image: url("https://picsum.photos/200/200/?random=10");
+		}
+
+		.threebox {
+			background-image: url("https://picsum.photos/50/50/?random=10");
+			background-repeat: repeat-x;
+		}
+
+		.fourbox {
+			background-image: url("https://picsum.photos/50/50/?random=10");
+			background-repeat: repeat-y;
+		}
+
+		.fivebox {
+			background-image: url("https://picsum.photos/200/200/?random=10");
+			background-size: 25% 25%;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		.sixbox {
+			background-image: url("https://picsum.photos/200/200/?random=10");
+			background-size: 25% 25%;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-color: rgb(245, 245, 137);
+		}
+
+		.sevenbox {
+			background:
+				/* left top 左上 */
+				url("https://picsum.photos/200/50/?random=1")no-repeat left top,
+				/* left 50 px 靠左下50px */
+				url("https://picsum.photos/200/100/?random=4")no-repeat left 50px,
+				/* left botto,左下 */
+				url("https://picsum.photos/200/50/?random=1")no-repeat left bottom;
+
+
+			/*
+				 url("https://picsum.photos/200/50/?random=1")
+				url("https://picsum.photos/200/100/?random=4")
+				url("https://picsum.photos/200/50/?random=1")
+				background-repeat: no-repeat;
+				background-position: left top, left 50px, left bottom;
+			*/
+
+		}
+
+		.eightbox {
+			background-image: linear-gradient(90deg, rgb(0, 0, 0), rgb(48, 0, 240));
+		}
+
+		.ninebox {
+			background-image: radial-gradient(rgb(0, 0, 0) 10%, rgb(250, 250, 249) 90%);
+		}
+	</style>
+</head>
+
+<body>
+	<table>
+		<tr>
+			<td class="onebox">
+			</td>
+			<td class="twobox"></td>
+			<td class="threebox"></td>
+		</tr>
+		<tr>
+			<td class="fourbox"></td>
+			<td class="fivebox"></td>
+			<td class="sixbox"></td>
+		</tr>
+		<tr>
+			<td class="sevenbox"></td>
+			<td class="eightbox"></td>
+			<td class="ninebox"></td>
+		</tr>
+	</table>
+</body>
+
+</html>

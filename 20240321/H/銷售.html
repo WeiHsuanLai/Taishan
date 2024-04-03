@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = [33, 32, 56, 45, 33]
+        const data2 = [12, 16, 10, 14, 15]
+        let result = [0, 0, 0, 0, 0]
+        for (let i in data) {
+            result[i] = data[i] * data2[i]
+        }
+        let all = 0
+        document.write(result + '<br>')
+        for (let i in result) {
+            all += result[i]
+        }
+        document.write(all)
+
+
+    </script>
+</body>
+
+</html>

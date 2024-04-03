@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: gray;
+        }
+
+        .bigc {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-image: linear-gradient(to right, white 50%, black 50%);
+            position: relative;
+        }
+
+        .bigc::before {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            width: 50%;
+            height: 50%;
+            top: 0;
+            left: 25%;
+            background: white;
+        }
+
+        .bigc::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            width: 12.5%;
+            height: 12.5%;
+            top: 17.5%;
+            left: 42.5%;
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bigc">
+        <div class="bigc clearfix before" style="top: 50%;"></div>
+        <!-- Your content here -->
+    </div>
+</body>
+
+</html>

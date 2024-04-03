@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            width: 500px;
+            height: 500px;
+            background: greenyellow;
+            /* 這個相對定位是產生定位點讓絕對定位元素 */
+            position: relative;
+            margin: auto;
+        }
+
+        .child {
+            width: 100px;
+            height: 100px;
+            background: deeppink;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            transform: translate(-50%, 50%);
+        }
+
+        .child1 {
+            width: 100px;
+            height: 100px;
+            background: deeppink;
+            position: absolute;
+            left: 100px;
+            z-index: 4;
+        }
+
+        .child2 {
+            width: 100px;
+            height: 100px;
+            background: deeppink;
+            position: absolute;
+            left: 150px;
+            top: 50px;
+            z-index: 3;
+        }
+
+        .child3 {
+            width: 100px;
+            height: 100px;
+            background: deeppink;
+            position: absolute;
+            left: 200px;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <p style="background: lemonchiffon;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis explicabo
+        quas
+        voluptatem! Quisquam voluptas
+        accusamus numquam quidem ducimus sapiente rem, reprehenderit, tempora, sed dolore quod facilis ea nobis
+        praesentium voluptatem?</p>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+    <p style="background: lightblue;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus at ducimus illo
+        blanditiis hic doloremque
+        labore harum, dolore quasi corrupti similique eum, repellat placeat cupiditate commodi impedit in? Laborum,
+        iure?</p>
+</body>
+
+</html>

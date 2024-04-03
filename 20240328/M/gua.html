@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = ['乾一', '兌二', '離三', '震四', '巽五', '坎六', '艮七', '坤八']
+        const gua = (numbers) => {
+            const [n1, n2, n3] = numbers;
+            let a = n1 % 8;
+            let b = n2 % 8;
+            let c = n3 % 6;
+            let result = [];
+            if (a !== 0) {
+                result.push(arr[a - 1]);
+            } else {
+                result.push(arr[7]);
+            }
+            if (b !== 0) {
+                result.push(arr[b - 1]);
+            } else {
+                result.push(arr[7]);
+            }
+            if (c !== 0) {
+                result.push(arr[c - 1]);
+            } else {
+                result.push(arr[5]);
+            }
+            return result;
+        }
+        const number1 = parseInt(prompt('第一個數字'))
+        const number2 = parseInt(prompt('第二個數字'))
+        const number3 = parseInt(prompt('第三個數字'))
+        const numbers = [number1, number2, number3]
+        const result = gua(numbers)
+        console.log(result[0]) // 輸出 離
+        console.log(result[1]) // 輸出 震
+        console.log(result[2]) // 輸出 2
+
+    </script>
+</body>
+
+</html>

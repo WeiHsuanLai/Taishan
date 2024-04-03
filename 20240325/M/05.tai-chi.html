@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: gray;
+        }
+
+        .bigc {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-image: linear-gradient(to right, white 50%, black 50%);
+            box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.5);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+        }
+
+        .bigc::before {
+            width: 300px;
+            height: 300px;
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            width: 50%;
+            height: 50%;
+            top: 0;
+            left: 25%;
+            background: white;
+        }
+
+        /* 小白圓 */
+        .small {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            width: 20%;
+            height: 20%;
+            top: 15%;
+            left: 40%;
+            background: black;
+        }
+
+        .bigc::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            width: 50%;
+            height: 50%;
+            top: 50%;
+            left: 25%;
+            background: black;
+        }
+
+        .small::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            top: 250%;
+            left: 0%;
+            background: white;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bigc">
+        <div class="small"></div>
+    </div>
+</body>
+
+</html>

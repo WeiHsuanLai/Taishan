@@ -1,0 +1,113 @@
+<!-- 使用者可以輸入西元年、月、日，三個 prompt()
+顯示使用者輸入的是該年的第幾天
+
+以 3/5 為例，將前兩個月的天數加起來，再加上 5 天即可
+需考慮閏年 +1
+某些月份的天數是 30，某些月份的天數是 31
+parseInt(變數或是數字的文字) 可以把文字轉數字 -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let year = parseInt(prompt('年'))
+        let month = parseInt(prompt('月'))
+        let day = parseInt(prompt('日'))
+        const m1 = 31
+        const m2 = 28
+        const m2_2 = 29
+        const m3 = 31
+        const m4 = 30
+        const m5 = 31
+        const m6 = 30
+        const m7 = 31
+        const m8 = 31
+        const m9 = 30
+        const m10 = 31
+        const m11 = 30
+        const m12 = 31
+        if (month == 1 && day <= 31) {
+            document.write(day)
+        } else if (month == 2 && day <= 29 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + day)
+        } else if (month == 2 && day <= 28) {
+            document.write(m1 + day)
+        } else if (month == 3 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + day)
+        } else if (month == 3) {
+            document.write('平年')
+            document.write(m1 + m2 + day)
+        } else if (month == 4 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + m3 + day)
+        } else if (month == 4) {
+            document.write('平年')
+            document.write(m1 + m2 + m3 + day)
+        } else if (month == 5 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + m3 + m4 + day)
+        } else if (month == 5) {
+            document.write('平年')
+            document.write(m1 + m2 + m3 + m4 + day)
+        } else if (month == 6 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + m3 + m4 + m5 + day)
+        } else if (month == 6) {
+            document.write('平年')
+            document.write(m1 + m2 + m3 + m4 + m5 + day)
+        } else if (month == 7 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + m3 + m4 + m5 + m6 + day)
+        } else if (month == 7) {
+            document.write('平年')
+            document.write(m1 + m2 + m3 + m4 + m5 + m6 + day)
+        } else if (month == 8 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + m3 + m4 + m5 + m6 + m7 + day)
+        } else if (month == 8) {
+            document.write('平年')
+            document.write(m1 + m2 + m3 + m4 + m5 + day)
+        } else if (month == 9 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + m3 + m4 + m5 + m6 + m7 + m8 + day)
+        } else if (month == 9) {
+            document.write('平年')
+            document.write(m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + day)
+        } else if (month == 10 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + day)
+        } else if (month == 10) {
+            document.write('平年')
+            document.write(m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + day)
+        } else if (month == 11 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + day)
+        } else if (month == 11) {
+            document.write('平年')
+            document.write(m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + day)
+        } else if (month == 12 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 == 0))) {
+            document.write('閏年')
+            document.write(m1 + m2_2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + day)
+        } else if (month == 12) {
+            document.write('平年')
+            document.write(m1 + m2_2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + day)
+        } else {
+            document.write('請輸入正確日期')
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        span {
+            margin: 0;
+            line-height: 0;
+            font-size: 0;
+            position: relative;
+        }
+
+        .Bigsquare {
+            /* margin: 0px; */
+            width: 1920px;
+            height: 220px;
+            margin: auto;
+            display: inline-block;
+        }
+
+        .square {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: rgb(250, 249, 249);
+            border: 3px solid black;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+            /* position: absolute; */
+        }
+
+        .circle {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+        }
+
+        .centered {
+            /* position: absolute; */
+            top: 50%;
+            left: 50%;
+        }
+
+        .mid {
+            transform: translate(-50%, -50%);
+        }
+
+        .left_top {
+            transform: translate(-190%, -190%);
+        }
+
+        .right_down {
+            transform: translate(100%, 100%);
+        }
+
+        .left_down {
+            transform: translate(-190%, 100%);
+        }
+
+        .right_top {
+            transform: translate(100%, -190%);
+        }
+
+        .mid_left {
+            transform: translate(-190%, -50%);
+        }
+
+        .mid_right {
+            transform: translate(100%, -50%);
+        }
+
+        .red {
+            background: red;
+        }
+
+        .black {
+            background: black;
+        }
+
+        /* .one {
+            margin: auto;
+        } */
+    </style>
+</body>
+<ul>
+    <div class="Bigsquare">
+        <div class="square">
+            <span class="circle centered mid red"></span>
+        </div>
+
+        <div class="square">
+            <span class="circle centered left_top black"></span>
+            <span class="circle centered right_down black"></span>
+        </div>
+
+        <div class="square">
+            <span class="circle centered left_top black"></span>
+            <span class="circle centered mid black"></span>
+            <span class="circle centered right_down black"></span>
+        </div>
+
+        <div class="square">
+            <span class="circle centered left_top red"></span>
+            <span class="circle centered right_top red"></span>
+            <span class="circle centered left_down red"></span>
+            <span class="circle centered right_down red"></span>
+        </div>
+
+        <div class="square">
+            <span class="circle centered mid black"></span>
+            <span class="circle centered left_top black"></span>
+            <span class="circle centered right_top black"></span>
+            <span class="circle centered left_down black"></span>
+            <span class="circle centered right_down black"></span>
+        </div>
+
+        <div class="square">
+            <span class="circle centered left_top black"></span>
+            <span class="circle centered right_top black"></span>
+
+            <span class="circle centered mid_left black"></span>
+            <span class="circle centered mid_right black"></span>
+
+            <span class="circle centered left_down black"></span>
+            <span class="circle centered right_down black"></span>
+        </div>
+    </div>
+</ul>
+
+</html>

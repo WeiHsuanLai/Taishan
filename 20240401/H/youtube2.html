@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+    <!-- 自己的 -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- fontawesome 的 -->
+    <link rel="stylesheet" href="./css/all.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="top">
+        <i class="fa-solid fa-bars" id="iconButton"></i>
+    </div>
+    <div id="right"></div>
+    <div id="left"></div>
+    <!-- <button id="toggleButton">Toggle Left Panel</button> -->
+
+    <script>
+        document.getElementById('iconButton').addEventListener('click', function () {
+            var left = document.getElementById('left');
+            var right = document.getElementById('right');
+            if (left.style.display === 'none') {
+                left.style.display = 'block';
+                right.style.width = '90%';
+            } else {
+                left.style.display = 'none';
+                right.style.width = '100%';
+            }
+        });
+    </script>
+</body>
+
+</html>

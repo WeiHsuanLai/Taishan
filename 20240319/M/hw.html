@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            color: white;
+        }
+
+        .main {
+            margin: auto;
+            padding: 0;
+            width: 1024px;
+            height: 768px;
+            font-size: 50;
+            background: black;
+        }
+
+        .header {
+            width: 1024;
+            height: 100px;
+            /* inline 轉成 block，可以佔據父元素空間 */
+            /* font-size: 1.5rem;消除幽靈空白後字體要在設定回來 */
+            background: #000;
+            line-height: 100px;
+        }
+
+        .Left {
+            width: 200px;
+            height: 568px;
+            background: rgb(191, 163, 163);
+            display: block;
+            text-decoration: none;
+            float: left;
+            line-height: 568px;
+        }
+
+        .Right {
+            width: 824px;
+            height: 568px;
+            background: rgb(125, 89, 89);
+            text-align: center;
+            float: right;
+            line-height: 568px;
+        }
+
+        .Footer {
+            width: 1024px;
+            height: 100px;
+            clear: both;
+            background: green;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<div class="main">
+    <div class="header">header</div>
+    <div class="Left">Left</div>
+    <div class="Right">Right</div>
+    <div class="Footer">Footer</div>
+</div>
+
+<body>
+
+</body>
+
+</html>

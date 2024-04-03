@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function countNumbers(n, m) {
+            // 遞迴基：如果 n 的值已經超過 m，則返回 0
+            if (n > m) {
+                return 0;
+            }
+            // 遞迴步驟：增加 n 的值並遞迴調用函式
+            return m + countNumbers(n + 1, m);
+        }
+
+        // 使用 prompt 獲取使用者輸入的 n 和 m
+        const n = parseInt(prompt('請輸入開始數字 n:'));
+        const m = parseInt(prompt('請輸入總和 m:'));
+
+        // 計算並顯示結果
+        const result = countNumbers(n, m);
+        console.log(`小明數了 ${result} 個數字後，數過的數字總和會超過 ${m}`);
+    </script>
+</body>
+
+</html>

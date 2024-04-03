@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let year = parseInt(prompt('年'));
+        let month = parseInt(prompt('月'));
+        let day = parseInt(prompt('日'));
+
+        // Array to store the number of days in each month
+        const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        // Check if the year is a leap year
+        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+            // February has 29 days in a leap year
+            daysInMonth[1] = 29;
+        }
+
+        // Calculate the total number of days up to the user's input month
+        let totalDays = 0;
+        for (let i = 0; i < month - 1; i++) {
+            totalDays += daysInMonth[i];
+        }
+
+        // Add the days of the user's input month
+        totalDays += day;
+
+        // Display the result
+        document.write(totalDays);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>使用.push()方法更新列表</title>
+</head>
+
+<body>
+    <h2>購物清單</h2>
+    <ul id="shoppingList"></ul>
+    <input type="text" id="itemInput" placeholder="輸入新項目">
+    <button onclick="addItem()">添加項目</button>
+
+    <script>
+        // 初始化購物清單
+        var shoppingList = ['蔬菜', '水果', '奶酪'];
+
+        // 更新網頁上的購物清單
+        function updateList() {
+            var listElement = document.getElementById('shoppingList');
+            listElement.innerHTML = ''; // 清空現有列表
+            for (var i = 0; i < shoppingList.length; i++) {
+                var listItem = document.createElement('li');
+                listItem.textContent = shoppingList[i];
+                listElement.appendChild(listItem);
+            }
+        }
+
+        // 添加新項目到購物清單
+        function addItem() {
+            var itemInput = document.getElementById('itemInput');
+            var newItem = itemInput.value;
+            if (newItem) {
+                shoppingList.push(newItem); // 使用.push()方法添加新項目
+                itemInput.value = ''; // 清空輸入框
+                updateList(); // 更新網頁上的列表
+            }
+        }
+
+        // 初始化網頁時更新列表
+        updateList();
+    </script>
+</body>
+
+</html>

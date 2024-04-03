@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+    <title>YouTube</title>
+    <!-- 自己的 -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- fontawesome 的 -->
+    <link rel="stylesheet" href="./css/all.css">
+</head>
+
+<body>
+    <div id="Dad">
+        <div id="top">
+            <i class="fa-solid fa-bars" id="iconButton"></i>
+        </div>
+        <div id="right">
+            <p></p>
+        </div>
+        <div id="left">
+            <p></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('iconButton').addEventListener('click', function () {
+            var left = document.getElementById('left');
+            var right = document.getElementById('right');
+            if (left.style.display === 'none') {
+                left.style.display = 'block';
+                left.style.width = '15%';
+                right.style.width = '85%';
+                right.style.transform = 'translate(17.6%, 10%)';
+            } else if (left.style.display !== 'none') {
+                left.style.display = 'none';
+                left.style.width = '0%';
+                right.style.width = '100%';
+                right.style.transform = 'translate(0%, 10%)';
+            }
+        });
+    </script>
+</body>
+
+</html>

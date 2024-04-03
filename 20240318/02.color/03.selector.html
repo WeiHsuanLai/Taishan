@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            1.以 . 開頭
+            2.只允許使用英文、數字、與 - 底線_
+            3.已字元開頭，不能用數字開頭
+            .1color => 不行，數字開頭
+            .text-color => 可以
+            .text_color => 可以
+            4.可用中文命名，但不建議
+            5.有區分大小寫
+
+        */
+        .color {
+            color: blueviolet;
+        }
+
+        .text {
+            font-size: 50px;
+        }
+
+        /* 有加上 . 才是 class標籤  */
+        li {
+            color: green;
+        }
+
+        .active {
+            color: red;
+        }
+
+        .font {
+            font-size: 30px;
+            font-weight: bolder;
+        }
+
+
+        #header {
+            color: lightpink;
+        }
+
+        #main {
+            color: aquamarine;
+        }
+
+        #sidebar {
+            color: royalblue;
+        }
+
+        #footer {
+            color: deeppink;
+        }
+
+        #header,
+        #main,
+        #sidebar,
+        #footer {
+            font-size: 1.5rem;
+        }
+
+        /* 半形空白為後代選擇器，選擇到兒子與孫子們 */
+        nav p {
+            color: blue;
+        }
+
+        /* > 為子代選擇器，只選擇到兒子(只選擇一層) */
+        nav>p {
+            color: red;
+        }
+
+        /* 全域選擇器(通用選擇器)，全部的元素都選(除了偽元素 ::before，::after) */
+        * {
+            font-style: italic;
+            /* border: none; */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS選擇器</h1>
+    <p>CSS，有非常多選擇器，幫助我們在撰寫樣式時，選擇到目標</p>
+    <h1 class="color text">class 選擇器</h1>
+    <P>class 具有重複使用的特性，是CSS使用率最高的選擇器。</P>
+
+    <h2>使用場景</h2>
+    <h3>1.相同元素但需要不同外觀時</h3>
+    <ul>
+        <li>體會老大由此必要主動一位貿易隨時記得犯。</li>
+        <li>體會老大由此必要主動一位貿易隨時記得犯。</li>
+        <li class="active">體會老大由此必要主動一位貿易隨時記得犯。</li>
+        <li>體會老大由此必要主動一位貿易隨時記得犯。</li>
+        <li>體會老大由此必要主動一位貿易隨時記得犯。</li>
+    </ul>
+    <h3>2.重複使用時</h3>
+    <p>家裡<a href="#" class="font">電池</a>設定可是障礙<em class="font">十年拍攝</em>，使得目標</p>
+
+
+    <hr>
+
+    <h1>id選擇器</h1>
+    <ul>
+        <li>一份文件裡面，只允許獨一無二的 id 名稱，就像身分證不能重複</li>
+        <li>id 常被作用網頁區塊名稱或者是JS、jQuery 操縱元素的選擇器</li>
+        <li>id 最簡單、最快速、最直接的選擇方式</li>
+    </ul>
+    <div id="header">header 區塊</div>
+    <div id="main">main 區塊</div>
+    <div id="sidebar">sidebar 區塊</div>
+    <div id="footer">footer 區塊</div>
+
+    <hr>
+    <h1>後代、子代選擇器</h1>
+
+    <p>Lorem ipsum dolor sit amet.</p>
+    <nav>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <div>
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+    </nav>
+
+</body>
+
+</html>

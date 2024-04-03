@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // hoisting.html:18 Uncaught ReferenceError: text is not defined
+        //console.log(text);
+
+        // hoisting.html:12 Uncaught ReferenceError: Cannot access 'text' before initialization
+        // console.log(text);
+        // const text = 'abc'
+
+        //console.log(text);//undefined
+        //var text = 'abc'
+
+        // hoisting.html: 21 Uncaught ReferenceError: text is not defined
+        // console.log(text);
+        // text = 'abc'
+        // console.log(text);
+
+        // function declartaion 會提升
+        hi('AAA')
+        function hi(name) {
+            console.log('hi, ' + name);
+        }
+
+        // function expression
+        console.log(hi2);
+        // Uncaught TypeError: hi2 is not a function
+        // hi2('BBB')
+        var hi2 = function (name) {
+            document.write('hi,' + name)
+        }
+    </script>
+</body>
+
+</html>
