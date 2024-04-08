@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #news {
+            width: 280px;
+            height: 460px;
+            border: 1px solid #999;
+            float: left;
+        }
+
+        /* 合併儲存格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /* 最新消息 */
+        #news h1 {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #news th {
+            padding: 1rem;
+            background: #39f;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        #news td {
+            font-size: 12px;
+            line-height: 2;
+        }
+
+        #news tr:nth-child(even) {
+            background: #FFFCCC;
+        }
+
+        #news tr:nth-child(odd) {
+            background: #DDDDDD;
+        }
+
+        /* 圖片展示區 */
+        #photo {
+            width: 590px;
+            height: 460px;
+            border: 1px solid #999;
+            float: right;
+            font-size: 14px;
+            color: #ff0;
+            background: #333;
+            text-align: center;
+        }
+
+        #photo #big {
+            /* 紙本沒有說，尺寸要記一下 */
+            width: 570px;
+            height: 340px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="news">
+        <h1>最新消息</h1>
+        <table>
+            <tr>
+                <th>主題</th>
+                <th>發布日期</th>
+            </tr>
+            <tr>
+                <td>公告全國技能競賽相關事宜</td>
+                <td style="text-align: center;">113/04/08</td>
+            </tr>
+            <tr>
+                <td>公告即測即評及發證相關事宜</td>
+                <td style="text-align: center;">113/04/08</td>
+            </tr>
+            <tr>
+                <td>公告網頁設計修題相關事宜</td>
+                <td style="text-align: center;">113/04/08</td>
+            </tr>
+            <tr>
+                <td>公告網路架設應檢相關事宜</td>
+                <td style="text-align: center;">113/04/08</td>
+            </tr>
+        </table>
+    </div>
+    <div id="photo">
+        <table>
+            <tr>
+                <td colspan="4">
+                    <img id="big" src="../images/0202A.png">
+                </td>
+            </tr>
+            <tr>
+                <td><img class="small" src=" ../images/0202B.png"></td>
+                <td><img class="small" src="../images/0203B.png"></td>
+                <td><img class="small" src="../images/0204B.png"></td>
+                <td><img class="small" src="../images/0205B.png"></td>
+            </tr>
+            <tr>
+                <td>第30屆倫敦奧運</td>
+                <td>許淑淨奪舉重銀牌</td>
+                <td>第26屆深圳世大運</td>
+                <td>第27屆喀山世大運</td>
+            </tr>
+        </table>
+    </div>
+    <script src="../others/jquery-2.1.4.min.js"></script>
+    <script>
+        // document Object model(DOM)
+        // 方法一，原生 JS
+        // 偽陣列，很像陣列，但不是陣列，不能用陣列的方法，可以打印出來看看他有什麼方法給我們使用
+
+        // const imgs = document.querySelectorAll('.small');
+        // const big = document.querySelector('#big')
+        // console.log(img)
+        // const arr = []
+        // imgs.forEach(function (img, index) {
+        //     img.onclick = function () {
+        //         document.querySelector('#big').src = `../images/020${index + 2}A.png`
+        //     }
+        // })
+
+        // imgs.forEach(function (img, index) {
+        //     img.onclick = function () {
+        //         big.src = `../images/020${index + 2}A.png`
+        //     }
+        // })
+
+        // 方法二，jQuery
+        console.log($('.small'))
+        $('.small').each(function (index, img) {
+            // console.log(index,img)
+            $(img).on('click', function () {
+                $('#big').attr('src', `../images/020${index + 2}A.png`)
+            })
+        })
+    </script>
+
+</body>
+
+</html>
