@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        #main {
+            /* position: fixed; */
+            width: 1900px;
+            height: 900px;
+            background: yellow;
+        }
+
+        #top {
+            width: 1900px;
+            height: 55px;
+            position: fixed;
+            background: green;
+        }
+
+        #left {
+            width: 250px;
+            height: 845px;
+            position: fixed;
+            overflow: auto;
+            background: blue;
+            transform: translate(0%, 55px);
+        }
+
+        #searchInput {
+            transform: translate(380px, 5px);
+            width: 550px;
+            height: 35px;
+            border-radius: 50px 0 0 50px;
+            /* 或者使用一個具體的像素值 */
+            /* max-width: 100%; */
+            /* 確保input元素的寬度不超過其父元素的寬度 */
+        }
+
+        #right_top {
+            width: 1635px;
+            height: 120px;
+            position: fixed;
+            background: pink;
+            transform: translate(250px, 55px);
+            z-index: 1;
+        }
+
+        #right {
+            width: 1650px;
+            height: 845px;
+            position: fixed;
+            float: right;
+            overflow: auto;
+            background: red;
+            transform: translate(250px, 55px);
+        }
+
+        #right p {
+            width: 1630px;
+            height: 100px;
+            background: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="top">
+            <input type="text" id="searchInput" placeholder="搜尋">
+            <!-- <ul id="searchResults"></ul> -->
+        </div>
+        <div id="left">lorem1000</div>
+        <div id="right_top">123</div>
+        <div id="right">
+            <p></p>
+            <span>
+                lorem3000
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>
