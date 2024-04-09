@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+          <meta charset="UTF-8">
+          <title>凱薩密碼</title>
+</head>
+
+<body>
+          <script>
+                    function encrypt() {
+                              // 使用 prompt 獲取明文和密鑰
+                              const plaintext = prompt("請輸入明文:");
+                              const key = parseInt(prompt("請輸入密鑰:"));
+                              let result = '';
+                              for (let i = 0; i < plaintext.length; i++) {
+                                        let charCode = plaintext.charCodeAt(i);
+                                        if (charCode >= 65 && charCode <= 90) {
+                                                  // 大寫字母
+                                                  result += String.fromCharCode((charCode - 65 + key) % 26 + 65);
+                                        } else if (charCode >= 97 && charCode <= 122) {
+                                                  // 小寫字母
+                                                  result += String.fromCharCode((charCode - 97 + key) % 26 + 97);
+                                        }
+                              }
+                              alert("加密後的密文: " + result);
+                    }
+                    encrypt();
+          </script>
+</body>
+
+</html>
