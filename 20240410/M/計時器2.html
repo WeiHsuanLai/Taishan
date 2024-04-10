@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="pp"></p>
+    <script>
+        let number = parseInt(prompt('ms'))
+        number++
+        const timer = setInterval(() => {
+            // number += 1
+            number--
+            document.getElementById("pp").textContent = number;
+            if (number < 1) {
+                document.getElementById("pp").textContent = "時間到";
+                clearTimeout(timer)
+            }
+        }, 1000)
+    </script>
+</body>
+
+</html>
