@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <p>
+            知道轉讓，文明綜合大師整理自從正是大部分森林行情民國我市家裡熱點，小心類別全國存儲理由沒有任何到我本公司，青草湖多個凱文忽然上來證券來電證書項目起來你不，老公研究我只日記覺得傳真權力軟體填寫都在，包括電子，回憶身體今年，加盟兩人離開土地手續，也能深刻，無。
+        </p>
+    </div>
+    <div id="div2">
+        <p>
+            相當治療道理苗栗另一發出作家，科學付款並且不限無奈，一批那些，能力市委害怕英文是否關於客人障礙考核什麼事原理，一種傳統禁止困難疾病手術確認一副，一直勞動關鍵字都是，人物工作儘管年輕，增強擔任各類很少恐怖臺灣，大賽不斷色彩你好那些警方同意，法院那樣此刻設立。
+        </p>
+    </div>
+    <div id="div3">
+        <p>
+            的錢就像體育賓館流行有限責任清晰收費，你要法院價值功夫一看少年在這個自從聯盟，發展爭取不見，病毒尤其是關係他是規範，仍然大學給我組織默認把他，青草湖相信學院一顆危機，您可以一支處罰接下來工商娛樂請您民眾，詢問費用獲得彼此把它未來為什麼職務看見可以用責任編。
+        </p>
+    </div>
+    <ul id="list1">
+        <li>西瓜</li>
+        <li>芒果</li>
+        <li>芭樂</li>
+    </ul>
+    <ul id="list2">
+        <li>香蕉</li>
+        <li>蘋果</li>
+        <li>葡萄</li>
+    </ul>
+    <script>
+        const div1 = document.getElementById('div1')
+        div1.insertAdjacentHTML('beforebegin', '<p>beforebegin</p>')
+        div1.insertAdjacentHTML('afterbegin', '<p>afterbegin</p>')
+        div1.insertAdjacentHTML('beforeend', '<p>beforeend</p>')
+        div1.insertAdjacentHTML('afterend', '<p>afterend</p>')
+
+        const div2 = document.getElementById('div2')
+        const p = document.createElement('p')
+        p.innerText = '123456'
+        p.style.color = 'red'
+        // .prepend() 下一層的前面
+        // .append() 下一層的後面
+        // 如果東西不在頁面上會放上 DOM，已經存在就移動位置
+        div2.prepend(p)
+        // div2.append(p, a)
+
+        // div2.prependChild()
+        // div2.appendChild()
+        // 同上，但只會處裡第一個元素
+        // div2.appendChild(p, a)
+
+        // div2.remove()
+        // div2.innerHTML = ''
+        div2.removeChild(div2.firstElementChild)
+        div2.firstElementChild.remove()
+
+        const div3 = document.getElementById('div3')
+        const img = document.createElement('img')
+        img.src = 'https://github.com/WeiHsuanLai.png'
+        // img.width = 10
+        div3.replaceChild(img, div3.firstElementChild)
+
+        const list1 = document.getElementById('list1')
+        const list2 = document.getElementById('list2')
+        list1.insertBefore(list2.firstElementChild, list1.firstElementChild)
+    </script>
+</body>
+
+</html>
