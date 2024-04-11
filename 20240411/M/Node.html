@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div">
+        <div id="p"><!--註解-->ABCD</div>
+    </div>
+    <div id="div2">
+        <div id="p">ABCD</div>
+    </div>
+
+    <script>
+        const div = document.getElementById('div')
+        // firstChild 裡面的第一個節點，抓到縮排的空白
+        console.log(div.firstChild)
+        //  firstElementChild 裡面的第一個元素 P
+        console.log(div.firstElementChild)
+
+        const div2 = document.getElementById('div2')
+        console.log(div2.firstChild)
+        console.log(div2.firstElementChild)
+    </script>
+</body>
+
+</html>
