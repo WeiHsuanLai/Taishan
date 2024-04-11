@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="剪刀" id="rock">
+    <input type="button" value="石頭" id="paper">
+    <input type="button" value="布" id="scissors">
+    <hr>
+    <div id="textContainer"></div>
+    <!-- JS -->
+    <script>
+        const rock = document.getElementById('rock')
+        const paper = document.getElementById('paper')
+        const scissors = document.getElementById('scissors')
+        const textContainer = document.getElementById('textContainer')
+        console.log('0剪刀1石頭2布')
+        rock.onclick = () => {
+            const mora = Math.floor(Math.random() * 3)
+            console.log(mora)
+            if (mora == 0) {
+                textContainer.innerHTML += "<li>你出剪刀電腦出剪刀 平手</li>"
+                console.log('你出剪刀電腦出剪刀 平手');
+            } else if (mora == 1) {
+                textContainer.innerHTML += "<li>你出剪刀電腦出石頭 輸了</li>"
+                console.log('你出剪刀電腦出石頭 輸了')
+            } else if (mora == 2) {
+                textContainer.innerHTML += "<li>你出剪刀電腦出布 贏了</li>"
+                console.log('你出剪刀電腦出布 贏了')
+            }
+        };
+
+        paper.onclick = () => {
+            const mora = Math.floor(Math.random() * 3)
+            console.log(mora)
+            if (mora == 0) {
+                textContainer.innerHTML += "<li>你出石頭電腦出剪刀 贏了</li>"
+                console.log('你出石頭電腦出剪刀 贏了')
+            } else if (mora == 1) {
+                textContainer.innerHTML += "<li>你出石頭電腦出石頭 平手</li>"
+                console.log('你出石頭電腦出石頭 平手')
+            } else if (mora == 2) {
+                textContainer.innerHTML += "<li>你出石頭電腦出布 輸了</li>"
+                console.log('你出石頭電腦出布 輸了')
+            }
+        };
+
+        scissors.onclick = () => {
+            const mora = Math.floor(Math.random() * 3)
+            console.log(mora)
+            if (mora == 0) {
+                textContainer.innerHTML += "<li>你出布電腦出剪刀 輸了</li>"
+                console.log('你出布電腦出剪刀 輸了')
+            } else if (mora == 1) {
+                textContainer.innerHTML += "<li>你出布電腦出石頭 贏了</li>"
+                console.log('你出布電腦出石頭 贏了')
+            } else if (mora == 2) {
+                textContainer.innerHTML += "<li>你出布電腦出布 平手</li>"
+                console.log('你出布電腦出布 平手')
+            }
+        };
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="剪刀" id="rock">
+    <input type="button" value="石頭" id="paper">
+    <input type="button" value="布" id="scissors">
+    <hr>
+    <div id="textContainer"></div>
+    <!-- JS -->
+    <script>
+        const rock = document.getElementById('rock');
+        const paper = document.getElementById('paper');
+        const scissors = document.getElementById('scissors');
+        const textContainer = document.getElementById('textContainer');
+
+        function playGame(playerChoice) {
+            const computerChoice = Math.floor(Math.random() * 3);
+            console.log('0剪刀1石頭2布');
+            console.log(computerChoice);
+
+            let result = '';
+            if (playerChoice === computerChoice) {
+                result = '平手';
+            } else if ((playerChoice === 0 && computerChoice === 1) || (playerChoice === 1 && computerChoice === 2) || (playerChoice === 2 && computerChoice === 0)) {
+                result = '贏了';
+            } else {
+                result = '輸了';
+            }
+
+            textContainer.innerHTML += `<li>你出${playerChoice === 0 ? '剪刀' : playerChoice === 1 ? '石頭' : '布'}電腦出${computerChoice === 0 ? '剪刀' : computerChoice === 1 ? '石頭' : '布'} ${result}</li>`;
+        }
+
+        rock.onclick = () => playGame(0);
+        paper.onclick = () => playGame(1);
+        scissors.onclick = () => playGame(2);
+    </script>
+</body>
+
+</html>
