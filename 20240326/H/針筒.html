@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #main {
+            position: relative;
+            margin: auto;
+            padding: auto;
+            width: auto;
+            height: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .NeedleSeat {
+            position: relative;
+            border-radius: 10px;
+            width: 60px;
+            height: 145px;
+            border: 1px solid rgb(104, 104, 104);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, rgb(255, 255, 255)20%, rgb(200, 200, 200), rgb(255, 255, 255));
+            ;
+        }
+
+        .piston {
+            position: relative;
+            width: 60px;
+            height: 90px;
+            border: 1px solid rgb(104, 104, 104);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, rgb(255, 255, 255)20%, rgb(200, 200, 200), rgb(255, 255, 255));
+        }
+
+        .Needlemain {
+            background-repeat: repeat-x;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* border-top-style: dashed;
+            border-top-width: medium; */
+        }
+
+        .Needle {
+            position: relative;
+            width: 250px;
+            height: 150px;
+            border: 1px solid rgb(104, 104, 104);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, rgb(255, 255, 255)20%, rgb(200, 200, 200), rgb(255, 255, 255));
+        }
+
+        .Needle::after {
+            content: "";
+            width: 250px;
+            height: 150px;
+            transform: translate(10px);
+            /* background-color: black; */
+            background-image: linear-gradient(to right, #000 5%, rgba(255, 255, 255, 0) 0%);
+            background-repeat: repeat-x;
+            background-size: 20px 30px;
+        }
+
+        .NeedleCenter {
+            position: relative;
+            background: black;
+            width: 60px;
+            height: 150px;
+            border: 1px solid rgb(104, 104, 104);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .text {
+            margin: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-size: 25px;
+        }
+
+
+        .NeedleRight {
+            position: relative;
+            width: 250px;
+            height: 150px;
+            border: 1px solid rgb(104, 104, 104);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, rgb(249, 255, 164)20%, rgb(200, 206, 160), rgb(249, 255, 164));
+        }
+
+        .NeedleRight::before {
+            content: "";
+            position: relative;
+            width: 250px;
+            height: 150px;
+            transform: translate(10px);
+            background-image: linear-gradient(to right, #000 5%, rgba(255, 255, 255, 0) 0%);
+            background-repeat: repeat-x;
+            background-size: 20px 30px;
+        }
+
+        .Needlehead {
+            position: relative;
+            width: 60px;
+            height: 90px;
+            border: 1px solid rgb(104, 104, 104);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, rgb(255, 255, 255)20%, rgb(200, 200, 200), rgb(255, 255, 255));
+            border-radius: 0px 10px 10px 0px;
+        }
+
+        .acupuncture {
+            width: 100px;
+            height: 2px;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div class="NeedleSeat"></div>
+        <div class="piston"></div>
+        <div class="Needlemain">
+            <div class="Needle">
+                <p class="text">Made in Taiwan</p>
+            </div>
+            <div class="NeedleCenter"></div>
+            <div class="NeedleRight"></div>
+        </div>
+        <div class="Needlehead"></div>
+        <div class="acupuncture"></div>
+    </div>
+
+
+</body>
+
+</html>
