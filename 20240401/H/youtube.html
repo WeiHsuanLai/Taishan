@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    <!-- fontawesome 的 -->
+    <link rel="stylesheet" href="./css/all.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: inherit;
+        }
+
+        .main {
+            width: 1920px;
+            height: 919px;
+        }
+
+        .head {
+            position: fixed;
+            width: 1920px;
+            height: 70px;
+            background: white;
+        }
+
+        #headleft,
+        #headcenter,
+        #headright {
+            margin: 3px;
+            position: absolute;
+            top: 0;
+        }
+
+        #headleft {
+            left: 0;
+            text-align: left;
+        }
+
+        #headcenter {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+        }
+
+        #headright {
+            right: 0;
+            text-align: right;
+        }
+
+        #iconButton {
+            color: black;
+            font-size: 20px;
+            /* background: Red; */
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        #iconButton:hover {
+            border-radius: 50px;
+            background: rgba(186, 184, 184, 0.3);
+        }
+
+        #iconYoutube {
+            color: red;
+            font-size: 30px;
+            transform: translate(5px, 3px);
+        }
+
+        #searchInput {
+            font-size: 20px;
+            width: 530px;
+            height: 35px;
+            border-radius: 50px 0 0 50px;
+            border: 1px solid rgb(209, 209, 209);
+            transform: translate(-62%, 0%);
+        }
+
+        #search {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(246, 243, 243);
+            width: 64px;
+            height: 37px;
+            border: 1px solid rgb(209, 209, 209);
+            border-radius: 0 50px 50px 0;
+            transform: translate(203px, -39px);
+        }
+
+        #search:hover {
+            background: rgb(237, 237, 237);
+        }
+
+        #microphone {
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(246, 243, 243);
+            width: 37px;
+            height: 37px;
+            border: 1px solid rgb(209, 209, 209);
+            border-radius: 50px;
+            transform: translate(285px, -78px);
+        }
+
+        #microphone:hover {
+            background: rgb(237, 237, 237);
+        }
+
+        #youtubelogo {
+            font-size: 20px;
+            font-family: "Oswald", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        #Photostickers {
+            right: 0;
+            position: absolute;
+            background: blanchedalmond;
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgb(0, 0, 0);
+        }
+
+        #left {
+            width: 250px;
+            height: 845px;
+            position: fixed;
+            overflow: auto;
+            /* background: blue; */
+            transform: translate(0%, 55px);
+        }
+
+        button {
+            width: 222px;
+            height: 50px;
+            border: none;
+            background-color: white;
+            color: black;
+            text-align: left;
+            display: inline-block;
+            border-radius: 10px;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(218, 218, 218);
+        }
+
+        #right_top {
+            width: 1635px;
+            height: 68px;
+            position: fixed;
+            background: white;
+            transform: translate(250px, 55px);
+            z-index: 1;
+        }
+
+        #right_top>button {
+            font-size: 13px;
+            background: rgb(234, 233, 233);
+            margin: 2px;
+            width: auto;
+            height: 35px;
+            border-radius: 10px;
+            border: solid white;
+            transform: translateX(20px);
+        }
+
+        #right_top>button:hover {
+            background: rgb(216, 216, 216);
+        }
+
+        #right {
+            width: 1650px;
+            height: 845px;
+            position: fixed;
+            float: right;
+            overflow-y: auto;
+            overflow-x: hidden;
+            /* background: red; */
+            transform: translate(250px, 55px);
+        }
+
+        #right p {
+            width: 1630px;
+            height: 52px;
+            background: white;
+        }
+
+
+        iframe {
+            margin: 5px;
+            width: 300px;
+            height: 170px;
+            border-radius: 10px;
+        }
+
+        #right td {
+            font-family: 'Font Awesome 6 Free';
+            font-size: 12px;
+        }
+    </style>
+</head>
+<div class="main">
+    <!-- 頭部 -->
+    <div class="head">
+        <div id="headleft">
+            <div>
+                <i class="fa-solid fa-bars" id="iconButton"></i>
+                <i class="fa-brands fa-youtube" id="iconYoutube"></i>
+                <span id="youtubelogo">&nbsp; YouTube
+                    <span style="font-weight:normal;font-size: 15px;">
+                        <sup>TW</sup>
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div id="headcenter">
+            <input type="text" id="searchInput" placeholder="&nbsp;&nbsp; 搜尋">
+            <a href="https://www.google.com.tw/">
+                <div id="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </a>
+            <div id="microphone">
+                <i class="fa-solid fa-microphone"></i>
+            </div>
+        </div>
+
+        <div id="headright">
+            <i class="fa-regular fa-file-video" id="iconButton"></i>
+            <i class="fa-regular fa-bell" id="iconButton"></i>
+            <i class="fa-solid fa-circle-user" id="iconButton"></i>
+        </div>
+    </div>
+
+    <!-- 左側 -->
+    <div id="left">
+        <table>
+            <tr>
+                <td>
+                    <button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;首頁
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp;
+                        <i class="fa-regular fa-file-video"></i>
+                        &nbsp;&nbsp;&nbsp; Shorts
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-regular fa-circle-play"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+        </table>
+        <hr>
+        <table>
+            <tr>
+                <td>
+                    <button>
+                        你的內容 &nbsp;>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-regular fa-user"></i>
+                        &nbsp;&nbsp;&nbsp;你的頻道
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        &nbsp;&nbsp;&nbsp;觀看紀錄
+                    </button></td>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-circle-play"></i>
+                        &nbsp;&nbsp;&nbsp;你的影片
+                    </button></td>
+            </tr>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-regular fa-clock"></i>
+                        &nbsp;&nbsp;&nbsp;稍後觀看
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-angle-down"></i>
+                        &nbsp;&nbsp;&nbsp;顯示更多
+                    </button></td>
+            </tr>
+        </table>
+        <hr>
+        <table>
+            <h4>&nbsp;&nbsp;訂閱內容</h4>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp; Shorts
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-angle-down"></i>
+                        &nbsp;&nbsp;&nbsp;顯示另外9個項目
+                    </button></td>
+            </tr>
+        </table>
+        <hr>
+        <table>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+            <tr>
+                <td><button>
+                        &nbsp
+                        <i class="fa-solid fa-house"></i>
+                        &nbsp;&nbsp;&nbsp;訂閱內容
+                    </button></td>
+            </tr>
+        </table>
+        <hr>
+        <p style="font-size: 14px;">
+            簡介 &nbsp;媒體 &nbsp;著作權 &nbsp;與我們聯絡 &nbsp;創作者 &nbsp;廣告 &nbsp;開發人員
+            &nbsp; 條款 &nbsp;隱私權 &nbsp;政策與安全性 &nbsp;YouTube 運作方式 &nbsp;測試新功能&nbsp;
+            <br>
+            © 2024 Google LLC
+        </p>
+    </div>
+    <!-- 右側 -->
+    <div id="right_top">
+        <button>&nbsp;全部&nbsp;</button>
+        <button>&nbsp;遊戲&nbsp;</button>
+        <button>&nbsp;新聞&nbsp;</button>
+        <button>&nbsp;直播中&nbsp;</button>
+        <button>&nbsp;音樂&nbsp;</button>
+        <button>&nbsp;動作冒險遊戲&nbsp;</button>
+        <button>&nbsp;動畫&nbsp;</button>
+        <button>&nbsp;烹飪&nbsp;</button>
+        <button>&nbsp;最新上傳&nbsp;</button>
+        <button>&nbsp;以觀看&nbsp;</button>
+        <button>&nbsp;讓你耳目一新的影片&nbsp;</button>
+    </div>
+    <div id="right">
+        <p></p>
+        <table>
+            <tr>
+                <td>
+                    <iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+            </tr>
+            <tr>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+            </tr>
+        </table>
+        <p></p>
+        <table>
+            <tr>
+                <td>
+                    <iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+            </tr>
+            <tr>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+            </tr>
+        </table>
+        <p></p>
+        <table>
+            <tr>
+                <td>
+                    <iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+            </tr>
+            <tr>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+            </tr>
+        </table>
+        <p></p>
+        <table>
+            <tr>
+                <td>
+                    <iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+                <td><iframe src="https://www.youtube.com/embed/b3x87zBFoGk?si=4u8X0ykrLuybr19v"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+            </tr>
+            <tr>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+                <td>【尊】我玩了傳聞打遊戲就能發財的「套路賺錢手遊」! ? 消耗30天陽壽看廣告,即可領取巨款10塊台幣 ! !【第2頻道】</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<body>
+
+</body>
+
+</html>
