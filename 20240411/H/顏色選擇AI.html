@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RGB背景調整器</title>
+    <style>
+        #background {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+
+        input[type="range"] {
+            width: 150px;
+        }
+
+        input[type="number"] {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="background"></div>
+    <br>
+    <label>Red: <input type="range" id="redRange" min="0" max="255" value="255"
+            oninput="updateColor(); redNum.value = this.value">
+        <input type="number" id="redNum" min="0" max="255" value="255"
+            oninput="redRange.value = this.value; updateColor();"></label>
+    <br>
+    <label>Green: <input type="range" id="greenRange" min="0" max="255" value="255"
+            oninput="updateColor(); greenNum.value = this.value">
+        <input type="number" id="greenNum" min="0" max="255" value="255"
+            oninput="greenRange.value = this.value; updateColor();"></label>
+    <br>
+    <label>Blue: <input type="range" id="blueRange" min="0" max="255" value="255"
+            oninput="updateColor(); blueNum.value = this.value">
+        <input type="number" id="blueNum" min="0" max="255" value="255"
+            oninput="blueRange.value = this.value; updateColor();"></label>
+
+    <script>
+        function updateColor() {
+            var red = document.getElementById('redRange').value;
+            var green = document.getElementById('greenRange').value;
+            var blue = document.getElementById('blueRange').value;
+            document.getElementById('background').style.backgroundColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
+        }
+    </script>
+</body>
+
+</html>

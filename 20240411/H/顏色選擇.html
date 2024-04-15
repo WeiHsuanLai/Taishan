@@ -9,7 +9,7 @@
         #div {
             width: 100px;
             height: 100px;
-            background: rgb(0, 0, 0);
+            background: rgb(0, 255, 255);
             color: white;
         }
     </style>
@@ -18,17 +18,28 @@
 <body>
     <div id="div"></div>
     <div id="key"></div>
-    <input type="range" id="range" min="0" max="255" step="1" value="0">
+    <input type="range" id="rangered" min="0" max="255" step="1" value="0">
     <span id="range-value">0</span>
+    <input type="number" id="number" min="0" max="255" step="1" value="0">
     <!-- JS -->
     <script>
-        const rangeValue = document.getElementById('range-value')
-        // 邊拖拉邊觸發 input
-        range.addEventListener('input', () => {
-            console.log('range input')
-            rangeValue.innerText = range.value
+        let rangeValue = document.getElementById('range-value');
+        let number = document.getElementById('number');
+        let rangered = document.getElementById('rangered');
 
-        })
+        // 當滑塊值改變時，更新number輸入框的值和range-value元素的文本
+        rangered.addEventListener('input', () => {
+            number.value = rangered.value;
+            rangeValue.innerText = rangered.value;
+            document.getElementById('div').style.backgroundColor = 'rgb(' + rangered.value + ',' + 255 + ',' + 255 + ')';
+        });
+
+        // 當number輸入框的值改變時，更新滑塊的值和range-value元素的文本
+        number.addEventListener('input', () => {
+            rangered.value = number.value;
+            rangeValue.innerText = number.value;
+            document.getElementById('div').style.backgroundColor = 'rgb(' + number.value + ',' + 255 + ',' + 255 + ')';
+        });
     </script>
 
 </body>
