@@ -35,7 +35,9 @@
         <img src="./cat.jpg" alt="" id="img-cat">
     </div>
     <audio src="./meow.mp3" volume="0" id="audio-cat"></audio>
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.7/sweetalert2.all.min.js'
+        integrity='sha512-sCRQAGZoT2SOdF+QT+pzQaJn2SP9K4t27Au967tsnf3gZNfHcKrkAKudpV2JBu16wsMouvG8C7iNV+dmMgDBgQ=='
+        crossorigin='anonymous'></script>
     <script>
         const btnStart = document.getElementById('btn-start')
         const divGame = document.getElementById('game')
@@ -43,7 +45,7 @@
         const textTime = document.getElementById('text-time')
         const audioCat = document.getElementById('audio-cat')
 
-        // 經過時間， 單位 0.01 秒
+        // 經過時間，單位 0.01 秒
         let time = 0
         // 計時器
         let timer = 0
@@ -56,7 +58,7 @@
         // 貓的中心點座標
         const catPosition = {
             x: imgCat.offsetLeft + (imgCat.clientWidth / 2),
-            y: imgCat.offsetTop + (imgCat.clientHeight / 2),
+            y: imgCat.offsetTop + (imgCat.clientHeight / 2)
         }
 
         btnStart.addEventListener('click', () => {
@@ -66,24 +68,32 @@
             textTime.innerText = 0
             audioCat.volume = 0
             // 隨機擺放貓
+            imgCat.style.opacity = 0
             imgCat.style.top = Math.round(Math.random() * 80) + '%'
             imgCat.style.left = Math.round(Math.random() * 80) + '%'
             catPosition.x = imgCat.offsetLeft + (imgCat.clientWidth / 2)
-            catPosition.y = imgCat.offsetLeft + (imgCat.clientHeight / 2)
+            catPosition.y = imgCat.offsetTop + (imgCat.clientHeight / 2)
             // 開始計時
             timer = setInterval(() => {
                 time++
                 textTime.innerText = time / 100
+                if (time % 300 === 0) {
+                    audioCat.play()
+                }
             }, 10)
         })
 
         divGame.addEventListener('mousemove', (event) => {
+            // console.log(event.target)
             // 取得滑鼠相對於 divGame 的座標
             const mousePosition = {
                 x: event.offsetX,
                 y: event.offsetY
             }
-
+            console.log(mousePosition)
+            // 如果滑鼠在貓上面
+            // event.offsetX 是滑鼠相對於貓的位置
+            // 所以直接當作在貓上面
             if (event.target === imgCat) {
                 mousePosition.x = catPosition.x
                 mousePosition.y = catPosition.y
@@ -94,8 +104,22 @@
                 Math.pow(mousePosition.x - catPosition.x, 2) +
                 Math.pow(mousePosition.y - catPosition.y, 2)
             )
-            console.log(distance)
-            audioCat.volume = 1 - distance / divGameMaxDistanced
+            // console.log(distance)
+            audioCat.volume = 1 - distance / divGameMaxDistance
+        })
+
+        imgCat.addEventListener('click', () => {
+            // 開始按鈕不是停用中，代表不在遊戲中，所以不做事
+            if (!btnStart.disabled) return
+
+            imgCat.style.opacity = 1
+            clearInterval(timer)
+            btnStart.disabled = false
+            Swal.fire({
+                icon: 'success',
+                title: '恭喜',
+                text: `你花了 ${time / 100} 秒`
+            })
         })
     </script>
 </body>
