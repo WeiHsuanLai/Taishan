@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #loading {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: gray;
+            transition: opacity 1s;
+        }
+
+        #loading-content {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        <div id="loading-content">
+            <h1>載入中...
+                <span id="loading-progress">0</span>%
+            </h1>
+        </div>
+    </div>
+    <input type="button" value="AAA">
+    <div id="content">
+        <img src="https://picsum.photos/300/200/?random=1" alt="">
+        <img src="https://picsum.photos/300/200/?random=2" alt="">
+        <img src="https://picsum.photos/300/200/?random=3" alt="">
+        <img src="https://picsum.photos/300/200/?random=4" alt="">
+        <img src="https://picsum.photos/300/200/?random=5" alt="">
+    </div>
+
+    <!-- JS -->
+    <script>
+        const loading = document.getElementById('loading')
+        const loadingProgress = document.getElementById('loading-progress')
+        const images = document.getElementsByTagName('img')
+
+        let loaded = 0
+        for (const el of images) {
+            el.addEventListener('load', () => {
+                loaded++
+                loadingProgress.innerText = Math.round(loaded / images.length * 100)
+            })
+        }
+
+        // document.onreadystatechange = () => { }
+        document.addEventListener('readystatechange', () => {
+            console.log(document.readyState)
+        })
+
+        // window.onload = () => { }
+        window.addEventListener('load', () => {
+            console.log('window load')
+            loading.style.opacity = 0
+            document.body.style.overflow = 'auto'
+            setTimeout(() => {
+                loading.style.display = 'none'
+            }, 1000)
+        })
+    </script>
+</body>
+
+</html>
