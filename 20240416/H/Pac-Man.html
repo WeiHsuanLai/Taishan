@@ -22,6 +22,7 @@
             background: gray;
             border-radius: 50%;
             position: relative;
+            /* animation: rotate 10s linear infinite; */
         }
 
         .man {
@@ -33,6 +34,17 @@
             top: calc(50% - 2px);
             transform-origin: right center;
             transform: rotate(0 deg);
+
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -56,8 +68,8 @@
 
         let gradientIndex = 0;
         const gradients = [
-            'conic-gradient(yellow 45deg, #f0f0f0 0, #f0f0f0 135deg, yellow 135deg)',
-            'conic-gradient(yellow 0deg, yellow 360deg)'
+            'conic-gradient(#f0f0f0 0deg, #f0f0f0 45deg,yellow 45deg, yellow 90deg)',
+            // 'conic-gradient(yellow 0deg, yellow 360deg)'
         ];
 
         const man = () => {
