@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #big1:checked~.b img:nth-child(1),
+        #big2:checked~.b img:nth-child(2),
+        #big3:checked~.b img:nth-child(3) {
+            display: block;
+        }
+
+        input {
+            display: none;
+        }
+
+        .b img {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <input type="radio" name="b" id="big1" checked>
+            <input type="radio" name="b" id="big2">
+            <input type="radio" name="b" id="big3">
+
+            <div class="b">
+                <img src="./image/big/r01_b.png">
+                <img src="./image/big/r02_b.png">
+                <img src="./image/big/r03_b.png">
+            </div>
+
+            <label for="big1"><img src="./image/r01.png"><input type="radio" id="r01" name="a" checked></label>
+            <label for="big2"><img src="./image/r02.png"><input type="radio" id="r02" name="a"></label>
+            <label for="big3"><img src="./image/r03.png"><input type="radio" id="r03" name="a"></label>
+        </div>
+    </div>
+</body>
+
+</html>
