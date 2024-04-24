@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #carousel {
+            width: 500px;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #imgs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2500px;
+        }
+
+        #imgs>img {
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="carousel">
+        <div id="imgs">
+            <img src="https://picsum.photos/500/?random=1" alt>
+            <img src="https://picsum.photos/500/?random=2" alt>
+            <img src="https://picsum.photos/500/?random=3" alt>
+            <img src="https://picsum.photos/500/?random=4" alt>
+            <img src="https://picsum.photos/500/?random=5" alt>
+        </div>
+    </div>
+    <input type="button" value="&lt;" id="btn-prev">
+    <input type="button" value="&gt;" id="btn-next">
+    <!-- JQ -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js'
+        integrity='sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=='
+        crossorigin='anonymous'>
+        </script>
+    <!-- Js -->
+    <script src="./Js/carousel.js"></script>
+</body>
+
+</html>
