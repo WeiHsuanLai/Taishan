@@ -69,6 +69,11 @@
       width: 570px;
       height: 340px;
     }
+
+    iframe {
+      width: 575px;
+      height: 340px;
+    }
   </style>
 </head>
 
@@ -102,12 +107,12 @@
     <table>
       <tr>
         <td colspan="4">
-          <img id="big" src="../images/0202A.png">
+          <iframe src="../photo/0202B.html" frameborder="0" name="iframe1" scrolling="no"></iframe>
         </td>
       </tr>
       <tr>
-        <td><img class="small" src="../images/0202B.png"></td>
-        <td><img class="small" src="../images/0203B.png"></td>
+        <td><a href="../photo/0202B.html" target="iframe1"><img class="small" src="../images/0202B.png"></a></td>
+        <td><a href="../photo/0203B.html" target="iframe1"><img class="small" src="../images/0203B.png"></a></td>
         <td><img class="small" src="../images/0204B.png"></td>
         <td><img class="small" src="../images/0205B.png"></td>
       </tr>
@@ -128,23 +133,23 @@
     // 他們都做一件事情就是把自己的 src 屬性值賦值給大圖片
     // [img, img, img, img]
 
-    const imgs = document.querySelectorAll('.small')
-    const big = document.querySelector('#big')
-    console.log(imgs)
-    imgs.forEach(function (img, index) {
-      img.onclick = function () {
-        big.src = `../images/020${index + 2}A.png`
-      }
-    })
+    // const imgs = document.querySelectorAll('.small')
+    // const big = document.querySelector('#big')
+    // console.log(imgs)
+    // imgs.forEach(function (img, index) {
+    //   img.onclick = function () {
+    //     big.src = `../images/020${index + 2}A.png`
+    //   }
+    // })
 
-    // 方法二，jQuery
-    console.log($('.small'))
-    $('.small').each(function (index, img) {
-      // console.log(index, img)
-      $(img).on('click', function () {
-        $('#big').attr('src', `../images/020${index + 2}A.png`)
-      })
-    })
+    // // 方法二，jQuery
+    // console.log($('.small'))
+    // $('.small').each(function (index, img) {
+    //   // console.log(index, img)
+    //   $(img).on('click', function () {
+    //     $('#big').attr('src', `../images/020${index + 2}A.png`)
+    //   })
+    // })
 
     // getter
     // $('#big').attr('src')
