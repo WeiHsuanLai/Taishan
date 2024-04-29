@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勞動部勞動力發展署─運動廣場連結網</title>
+    <style>
+        body {
+            color: #42413C;
+        }
+
+        #main {
+            margin: auto;
+            width: 1024px;
+            height: 768px;
+            color: #FFFFFF;
+        }
+
+        #top {
+            width: 1024px;
+            height: 90px;
+            background: #00B0F0;
+        }
+
+        /* img {
+            vertical-align: middle;
+        } */
+
+        #top div:nth-child(1) {
+            width: 180px;
+            height: 90px;
+            float: left;
+        }
+
+        #top div:nth-child(2) {
+            width: 844px;
+            height: 90px;
+            font: 52px '標楷體';
+            color: #FFFFFF;
+            text-align: center;
+            float: right;
+            line-height: 90px;
+            text-shadow: 10px 10px 15px #333333;
+        }
+
+        #menu {
+            width: 1024px;
+            height: 25px;
+            /* background-color: aquamarine; */
+        }
+
+        #menu table {
+            width: 100%;
+        }
+
+        #menu td {
+            width: 144px;
+            background: #EEEEEE;
+            font: 14px;
+            color: #000000;
+            font-weight: normal;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        #menu td:hover {
+            background: #FFFF00;
+            font: 14px;
+            color: #FF0000;
+            font-weight: bold;
+            /* cursor: pointer; */
+        }
+
+        iframe {
+            width: 1024px;
+            height: 608px;
+            overflow: hidden;
+        }
+
+        #footer {
+            width: 1024px;
+            height: 45px;
+            background-color: #FFFF00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="top">
+            <div><a href="./index.html"><img src="./images/logo.png" alt="運動廣場連結網" title="運動廣場連結網"></a></div>
+            <div>運動廣場連結網</div>
+        </div>
+        <div id="menu">
+            <table>
+                <tr>
+                    <td><a href="./index.html">首頁</a></td>
+                    <td><a href="./results/health.html" target="iframe">健康天地</a></td>
+                    <td><a href="./results/basketball.html" target="iframe">籃球介紹</a></td>
+                    <td><a href="./results/baseball.html" target="iframe">棒球介紹</a></td>
+                    <td><a href="./results/swimming.html" target="iframe">游泳介紹</a></td>
+                    <td><a href="./results/msgboard.html" target="iframe">訪客留言</a></td>
+                    <td><a href="./results/reference.html" target="iframe">資料來源</a></td>
+                </tr>
+            </table>
+        </div>
+        <iframe src="./results/main.html" frameborder="0" name="iframe"></iframe>
+        <div id="footer"></div>
+    </div>
+</body>
+
+</html>
