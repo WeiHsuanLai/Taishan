@@ -7,14 +7,27 @@
     <title>勞動部勞動力發展署─運動廣場連結網</title>
     <style>
         body {
-            color: #42413C;
+            background: #42413C;
         }
 
+        table {
+            width: 100%;
+            /* 合併儲存格 */
+            border-collapse: collapse;
+            text-align: center;
+            table-layout: fixed;
+        }
+
+        table td {
+            padding: 0;
+        }
+
+
         #main {
-            margin: auto;
             width: 1024px;
             height: 768px;
-            color: #FFFFFF;
+            margin: auto;
+            background: #fff;
         }
 
         #top {
@@ -23,53 +36,52 @@
             background: #00B0F0;
         }
 
-        /* img {
-            vertical-align: middle;
-        } */
-
-        #top div:nth-child(1) {
+        .logo {
             width: 180px;
             height: 90px;
-            float: left;
         }
 
-        #top div:nth-child(2) {
-            width: 844px;
-            height: 90px;
-            font: 52px '標楷體';
-            color: #FFFFFF;
-            text-align: center;
-            float: right;
-            line-height: 90px;
-            text-shadow: 10px 10px 15px #333333;
+        .main-title {
+            font-size: 52px;
+            font-family: "標楷體";
+            color: #fff;
+            text-shadow: 10px 10px 15px #333;
         }
 
         #menu {
             width: 1024px;
             height: 25px;
-            /* background-color: aquamarine; */
+            /* background: lightgreen; */
         }
 
-        #menu table {
-            width: 100%;
-        }
-
-        #menu td {
-            width: 144px;
-            background: #EEEEEE;
-            font: 14px;
-            color: #000000;
-            font-weight: normal;
-            text-align: center;
+        #menu a {
+            color: #000;
+            background: #eee;
             text-decoration: none;
+            display: block;
         }
 
-        #menu td:hover {
-            background: #FFFF00;
-            font: 14px;
-            color: #FF0000;
+        #menu a:hover {
+            font-size: 14px;
             font-weight: bold;
-            /* cursor: pointer; */
+            color: #f00;
+            background: #ff0;
+            cursor: pointer;
+        }
+
+        #content {
+            /* 
+      box-sizing: border-box;
+      width: 1024px;
+      height: 608px;
+      padding: 20px; 
+      */
+            width: 984px;
+            height: 568px;
+            padding: 20px;
+            background: #fff;
+            color: #000;
+            font-size: 14px;
         }
 
         iframe {
@@ -81,7 +93,12 @@
         #footer {
             width: 1024px;
             height: 45px;
-            background-color: #FFFF00;
+            background: #ccc;
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+            /* 不算分 */
+            line-height: 22.5px;
         }
     </style>
 </head>
@@ -89,8 +106,16 @@
 <body>
     <div id="main">
         <div id="top">
-            <div><a href="./index.html"><img src="./images/logo.png" alt="運動廣場連結網" title="運動廣場連結網"></a></div>
-            <div>運動廣場連結網</div>
+            <table>
+                <tr>
+                    <td class="logo">
+                        <a href="./index.html">
+                            <img src="./images/logo.png" alt="運動廣場連結網-回首頁" title="運動廣場連結網-回首頁">
+                        </a>
+                    </td>
+                    <td class="main-title">運動廣場連結網</td>
+                </tr>
+            </table>
         </div>
         <div id="menu">
             <table>
@@ -106,7 +131,10 @@
             </table>
         </div>
         <iframe src="./results/main.html" frameborder="0" name="iframe"></iframe>
-        <div id="footer"></div>
+        <div id="footer">
+            網頁設計及維護：16賴偉璿<br>
+            最近更新日期：2024/04/30
+        </div>
     </div>
 </body>
 
