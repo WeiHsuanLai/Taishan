@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #game {
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+            background: black;
+            position: relative;
+            overflow: hidden;
+            cursor: url(./cursor.png)50 50, auto;
+        }
+
+        #game img {
+            height: 100px;
+            position: absolute;
+            /* user-select: none 防止用戶選擇元素中的文字 */
+            user-select: none;
+            /* -webkit-user-drag: none 是用來防止用戶拖曳元素 */
+            -webkit-user-drag: none;
+        }
+
+        .blood {
+            /* 忽略點擊事件 */
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="開始" id="btn-start">
+    <br>
+    <p>分數: <span id="text-score">0</span></p>
+    <p>剩餘: <span id="text-time">0</span></p>
+    <p>最高分玩家: <span id="text-highscore-player">-</span></p>
+    <p>最高分分數: <span id="text-highscore-score">0</span></p>
+    <div id="game"></div>
+    <!-- JQ -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+    <!-- Js -->
+    <script src="./Js/1.js"></script>
+
+</body>
+
+</html>
