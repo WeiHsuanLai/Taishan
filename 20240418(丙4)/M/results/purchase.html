@@ -64,6 +64,7 @@
                 </tr>
             </table>
             <p>
+                <input type="submit" value="送出0" onclick="alert('嗨')">
                 <input type="submit" value="送出" onclick="showMsg(form.r1.value,form.r2.value)">
                 <input type="reset" value="重置">
             </p>
@@ -71,13 +72,13 @@
     </form>
     <!-- JS -->
     <script>
-        function showMsg(value1, value2) {
+        function showMsg(a, b) {
             alert(`
             流行皮件選購確認:
 
-            ●真皮皮包:${value1}
+            ●真皮皮包:${a}
 
-            ●真皮短夾:${value2}
+            ●真皮短夾:${b}
             `)
         }
     </script>

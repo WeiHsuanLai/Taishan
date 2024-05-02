@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+	<style>
+		/* 先設置 news、photo 區塊出來再寫樣式 */
+		/* 寬高題目有給 */
+
+		/* 最新消息區 news -------------------------------------------------------------------------------- */
+		#news {
+			width: 280px;
+			height: 460px;
+			border: 1px solid #999;
+			float: left;
+		}
+
+		#news h1 {
+			font-size: 16px;
+			font-weight: bolder;
+			/* 可不加 */
+			margin-left: 10px;
+		}
+
+		#news table {
+			width: 260px;
+			border-collapse: none;
+			border-spacing: 0;
+			margin: auto;
+		}
+
+		/* 標題列 */
+		#news table tr th {
+			background: #39f;
+			font-size: 14px;
+			color: #fff;
+		}
+
+		#news table tr td {
+			font-size: 12px;
+			line-height: 2;
+		}
+
+		/* 條狀背景 - 偶數 */
+		#news table tr:nth-child(even) {
+			background: #ffc;
+		}
+
+		/* 條狀背景 */
+		#news table tr:nth-child(odd) {
+			background: #ddd;
+		}
+
+		/* 發布日期水平置中 */
+		#news table tr td:nth-child(2) {
+			text-align: center;
+		}
+
+		/* 圖片展示區 photo ------------------------------------------------------------------------------------ */
+		#photo {
+			width: 590px;
+			height: 460px;
+			border: 1px solid #999;
+			background-color: #333333;
+			font-size: 14px;
+			color: #ffff00;
+			text-align: center;
+			float: right;
+		}
+
+		#photo table {
+			width: 570px;
+			border-collapse: none;
+			border-spacing: 0;
+			margin: auto;
+		}
+
+		#photo #big {
+			width: 570px;
+			height: 340px;
+			margin-top: 5px;
+			/* 可不加，讓圖片維持原比例 */
+			object-fit: cover;
+		}
+
+		/* 可不加，將滑鼠游標變成指標 */
+		#photo .img:hover {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="news">
+		<!-- 5 x 2 -->
+		<!-- table>tr*5>td*2 -->
+		<h1>最新消息</h1>
+		<table>
+			<tr>
+				<th>主題</th>
+				<th>發布日期</th>
+			</tr>
+			<tr>
+				<td><img src="../images/0201.png" width="10" height="10" />公告全國技能競賽相關事宜</td>
+				<td>111/04/20</td>
+			</tr>
+			<tr>
+				<td><img src="../images/0201.png" alt="" width="10" height="10" />公告即測即評及發證相關事宜</td>
+				<td>111/04/20</td>
+			</tr>
+			<tr>
+				<td><img src="../images/0201.png" alt="" width="10" height="10" />公告網頁設計修題相關事宜</td>
+				<td>111/04/20</td>
+			</tr>
+			<tr>
+				<td><img src="../images/0201.png" alt="" width="10" height="10" />公告網路架設應檢相關事宜</td>
+				<td>111/04/20</td>
+			</tr>
+		</table>
+	</div>
+	<div id="photo">
+		<!-- 3 x 4 -->
+		<!-- table>tr*3>td*4 -->
+		<table>
+			<tr>
+				<!-- 欄合併，吃掉右邊三個 + 自己 colspan="4" -->
+				<td colspan="4"><img id="big" src="../images/0202A.png" /></td>
+			</tr>
+			<tr>
+				<td>
+					<img class="img" src="../images/0202B.png" />
+				</td>
+				<td>
+					<img class="img" src="../images/0203B.png" />
+				</td>
+				<td>
+					<img class="img" src="../images/0204B.png" />
+				</td>
+				<td>
+					<img class="img" src="../images/0205B.png" />
+				</td>
+			</tr>
+			<tr>
+				<td>第30屆倫敦奧運</td>
+				<td>許淑淨奪舉重銀牌</td>
+				<td>第26屆深圳世大運</td>
+				<td>第27屆喀山世大運</td>
+			</tr>
+		</table>
+	</div>
+	<script src="../others/jquery-2.1.4.min.js"></script>
+	<script>
+		// 方法一 - 原生 JS
+		// const imgs = document.querySelectorAll('.img')
+		// imgs.forEach((img, index) => {
+		// 	img.onclick = function () {
+		// 		document.querySelector('#big').src = `../images/020${index + 2}A.png`
+		// 	}
+		// })
+
+		// imgs.forEach((img, index) => {
+		// 	img.addEventListener('click', function () {
+		// 		document.querySelector('#big').src = `../images/020${index + 2}A.png`
+		// 	})
+		// })
+
+		// 方法二 - jQuery
+		/*
+	$('.img').each((index, ele) => {
+		$(ele).on('click', function () {
+			console.log(index)
+			$('#big').attr('src', `../images/020${index + 2}A.png`)
+		})
+	})
+	*/
+
+		$('.img').eq(0).click(function () {
+			$('#big').attr('src', '../images/0202A.png')
+		})
+		$('.img').eq(1).click(function () {
+			$('#big').attr('src', '../images/0203A.png')
+		})
+		$('.img').eq(2).click(function () {
+			$('#big').attr('src', '../images/0204A.png')
+		})
+		$('.img').eq(3).click(function () {
+			$('#big').attr('src', '../images/0205A.png')
+		})
+	</script>
+</body>
+
+</html>
