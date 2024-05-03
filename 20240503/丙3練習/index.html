@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國家公園介紹網</title>
+    <style>
+        #main {
+            width: 1024px;
+            height: 768px;
+            margin: auto;
+        }
+
+        #top {
+            width: 1000px;
+            height: 65px;
+            background: #0000FF;
+            text-align: center;
+        }
+
+        #middle {
+            width: 1000px;
+            height: 683px;
+        }
+
+        #left {
+            width: 200px;
+            height: 683px;
+            float: left;
+            background: #00FFFF;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+        }
+
+        td img {
+            width: 120px;
+            height: 40px;
+            text-align: center;
+        }
+
+        td img:hover {
+            filter: hue-rotate(120deg);
+        }
+
+        #right {
+            float: right;
+        }
+
+        marquee {
+            float: right;
+            width: 800px;
+            height: 29px;
+            line-height: 29px;
+        }
+
+        iframe {
+            float: right;
+            width: 800px;
+            height: 654px;
+        }
+
+
+        #footer {
+            width: 1000px;
+            height: 20px;
+            font-family: '標楷體';
+            color: #000000;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="top">
+            <a href="./index.html"><img src="./images/0314.gif" alt=""></a>
+        </div>
+        <div id="middle">
+            <div id="left">
+                <table>
+                    <tr>
+                        <td>
+                            <a href="./park/yangmingshan.html" target="iframe" title="陽明山國家公園"><img
+                                    src="./images/park0302.jpg"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><br></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="./park/sheipa.htm" target="iframe" title="雪霸國家公園"><img
+                                    src="./images/park0303.jpg"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><br></td>
+                    </tr>
+                    <tr>
+                        <td><img src=" ./images/park0304.jpg" alt=" 太魯閣國家公園" title="太魯閣國家公園"></td>
+                        <br>
+                        <br>
+                    </tr>
+                    <tr>
+                        <td><br></td>
+                    </tr>
+                    <tr>
+                        <td><img src=" ./images/park0305.jpg" alt=" 玉山國家公園" title="玉山國家公園"></td>
+                    </tr>
+                </table>
+                <p>
+                    <a href="./others/park.mp3" download>檔案下載</a>
+                </p>
+            </div>
+            <div id=" right">
+                <div>
+                    <marquee>歡迎進入國家公園介紹網，本網站有詳細的國家公園介紹哦！</marquee>
+                </div>
+                <div id="content">
+                    <iframe src="./main.html" frameborder="0" name="iframe"></iframe>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            網頁設計及維護：16賴偉璿、最近更新日期：2024/05/03
+        </div>
+</body>
+
+</html>
