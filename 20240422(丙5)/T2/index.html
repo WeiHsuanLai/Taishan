@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>書曼的旅遊相簿</title>
+  <style>
+    body {
+      background: #333;
+    }
+
+    #main {
+      width: 1024px;
+      height: 768px;
+      margin: auto;
+      background: #ffc;
+    }
+
+    #left {
+      width: 150px;
+      height: 768px;
+      float: left;
+      /* background: blue; */
+    }
+
+    #left table {
+      margin: auto;
+      text-align: center;
+      /* background: deeppink; */
+    }
+
+    /* 程式寫不出來時再來使用，回首頁有風險被抓到 */
+    #left .img:hover {
+      filter: hue-rotate(120deg);
+    }
+
+    .info {
+      font-size: 12px;
+      font-family: "新細明體";
+      font-weight: bold;
+      color: red;
+    }
+
+    #right {
+      width: calc(1024px - 150px);
+      height: 768px;
+      float: right;
+    }
+
+    marquee {
+      width: calc(1024px - 150px);
+      height: 50px;
+      font-size: 24px;
+      font-family: "標楷體";
+      font-weight: bolder;
+      color: #f00;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    #content {
+      width: calc(1024px - 150px - 72px);
+      height: calc(768px - 50px - 72px);
+      padding: 36px;
+    }
+
+    iframe {
+      width: calc(1024px - 150px - 72px);
+      height: calc(768px - 50px - 72px);
+    }
+
+    #text {
+      width: 120px;
+      height: 30px;
+      background: url(./images/0506b.gif);
+    }
+
+    #text:hover {
+      background: url(./images/0506r.gif);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 有背景音樂 -->
+  <audio src="./music/0501.mp3" autoplay></audio>
+  <div id="main">
+    <div id="left">
+      <table>
+        <tr>
+          <td><img src="./images/0508.gif" alt="書曼的旅遊相簿" title="書曼的旅遊相簿"></td>
+        </tr>
+        <tr>
+          <td><img src="./images/0507.jpg" alt="書曼" title="書曼"></td>
+        </tr>
+        <tr>
+          <!-- 或換成 <br> -->
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><img class="img" src="./images/0501b.gif" alt="金門逍遙遊" title="金門逍遙遊"></td>
+        </tr>
+        <tr>
+          <td><img class="img" src="./images/0502b.gif" alt="卡蹓到馬祖" title="卡蹓到馬祖"></td>
+        </tr>
+        <tr>
+          <td><img class="img" src="./images/0503b.gif" alt="踏浪澎湖行" title="踏浪澎湖行"></td>
+        </tr>
+        <tr>
+          <td><img class="img" src="./images/0504b.gif" alt="綠島唱夜曲" title="綠島唱夜曲"></td>
+        </tr>
+        <tr>
+          <td><a href="./album5/album5.html" target="iframe"><img class="img" src="./images/0505b.gif" alt="蘭嶼賞魚去"
+                title="蘭嶼賞魚去"></a></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="info">
+            日期：2024/04/22<br>
+            維護：00張凱富
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>
+            <!-- <a href="./index.html"><img class="img" src="./images/0506b.gif" alt="回首頁" title="回首頁"></a> -->
+            <a href="./index.html">
+              <div id="text"></div>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="right">
+      <marquee>歡迎來到書曼的旅遊相簿，本網站有我的旅遊影像紀錄介紹耶！</marquee>
+      <div id="content">
+        <iframe src="./main.html" frameborder="0" name="iframe"></iframe>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

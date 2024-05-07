@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      text-align: center;
+      background: #FFFFCC;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-family: "標楷體";
+      font-weight: bolder;
+      color: #00f;
+      text-decoration: underline;
+    }
+
+    table {
+      margin: auto;
+    }
+
+    .img {
+      width: 60px;
+      height: 45px;
+      border: medium solid #00f;
+    }
+
+    .img:hover {
+      cursor: pointer;
+      border: medium solid #0ff;
+    }
+
+    #big {
+      width: 400px;
+      height: 300px;
+      border: 5px solid #00f;
+    }
+
+    /* input {
+      display: none;
+    } */
+
+    /* #big1,
+    #big2,
+    #big3,
+    #big4,
+    #big5 {
+      width: 400px;
+      height: 300px;
+      border: 5px solid #00f;
+      display: none;
+    }
+
+    #b1:checked~#big1,
+    #b2:checked~#big2,
+    #b3:checked~#big3,
+    #b4:checked~#big4,
+    #b5:checked~#big5 {
+      display: block;
+    } */
+  </style>
+</head>
+
+<body>
+  <h1>蘭嶼賞魚去</h1>
+  <table>
+    <tr>
+      <!-- <td colspan="5" id="big"> -->
+      <td colspan="5"><img id="big" src="../images/0551.jpg"></td>
+      <!-- <input type="radio" name="b" id="b1" checked><img id="big1" src="../images/0551.jpg">
+        <input type="radio" name="b" id="b2"><img id="big2" src="../images/0552.jpg">
+        <input type="radio" name="b" id="b3"><img id="big3" src="../images/0553.jpg">
+        <input type="radio" name="b" id="b4"><img id="big4" src="../images/0554.jpg">
+        <input type="radio" name="b" id="b5"><img id="big5" src="../images/0555.jpg"> -->
+      </td>
+    </tr>
+    <tr>
+      <td><br></td>
+      <td><br></td>
+      <td><br></td>
+      <td><br></td>
+      <td><br></td>
+    </tr>
+    <tr>
+
+      <td><img class="img" id="s1" src="../images/0551.jpg"></td>
+      <td><img class="img" id="s2" src="../images/0552.jpg"></td>
+      <td><img class="img" id="s3" src="../images/0553.jpg"></td>
+      <td><img class="img" id="s4" src="../images/0554.jpg"></td>
+      <td><img class="img" id="s5" src="../images/0555.jpg"></td>
+
+      <!-- <td><label for="b1"><img class="img" src="../images/0551.jpg"></label></td>
+      <td><label for="b2"><img class="img" src="../images/0552.jpg"></label></td>
+      <td><label for="b3"><img class="img" src="../images/0553.jpg"></label></td>
+      <td><label for="b4"><img class="img" src="../images/0554.jpg"></label></td>
+      <td><label for="b5"><img class="img" src="../images/0555.jpg"></label></td> -->
+    </tr>
+  </table>
+  <script src="../jquery-2.1.4.min.js"></script>
+  <script>
+    // $('.img').each(function (index, img) {
+    //   $(this).click(function () {
+    //     $('#big').attr('src', `../images/055${index + 1}.jpg`)
+    //   })
+    // })
+    $('#s1').click(function () {
+      $('#big').attr('src', '../images/0551.jpg')
+    })
+    $('#s2').click(function () {
+      $('#big').attr('src', '../images/0552.jpg')
+    })
+    $('#s3').click(function () {
+      $('#big').attr('src', '../images/0553.jpg')
+    })
+    $('#s4').click(function () {
+      $('#big').attr('src', '../images/0554.jpg')
+    })
+    $('#s5').click(function () {
+      $('#big').attr('src', '../images/0555.jpg')
+    })
+  </script>
+</body>
+
+</html>
