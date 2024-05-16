@@ -23,13 +23,13 @@
       margin: auto;
     }
 
-    .small {
+    .small1,.small2,.small3,.small4,.small5 {
       width: 60px;
       height: 45px;
       border: medium solid #00f;
     }
 
-    .small:hover {
+    .small1:hover ,.small2:hover ,.small3:hover ,.small4:hover ,.small5:hover {
       cursor: pointer;
       border: medium solid #0ff;
     }
@@ -56,20 +56,35 @@
       <td><br></td>
     </tr>
     <tr>
-      <td><img class="small" src="../images/0551.jpg"></td>
-      <td><img class="small" src="../images/0552.jpg"></td>
-      <td><img class="small" src="../images/0553.jpg"></td>
-      <td><img class="small" src="../images/0554.jpg"></td>
-      <td><img class="small" src="../images/0555.jpg"></td>
+      <td><img class="small1" src="../images/0551.jpg"></td>
+      <td><img class="small2" src="../images/0552.jpg"></td>
+      <td><img class="small3" src="../images/0553.jpg"></td>
+      <td><img class="small4" src="../images/0554.jpg"></td>
+      <td><img class="small5" src="../images/0555.jpg"></td>
     </tr>
   </table>
   <script src="../jquery-2.1.4.min.js"></script>
   <script>
-    $('.small').each(function (index, img) {
-      $(img).click(function () {
-        $('#big').attr('src', `../images/055${index + 1}.jpg`)
-        // big.src = `../images/055${index + 1}.jpg`
-      })
+    // $('.small').each(function (index, img) {
+    //   $(img).click(function () {
+    //     $('#big').attr('src', `../images/055${index + 1}.jpg`)
+    //   })
+    // })
+
+    $('.small1').click(function(){
+      $('#big').attr('src','../images/0551.jpg')
+    })
+    $('.small2').click(function(){
+      $('#big').attr('src','../images/0552.jpg')
+    })
+    $('.small3').click(function(){
+      $('#big').attr('src','../images/0553.jpg')
+    })
+    $('.small4').click(function(){
+      $('#big').attr('src','../images/0554.jpg')
+    })
+    $('.small5').click(function(){
+      $('#big').attr('src','../images/0555.jpg')
     })
   </script>
 </body>
