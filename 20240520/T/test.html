@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    /* 滿版黑色背景 */
+    #navbar {
+      background-color: #000;
+    }
+
+    /* 固定容器 */
+    .container {
+      width: 65%;
+      margin: auto;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #main {
+      background: #333;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .col {
+      width: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="navbar">
+    <div class="container">
+      <!-- 內容=> flexbox -->
+      <div class="content">
+        <!-- logo flex-item -->
+        <div class="logo"><img src="https://picsum.photos/50/50/?random=10"></div>
+        <!-- 選單 flex-item -->
+        <nav>
+          <a href="#">link</a>
+          <a href="#">link</a>
+          <a href="#">link</a>
+          <a href="#">link</a>
+        </nav>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <img src="https://picsum.photos/300/200/?random=10">
+        </div>
+        <div class="col">
+          <div class="business-name">
+            <h1 class="title">Business Name or Tagline</h1>
+            <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+            <button>Call to Action!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
