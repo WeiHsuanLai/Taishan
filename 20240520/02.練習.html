@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: '微軟正黑體';
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            
+        }
+
+        h2,h3,p{
+            margin: 1rem 0;
+        }
+        .col{
+            width: 50%;
+            border: 1px solid #000;
+            margin: 0 0 3rem 0;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        .row{
+            display: flex;
+            justify-content: center;
+        }
+        .content{
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        button{
+            width: 160px;
+            height: 40px;
+            font-size: 18px;
+            border-radius: 10px;
+        }
+        .blackB{
+            background: #000;
+        }
+        .WhiteC{
+            color: white;
+        }
+        .borderW{
+            border: 1px solid white;
+        }
+        p{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col blackB">
+                <div class="content WhiteC">
+                    <h1>Change the background</h1>
+                    <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+                    <button class="blackB WhiteC borderW">Example Button</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="content">
+                    <h1>Add borders</h1>
+                    <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+                    <button>Example Button</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

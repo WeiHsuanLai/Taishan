@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: '微軟正黑體';
+        }
+        #top{
+            width: 100%;
+            height: 56px;
+            background: black;
+            color: white;
+        }
+
+        .d-flex {
+        /* 宣告父元素為彈性盒 */
+        display: flex;
+
+        /* 預設主軸為水平流向排列，彈性項目會水平排列 */
+        flex-direction: row;
+
+        /* 預設 nowrap 不會換行 */
+        flex-wrap: nowrap;
+
+        /* 預設主軸(main axis) 的對齊點為 main-start */
+        justify-content: flex-start;
+
+        /* 預設次軸(cross axis) stretch 將彈性項目延伸拉長 */
+        align-items: stretch;
+        }
+
+        .width{
+            width: 1224px;
+            height: auto;
+            margin: auto;
+        }
+        .space-between{
+            justify-content:space-between;
+        }
+        .row{
+            flex-direction: row;
+        }
+
+        .column{
+            flex-direction: column;
+        }
+
+        #top_right div{
+            margin: 1rem;
+        }
+
+        #top_right a{
+            text-decoration: none;
+        }
+
+        #top_left{
+            font-size: 20px;
+        }
+        
+        .Twhite{
+            color: white;
+        }
+        .Tgray{
+            color: rgb(105, 105, 105);
+            text-decoration: none;
+        }
+        .Tgray:hover{
+            color: rgb(208, 208, 208);
+            text-decoration: none;
+        }
+        .align-self-center {
+            align-self: center;
+        }
+        .content-center{
+            justify-content: center;
+        }
+        #WxH{
+            width: 694px;
+            height: 308px;
+            background: lightgrey;
+            border-radius: 10px;
+            font-size: 70px;
+            text-align: center;
+            line-height: 308px;
+            color: rgb(105, 105, 105);
+        }
+        .mg20{
+           margin-top: 48px; 
+        }
+        #Ctop{
+            gap: 48px;
+        }
+        #BNoT{
+            width: 530px;
+            height: 206px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="top" class="d-flex">
+            <div class="width d-flex space-between">
+                <div id="top_left" class="d-flex align-self-center">Start Bootstrap</div>
+                <div id="top_right" class="d-flex">
+                    <div> <a href="" class="Twhite">Home    </a></div>
+                    <div> <a href="" class="Tgray">About   </a></div>
+                    <div> <a href="" class="Tgray">Contact </a></div>
+                    <div> <a href="" class="Tgray">Services</a></div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="width">
+            <div id="Ctop" class="d-flex">
+                <div id="WxH"  class="mg20">900 x 400</div>
+                <div id="BNoT" class="d-flex column content-center mg20">
+                    <!-- <h1>Business Name or Tagline</h1> -->
+                    <h1>Business Name or Tagline</h1>
+                    <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+                </div>
+            </div>
+            <div id="Ccontent"></div>
+            <div id="Cfooter"></div>
+        </div>
+        <div id="footer"></div>
+    </div>
+</body>
+</html>
