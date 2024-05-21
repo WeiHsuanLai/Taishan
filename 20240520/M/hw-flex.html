@@ -14,7 +14,7 @@
         #top{
             width: 100%;
             height: 56px;
-            background: black;
+            background: rgb(37, 37, 37);
             color: white;
         }
 
@@ -43,6 +43,10 @@
         .space-between{
             justify-content:space-between;
         }
+
+        .space-around{
+            justify-content: space-around;
+        }
         .row{
             flex-direction: row;
         }
@@ -53,6 +57,7 @@
 
         #top_right div{
             margin: 1rem;
+            font-size: 16px;
         }
 
         #top_right a{
@@ -67,7 +72,7 @@
             color: white;
         }
         .Tgray{
-            color: rgb(105, 105, 105);
+            color: rgb(162, 162, 199);
             text-decoration: none;
         }
         .Tgray:hover{
@@ -77,28 +82,109 @@
         .align-self-center {
             align-self: center;
         }
+        .align-item-center{
+            align-items: center;
+        }
         .content-center{
             justify-content: center;
         }
         #WxH{
             width: 694px;
             height: 308px;
-            background: lightgrey;
+            background: rgb(219, 219, 222);
             border-radius: 10px;
             font-size: 70px;
             text-align: center;
             line-height: 308px;
             color: rgb(105, 105, 105);
+            font-weight: 200;
         }
         .mg20{
-           margin-top: 48px; 
+           margin: 48px 0 24px; 
         }
         #Ctop{
             gap: 48px;
         }
         #BNoT{
             width: 530px;
-            height: 206px;
+            height: 308px;
+        }
+
+        #BNoT h1{
+            font-size: 40px;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+        #BNoT p{
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        #BNoT a{
+            width: 115px;
+            height: 24px;
+            padding: 6px 12px 6px;
+            background: #0d6efd;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        #BNoT a:hover{
+            background: #0a58ca;
+        }
+        #Ccontent{
+            width: 1224px;
+            height: 130px;
+            margin: 24px 0 24px;
+            background: rgb(124, 125, 133);
+            color: white;
+            border-radius: 10px;
+        }
+        .card{
+            width: 376px;
+            height: 249px;
+            margin: 24px 0 24px;
+        }
+        .cardtop{
+            padding: 20px 20px 0;
+            height: 199px;
+            border-radius: 10px 10px 0px 0px;
+            border: 1px solid rgb(215, 215, 215);
+        }
+        .cardtop h2{
+            font-size: 35px;
+        }
+        .cardtop p{
+            font-size: 16px;
+        }
+        .cardfooter{
+            height: 50px;
+            border-radius: 0px 0px 10px 10px;
+            border: 1px solid rgb(215, 215, 215);
+            background: rgb(235, 235, 235);
+        }
+        #Cfooter a{
+            display: block;
+            text-align: center;
+            line-height: 21px;
+            width: 82px;
+            height: 21px;
+            background: #0d6efd;
+            padding: 6px 12px 6px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            margin: 10px;
+        }
+        #Cfooter a:hover{
+            background: #0a58ca;
+        }
+        #footer{
+            width: 100%;
+            height: 120px;
+            margin-top: 48px;
+            background: rgb(37, 37, 37);
+            color: white;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -122,12 +208,45 @@
                     <!-- <h1>Business Name or Tagline</h1> -->
                     <h1>Business Name or Tagline</h1>
                     <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+                    <a href="">Call to Action!</a>
                 </div>
             </div>
-            <div id="Ccontent"></div>
-            <div id="Cfooter"></div>
+            <div id="Ccontent" class="d-flex content-center align-item-center">
+                This call to action card is a great place to showcase some important information or display a clever tagline!
+            </div>
+            <div id="Cfooter" class="d-flex space-between">
+                <div id="Card1" class="card">
+                    <div class="cardtop">
+                        <h2>Card One</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                    </div>
+                    <div class="cardfooter ">
+                        <a href="">More Info</a>
+                    </div>
+                </div>
+                <div id="Card2" class="card">
+                    <div class="cardtop">
+                        <h2>Card Two</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
+                    </div>
+                    <div class="cardfooter ">
+                        <a href="">More Info</a>
+                    </div>
+                </div>
+                <div id="Card3" class="card">
+                    <div class="cardtop">
+                        <h2>Card Three</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                    </div>
+                    <div class="cardfooter">
+                        <a href="">More Info</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="footer"></div>
+        <div id="footer" class="d-flex content-center align-item-center">
+            Copyright © Your Website 2023
+        </div>
     </div>
 </body>
 </html>

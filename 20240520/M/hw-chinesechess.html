@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: "微軟正黑體";
+        }
+        .text-left-to-right {
+            writing-mode: horizontal-tb;
+            direction: ltr;
+        }
+        .text-right-to-left {
+            writing-mode: horizontal-tb;
+            direction: rtl;
+        }
+        .d-flex {
+        display: flex;
+        }
+        .wrap{
+            flex-wrap: wrap;
+        }
+
+        .align-item-center{
+            align-items: center;
+        }
+
+        .justify-content-center{
+            justify-content: center;
+        }
+
+        .justify-content-spance-between{
+            justify-content: space-between;
+        }
+        p{
+            font-family:'標楷體';
+            writing-mode: vertical-lr ;
+            font-size: 3.3rem;
+            margin: 0px 1rem;
+        }
+        #inner{
+            width: 800px;
+            height: 900px;
+            display: flex;
+            border: 1px solid black;
+            justify-content:space-around;
+            flex-wrap: wrap;
+        }
+        .check{
+            width: 100px;
+            height: 100px;
+            flex-grow: 1;
+            box-sizing: border-box; 
+            border: 1px solid black;
+        }
+        .space{ 
+            border: 1px solid white;
+            font-size: 72px;
+            font-family: '標楷體';
+            text-align: center;
+            line-height: 100px;
+        }
+        .leftnospace{
+            border-left: 1px solid black;
+        }
+
+        .rightnospace{
+            border-right: 1px solid black;
+        }
+
+        #chess{
+            width: 1000px;
+            height: 1000px;
+            border: 1px solid black;
+            position: relative;
+            margin: 10px;
+        }
+        #Btop{
+            width: 900px;
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .piece{
+            width: 90px;
+            height: 90px;
+            background: white;
+            border: 1px solid black;
+            border-radius: 50%;
+            z-index: 10;
+            font-size: 52px;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            font-weight: 500;
+            font-family: '標楷體';
+        }
+        .R{
+            color: red;
+        }
+        #Bmid{
+            width: 700px;
+            position: absolute;
+            top: 200px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #Bfooter{
+            width: 900px;
+            position: absolute;
+            top: 300px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #Rtop{
+            width: 900px;
+            position: absolute;
+            top: 600px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #Rmid{
+            width: 700px;
+            position: absolute;
+            top: 700px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #Rfooter{
+            width: 900px;
+            position: absolute;
+            top: 900px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .slashLeft{
+            background: linear-gradient(45deg, transparent 48.5%, black 48.5%, black 50.5%, transparent 50.5%);
+        }
+        .slashRight{
+            background: linear-gradient(135deg, transparent 49.5%, black 49.5%, black 51.5%, transparent 51.5%);
+        }
+    </style>
+</head>
+<body>
+    <div id="main" class="d-flex justify-content-center align-item-center">
+        <div><p>棋盤裡，車無輪馬無韁，叫聲將軍提防提防</p></div>
+        <div id="chess" class="d-flex justify-content-center align-item-center">
+            <div id="inner">
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check slashLeft"></div>
+                <div class="check slashRight"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check slashRight"></div>
+                <div class="check slashLeft"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check "></div>
+                <div class="check "></div>
+                <div class="check "></div>
+                <div class="check "></div>
+                <div class="check "></div>
+                <div class="check "></div>
+                <div class="check "></div>
+                <div class="check "></div>
+                <div class="check space leftnospace"></div>
+                <div class="check space">楚</div>
+                <div class="check space">河</div>
+                <div class="check space"></div>
+                <div class="check space"></div>
+                <div class="check space">漢</div>
+                <div class="check space">界</div>
+                <div class="check space rightnospace"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check slashLeft"></div>
+                <div class="check slashRight"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check slashRight"></div>
+                <div class="check slashLeft"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+                <div class="check"></div>
+            </div>
+
+            <div id="Btop">
+                <div class="piece">車</div>
+                <div class="piece">馬</div>
+                <div class="piece">象</div>
+                <div class="piece">士</div>
+                <div class="piece">將</div>
+                <div class="piece">士</div>
+                <div class="piece">象</div>
+                <div class="piece">馬</div>
+                <div class="piece">車</div>
+            </div>
+            <div id="Bmid">
+                <div class="piece">包</div>
+                <div class="piece">包</div>
+            </div>
+            <div id="Bfooter">
+                <div class="piece">卒</div>
+                <div class="piece">卒</div>
+                <div class="piece">卒</div>
+                <div class="piece">卒</div>
+                <div class="piece">卒</div>
+            </div>
+            <div id="Rtop">
+                <div class="piece R">兵</div>
+                <div class="piece R">兵</div>
+                <div class="piece R">兵</div>
+                <div class="piece R">兵</div>
+                <div class="piece R">兵</div>
+            </div>
+            <div id="Rmid">
+                <div class="piece R">炮</div>
+                <div class="piece R">炮</div>
+            </div>
+            <div id="Rfooter">
+                <div class="piece R">俥</div>
+                <div class="piece R">傌</div>
+                <div class="piece R">相</div>
+                <div class="piece R">仕</div>
+                <div class="piece R">帥</div>
+                <div class="piece R">仕</div>
+                <div class="piece R">相</div>
+                <div class="piece R">傌</div>
+                <div class="piece R">俥</div>
+            </div>
+    </div>
+        <div><p>圖畫裡，龍不吟虎不嘯，小小書僮可笑可笑</p></div>
+    </div>
+    
+    
+</body>
+</html>

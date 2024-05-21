@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<title>平均分配div示例</title>
+<style>
+ .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* 设置高度以便观察效果 */
+  }
+
+ .item {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* 包含边框在内计算宽度 */
+    padding: 10px;
+    text-align: center;
+  }
+  div {
+  background: linear-gradient(45deg, transparent 49.5%, deeppink 49.5%, deeppink 50.5%, transparent 50.5%);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+  <div class="item">5</div>
+  <div class="item">6</div>
+  <div class="item">7</div>
+  <div class="item">8</div>
+</div>
+
+</body>
+</html>
