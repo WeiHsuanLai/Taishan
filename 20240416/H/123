@@ -1,0 +1,25 @@
+// 计算秒针的角度
+    function getSecondsAngle() {
+      const date = new Date();
+      const seconds = date.getSeconds();
+      return seconds; // 每秒旋转6度
+    }
+
+    // 根据秒针角度更新红色圆圈的显示状态
+    function updateRedCircleVisibility() {
+      const circles = document.querySelectorAll('.circle');
+      const secondsAngle = getSecondsAngle();
+      hideCirclesBasedOnSecondsAngle(circles, secondsAngle);
+    }
+
+    // 隐藏或显示圆圈
+    function hideCirclesBasedOnSecondsAngle(circles, secondsAngle) {
+      console.log(secondsAngle)
+      circles.forEach((circle, index) => {
+        if (index < secondsAngle) {
+          circle.style.display = 'none'; // 隐藏小于秒针角度的圆
+        } else {
+          circle.style.display = ''; // 显示大于等于秒针角度的圆
+        }
+      });
+    }

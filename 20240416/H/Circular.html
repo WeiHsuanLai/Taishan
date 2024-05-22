@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Circular Divs</title>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+ .container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+  }
+ .circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+  }
+</style>
+</head>
+<body>
+
+<div class="container"></div>
+
+<script>
+  // 設定圓心的位置
+  const centerX = 150;
+  const centerY = 150;
+  // 計算每個圓形div的角度和位置
+  for (let angle = 0; angle <= 360; angle += 15) {
+    const radian = angle * Math.PI / 180; // 將角度轉換為弧度
+    const x = centerX + 100 * Math.cos(radian) -10; // 計算x座標
+    const y = centerY + 100 * Math.sin(radian) -10; // 計算y座標
+
+    // 創建新的div元素
+    const div = document.createElement('div');
+    div.classList.add('circle');
+    div.style.transform = `translate(${x}px, ${y}px)`;
+
+    // 將新創建的div添加到容器中
+    document.querySelector('.container').appendChild(div);
+  }
+</script>
+
+</body>
+</html>

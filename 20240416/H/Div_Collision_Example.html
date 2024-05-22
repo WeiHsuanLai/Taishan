@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Div Collision Example</title>
+<style>
+  #moving-div {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+  }
+  #target-div {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+  }
+</style>
+<script>
+  // 获取div元素
+  const movingDiv = document.getElementById('moving-div');
+  const targetDiv = document.getElementById('target-div');
+
+  // 监听鼠标移动事件
+  movingDiv.addEventListener('mousemove', function(e) {
+    // 计算div之间的距离
+    const distanceX = Math.abs(movingDiv.offsetLeft - targetDiv.offsetLeft);
+    const distanceY = Math.abs(movingDiv.offsetTop - targetDiv.offsetTop);
+
+    // 检查是否发生碰撞
+    if (distanceX <= 10 && distanceY <= 10) {
+      // 发生碰撞，移除被碰到的div
+      targetDiv.style.display = 'none';
+    } else {
+      // 没有碰撞，保持原样
+      targetDiv.style.display = '';
+    }
+  });
+</script>
+</head>
+<body>
+
+<div id="moving-div">Move me</div>
+<div id="target-div">I'm the target</div>
+
+</body>
+</html>

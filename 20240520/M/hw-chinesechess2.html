@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Flexbox Table Example</title>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'標楷體';
+  }
+  #main{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #chess{
+    width: 750px;
+    height: 825px;
+    border: 2px solid black; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+ .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 600px;
+    height: 300px;
+  }
+ .cell {
+    flex: 10 calc(100%/8); 
+    border: 1px solid black; 
+    text-align: center; 
+  }
+  #horizontally{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 600px;
+    height: 75px;
+    border: 1px solid black; 
+  }
+  .mid{
+    display: flex;
+    justify-content: space-between;
+    font-size: 52px;
+  }
+  #chessborder{
+    border: 1px solid black; 
+  }
+  #pieceborder{
+    height: 750px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  #pieceborder2{
+    height: 288px;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #pieceborder3{
+    height: 435px;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #pieces{
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  #pieces2{
+    display: flex;
+    justify-content: space-between;
+    gap: 90px;
+  }
+  #pieces3{
+    display: flex;
+    justify-content: space-between;
+    gap: 390px;
+  }
+  .piece{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background: white;
+    font-size: 40px;
+    text-align: center;
+    line-height: 60px;
+  }
+  .red{
+    color: red;
+  }
+  .slash1{
+    background: linear-gradient(45deg, transparent 48.5%, black 48.5%, black 50.5%, transparent 50.5%);
+  }
+  .slash2{
+    background: linear-gradient(135deg, transparent 49.5%, black 49.5%, black 51.5%, transparent 51.5%);
+  }
+  .couplet{
+    writing-mode: vertical-lr ;
+    font-size: 2.8rem;
+    margin: 0px 1rem;
+  }
+  
+</style>
+</head>
+<body>
+  <div id="main">
+    <div class="couplet">棋盤裡，車無輪馬無韁，叫聲將軍提防提防</div>
+    <div id="chess">
+      <div id="chessborder">
+        <div class="container">
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell slash1"></div>
+          <div class="cell slash2"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell slash2"></div>
+          <div class="cell slash1"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+        <div id="horizontally">
+          <div class="mid">楚河</div>
+          <div class="mid">漢界</div>
+        </div>
+        <div class="container">
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell "></div>
+          <div class="cell slash1"></div>
+          <div class="cell slash2"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell "></div>
+          <div class="cell slash2"></div>
+          <div class="cell slash1"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+      </div>
+      <div id="pieceborder">
+        <div id="pieces">
+          <div class="piece">車</div>
+          <div class="piece">馬</div>
+          <div class="piece">象</div>
+          <div class="piece">士</div>
+          <div class="piece">將</div>
+          <div class="piece">士</div>
+          <div class="piece">象</div>
+          <div class="piece">馬</div>
+          <div class="piece">車</div>
+        </div>
+        <div id="pieces" class="red">
+          <div class="piece">俥</div>
+          <div class="piece">傌</div>
+          <div class="piece">相</div>
+          <div class="piece">仕</div>
+          <div class="piece">帥</div>
+          <div class="piece">仕</div>
+          <div class="piece">相</div>
+          <div class="piece">傌</div>
+          <div class="piece">俥</div>
+        </div>
+      </div>
+      <div id="pieceborder2">
+        <div id="pieces2">
+          <div class="piece">卒</div>
+          <div class="piece">卒</div>
+          <div class="piece">卒</div>
+          <div class="piece">卒</div>
+          <div class="piece">卒</div>
+        </div>
+        <div id="pieces2" class="red">
+          <div class="piece">兵</div>
+          <div class="piece">兵</div>
+          <div class="piece">兵</div>
+          <div class="piece">兵</div>
+          <div class="piece">兵</div>
+        </div>
+      </div>
+      <div id="pieceborder3">
+        <div id="pieces3">
+          <div class="piece">包</div>
+          <div class="piece">包</div>
+        </div>
+        <div id="pieces3" class="red">
+          <div class="piece">炮</div>
+          <div class="piece">炮</div>
+        </div>
+    </div>
+    </div>
+  <div class="couplet">圖畫裡，龍不吟虎不嘯，小小書僮可笑可笑</div>
+</body>
+</html>
