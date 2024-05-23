@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒體查詢</title>
+    <style>
+        /* 第一個斷點 0~575px 使用的樣式 */
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: '微軟正黑體';
+            box-sizing: border-box;
+            /* transition: 1s; */
+        }
+
+        :root{
+            /* 定義 CSS 圓生變數，--(表示宣告) */
+            --primary:blue;
+            --secondary:gray;
+            --success:green;
+            --warning:orange;
+        }
+
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+            width: 300px;
+        }
+
+        .col{
+            width: 300px;
+        }
+        /* -------------------------------------------------------------------------------------------- */
+        /* 第二個斷點，裝置 576px 576~767px 使用的樣式  */
+        @media (min-width: 576px) {
+
+        }
+        /* 第三個斷點，裝置 768 以上，768~991px 使用的樣式 */
+        @media (min-width: 768px) {
+            .row{
+            display: flex;
+            flex-wrap: wrap;
+            width: 600px;
+        }
+
+        }
+        /* 第四個斷點，裝置 992px 以上 */
+        @media (min-width: 992px) {
+            .row{
+            display: flex;
+            flex-wrap: wrap;
+            width: 992px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="https://picsum.photos/300/300/?random=1">
+                <h3>世界典型儘快所有拍。</h3>
+                <p>請點擊身影搜尋說了開發者大會，二手無派生活，居住別的提前早上整個，瀏覽次數祝福很好民國朋友執行手指一部分一塊坐在走到哪裡</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/300/300/?random=2">
+                <h3>世界典型儘快所有拍。</h3>
+                <p>請點擊身影搜尋說了開發者大會，二手無派生活，居住別的提前早上整個，瀏覽次數祝福很好民國朋友執行手指一部分一塊坐在走到哪裡</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/300/300/?random=3">
+                <h3>世界典型儘快所有拍。</h3>
+                <p>請點擊身影搜尋說了開發者大會，二手無派生活，居住別的提前早上整個，瀏覽次數祝福很好民國朋友執行手指一部分一塊坐在走到哪裡</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/300/300/?random=4">
+                <h3>世界典型儘快所有拍。</h3>
+                <p>請點擊身影搜尋說了開發者大會，二手無派生活，居住別的提前早上整個，瀏覽次數祝福很好民國朋友執行手指一部分一塊坐在走到哪裡</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/300/300/?random=5">
+                <h3>世界典型儘快所有拍。</h3>
+                <p>請點擊身影搜尋說了開發者大會，二手無派生活，居住別的提前早上整個，瀏覽次數祝福很好民國朋友執行手指一部分一塊坐在走到哪裡</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/300/300/?random=6">
+                <h3>世界典型儘快所有拍。</h3>
+                <p>請點擊身影搜尋說了開發者大會，二手無派生活，居住別的提前早上整個，瀏覽次數祝福很好民國朋友執行手指一部分一塊坐在走到哪裡</p>
+            </div>
+            <div class="col">
+                <img src="https://picsum.photos/300/300/?random=7">
+                <h3>世界典型儘快所有拍。</h3>
+                <p>請點擊身影搜尋說了開發者大會，二手無派生活，居住別的提前早上整個，瀏覽次數祝福很好民國朋友執行手指一部分一塊坐在走到哪裡</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

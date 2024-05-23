@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: 1s;
+        }
+
+        .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        padding: 0 15px;
+        margin: auto;
+        }
+
+        .column{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img {
+        width: 150px;
+        }
+
+        hr{
+            width:100%;
+            margin: auto;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 576px) {
+        }
+
+        @media (min-width: 1054px) {
+            .column{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            }
+
+            .wda{
+            transform: translate(-50%,-50%);
+            top: 50%;
+            left: 50%;
+            }
+
+            .html{
+                transform: translate(-50%,-50%);
+                top: 19%;
+                left: 13%;
+            }
+
+            .css{
+                transform: translate(-50%,-50%);
+                top: 13%;
+                left: 33%;
+            }
+
+            .js{
+                transform: translate(-50%,-50%);
+                top: 50%;
+                left: 17%;
+            }
+
+            .jq{
+                transform: translate(-50%,-50%);
+                top: 80%;
+                left: 30%;
+            }
+
+            .bs{
+                transform: translate(-50%,-50%);
+                top: 13%;
+                right: 20%;
+            }
+
+            .sass{
+                transform: translate(-50%,-50%);
+                top: 40%;
+                right: 2%;
+            }
+
+            .vue{
+                transform: translate(-50%,-50%);
+                top: 75%;
+                right: 15%;
+            }
+
+                .wda img{
+                    width: 250px;
+            }
+
+            hr{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            }
+
+            #hr1{
+                width: 7%;
+                top: 30%;
+                left:35%;
+                transform: rotate(35deg);
+            }
+    
+            #hr2{
+                width: 20%;
+                top: 35%;
+                left:19%;
+                transform: rotate(15deg);
+            }
+    
+            #hr3{
+                width: 14%;
+                top: 50%;
+                left:23%;
+                transform: rotate(2deg);
+            }
+    
+            #hr4{
+                width: 3%;
+                top: 65%;
+                left:35%;
+                transform: rotate(-35deg);
+            }
+            #hr5{
+                width: 11%;
+                top: 28%;
+                right:32%;
+                transform: rotate(-30deg);
+            }
+            #hr6{
+                width: 17%;
+                top: 44%;
+                right:22%;
+                transform: rotate(-10deg);
+            }
+            #hr7{
+                width: 13%;
+                top: 62%;
+                right:29%;
+                transform: rotate(20deg);
+                margin: 10px;
+            }
+            p{
+                display: none;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wda column">
+            <img src="./images/wda.png">
+            <h2>泰山職訓局</h2>
+            <h3>從零開始的網頁設計課程</h5>
+            <h4>轉職網頁開發人員 掌握就業必備職能</h4>
+            <h4>由淺入深學習技術 強化職場的競爭力</h4>
+            <div class="line"></div>
+        </div>
+        <hr id="hr1">
+        <div class="html column">
+            <img src="./images/html.png">
+            <h2>html</h2>
+            <p>
+                超文本標記語言（英語：HyperText Markup Language，簡稱：HTML）是一種用於建立網頁的標準標記語言。 HTML是一種基礎技術，常與CSS、JavaScript一起被眾多網站用於設計網頁、網頁應用程式以及行動應用程式的使用者介面。 網頁瀏覽器可以讀取HTML檔案，並將其彩現成視覺化網頁。
+            </p>
+        </div>
+        <hr id="hr2">
+
+        <div class="css column">
+            <img src="./images/css.png">
+            <h2>css</h2>
+            <p>CSS 是“Cascading Style Sheets” 的縮寫，中文譯為”層疊樣式表”。 CSS 是一種標記語言，它的主要功能是為結構化文件（如HTML 文件或XML 應用）添加風格（字體、間距和顏色等）。 網頁設計，仰賴HTML 和CSS 兩種不同的語言。 HTML 處理內容，CSS 則定義內容呈現，各司其職。</p>
+        </div>
+        <hr id="hr3">
+
+        <div class="js column">
+            <img src="./images/js.png">
+            <h2>js</h2>
+            <p>JavaScript（通常縮寫為JS）是一門基於原型和頭等函式的多範式進階直譯程式語言[9][10]，它支援物件導向程式設計、指令式編程和函數式程式設計。它提供方法來操控文字、陣列、日期以及正規表示式等。不支援I/O，比如網路、儲存和圖形等，但這些都可以由它的宿主環境提供支援。它由Ecma透過ECMAScript實作語言的標準化[9]。目前，它被世界上的絕大多數網站所使用，也被世界主流瀏覽器（Chrome、Firefox、Safari和Opera）所支援。</p>
+        </div>
+        <hr id="hr4">
+        
+        <div class="jq column">
+            <img src="./images/jq.png">
+            <h2>jq</h2>
+            <p>jq 是一個常用的指令工具，用於處理JSON 格式的資料，輕量但功能強大，可以做到從JSON 資料中擷取、轉換、篩選等操作，也可以簡單用於排版讓JSON 資料更可讀</p>
+        </div>
+        <hr id="hr5">
+
+        <div class="sass column">
+            <img src="./images/sass.png">
+            <h2>sass</h2>
+            <p>Sass是一個將指令碼解析成CSS的手稿語言，即SassScript。 Sass包括兩套語法。 最開始的語法叫做「縮排語法」，與Haml類似，使用縮排來區分代碼塊，並且用換行將不同規則分隔開。 而較新的語法叫做「SCSS」，使用和CSS一樣的塊語法，即使用大括號將不同的規則分開，使用分號將具體的樣式分開。</p>
+        </div>
+        <hr id="hr6">
+
+        <div class="bs column">
+            <img src="./images/bs.png">
+            <h2>bBootstraps</h2>
+            <p>Bootstrap 是一個由 HTML、CSS 和 JavaScript 寫成的前端框架，核心的設計目標是達成RWD響應式與行動優先，也就是讓你的網站排版可以自動適應螢幕大小。它預先做好一套網站的基礎建設，讓你能在框架的基礎上進行開發，不需要再去煩惱瑣碎的設定。</p>
+        </div>
+        <hr id="hr7">
+        <br>
+        <div class="vue column">
+            <img src="./images/vue.png">
+            <h2>vue</h2>
+            <p>Vue (音同View) 是一套以視圖層為基礎發展的 JavaScript 漸進式框架。 與其他前端框架/函式庫不同的是，Vue.js 的目標是透過簡單的 API 提供開發者實作資料綁定與操作網頁上的元件，同時也因為 Vue.js 的核心把焦點關注在狀態與畫面的同步層級上，遂能夠輕易地與其他 JavaScript 函式庫、前端開發工具鍊等整合使用，成為一套完整的前端開發方案。</p>
+        </div>
+        
+    </div>
+</body>
+</html>

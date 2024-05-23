@@ -60,19 +60,8 @@
       top: calc(50% - 2px);
       border-radius: 5px;
       transform-origin: right center;
+      z-index: 1000;
     }
-
-    /* #second::after{
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: 0;
-      display: block;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      background:conic-gradient(gray 45deg,yellow 45deg,yellow 315deg,gray 45deg);
-    } */
 
     #test{
       width: 45%;
@@ -98,7 +87,7 @@
 
     @keyframes sec {
       from {
-        background: conic-gradient(gray 45deg, yellow 45deg, yellow 315deg, gray 45deg);
+        background: conic-gradient(transparent 45deg, yellow 45deg, yellow 315deg, transparent 45deg);
       }
       to {
         background: conic-gradient(yellow 0 360deg);
@@ -109,27 +98,33 @@
       width: 39%;
       height: 10px;
       position: absolute;
+      /* background: yellowgreen; */
       left: 11%;
       top: calc(50% - 5px);
       border-radius: 5px;
       transform-origin: right center;
       transform: rotate(-90deg);
+      display: flex;
       z-index: 0;
     }
-    .circle::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      display: block;
+
+    .circle1 {
       width: 10px;
       height: 10px;
-      background: white;
+      border-radius: 50%;
+      background:blue;
+      display: block;
+      position: absolute;
+      top: 0;
+      z-index: 1;
     }
+
     .container {
       position: absolute;
       width: 600px;
       height: 600px;
       border: 1px solid black;
+      display: flex;
     }
 
     #mill{
@@ -154,7 +149,9 @@
         <div id="test1"></div>
       </div>
       <div class="container">
-        <div class="circle"></div>
+        <div class="circle">
+          <div class="circle1"></div>
+        </div>
       </div>
     </div>
     <p id="text">00:00:00</p>
@@ -185,10 +182,13 @@
     function generateTestElements() {
             const container = document.querySelector('.container');
             for (let angle = 0; angle <= 450; angle += 6) { // Generate elements every 6 degrees
-                const testElement = document.createElement('div');
-                testElement.className = 'circle';
-                testElement.style.transform = `rotate(${angle}deg)`;
-                container.appendChild(testElement);
+                const testElement1= document.createElement('div');
+                const testElement2= document.createElement('div');
+                testElement2.className = 'circle1';
+                testElement1.appendChild(testElement2);
+                testElement1.className = 'circle';
+                testElement1.style.transform = `rotate(${angle}deg)`;
+                container.appendChild(testElement1);
             } 
         }
         generateTestElements();
