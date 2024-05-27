@@ -63,7 +63,7 @@
       z-index: 1000;
     }
 
-    #test{
+    #test {
       width: 45%;
       height: 4px;
       background-color: blue;
@@ -73,15 +73,16 @@
       border-radius: 5px;
       transform-origin: right center;
     }
-    #test1{
+
+    #test1 {
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background:conic-gradient(gray 45deg,yellow 45deg,yellow 315deg,gray 45deg);
+      background: conic-gradient(gray 45deg, yellow 45deg, yellow 315deg, gray 45deg);
       display: block;
       position: absolute;
       top: -10px;
-      animation: sec 1s infinite;
+      animation: sec 0.5s infinite;
       z-index: 10;
     }
 
@@ -89,6 +90,7 @@
       from {
         background: conic-gradient(transparent 45deg, yellow 45deg, yellow 315deg, transparent 45deg);
       }
+
       to {
         background: conic-gradient(yellow 0 360deg);
       }
@@ -112,7 +114,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background:blue;
+      background: blue;
       display: block;
       position: absolute;
       top: 0;
@@ -127,7 +129,7 @@
       display: flex;
     }
 
-    #mill{
+    #mill {
       width: 50%;
       height: 10px;
       background-color: blue;
@@ -140,6 +142,7 @@
     }
   </style>
 </head>
+
 <body>
   <div id="main">
     <div id="clock">
@@ -178,21 +181,21 @@
       gradientElement.style.background = currentGradient;
       updateRedCircleVisibility();
     };
-    
+
     function generateTestElements() {
-            const container = document.querySelector('.container');
-            for (let angle = 0; angle <= 450; angle += 6) { // Generate elements every 6 degrees
-                const testElement1= document.createElement('div');
-                const testElement2= document.createElement('div');
-                testElement2.className = 'circle1';
-                testElement1.appendChild(testElement2);
-                testElement1.className = 'circle';
-                testElement1.style.transform = `rotate(${angle}deg)`;
-                container.appendChild(testElement1);
-            } 
-        }
-        generateTestElements();
-    setInterval(clock, 1000/60); // 调整间隔时间以更精确地更新时钟
+      const container = document.querySelector('.container');
+      for (let angle = 0; angle <= 450; angle += 6) { // Generate elements every 6 degrees
+        const testElement1 = document.createElement('div');
+        const testElement2 = document.createElement('div');
+        testElement2.className = 'circle1';
+        testElement1.appendChild(testElement2);
+        testElement1.className = 'circle';
+        testElement1.style.transform = `rotate(${angle}deg)`;
+        container.appendChild(testElement1);
+      }
+    }
+    generateTestElements();
+    setInterval(clock, 1000 / 60); // 调整间隔时间以更精确地更新时钟
     clock();
 
     // 计算秒针的角度
@@ -224,4 +227,3 @@
 </body>
 
 </html>
-

@@ -1,100 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Clock</title>
+    <title>Document</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 200px;
+        #div1 {
+            position: absolute;
+            width: 10px;
+            height: 50px;
+            background: blue;
         }
-        #clock {
-            font-size: 48px;
-            font-weight: bold;
+
+        #div2 {
+            position: absolute;
+            /* left: 20px; */
+            width: 50px;
+            height: 10px;
+            background: red;
         }
     </style>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
+
 <body>
-    <div id="clock">00:00:00 AM</div>
-
+    <div id="div1"></div>
+    <div id="div2"></div>
     <script>
-        function currentTime() {
-            let date = new Date(); 
-            let hh = date.getHours();
-            let mm = date.getMinutes();
-            let ss = date.getSeconds();
-            let session = "AM";
+        // function collision($div1, $div2) {
+        //     var x1 = $div1.offset().left;
+        //     var y1 = $div1.offset().top;
+        //     var h1 = $div1.outerHeight(true);
+        //     var w1 = $div1.outerWidth(true);
+        //     var b1 = y1 + h1;
+        //     var r1 = x1 + w1;
+        //     var x2 = $div2.offset().left;
+        //     var y2 = $div2.offset().top;
+        //     var h2 = $div2.outerHeight(true);
+        //     var w2 = $div2.outerWidth(true);
+        //     var b2 = y2 + h2;
+        //     var r2 = x2 + w2;
 
-            if(hh == 0){
-                hh = 12;
-            }
-            if(hh > 12){
-                hh = hh - 12;
-                session = "PM";
-            }
+        //     if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+        //     return true;
+        // }
 
-            hh = (hh < 10)? "0" + hh : hh;
-            mm = (mm < 10)? "0" + mm : mm;
-            ss = (ss < 10)? "0" + ss : ss;
-            
-            let time = hh + ":" + mm + ":" + ss + " " + session;
+        // // 示例使用
+        // var div1 = $("#div1");
+        // var div2 = $("#div2");
 
-            document.getElementById("clock").innerText = time; 
-            let t = setTimeout(function(){ currentTime() }, 1000);
+        // if (collision(div1, div2)) {
+        //     console.log("div1 和 div2 重叠");
+        // } else {
+        //     console.log("div1 和 div2 不重叠");
+        // }
+
+        function isColliding(div1, div2) {
+            const rect1 = div1.getBoundingClientRect();
+            const rect2 = div2.getBoundingClientRect();
+
+            // 检查两个矩形是否重叠
+            return !(rect1.right < rect2.left ||
+                rect1.left > rect2.right ||
+                rect1.bottom < rect2.top ||
+                rect1.top > rect2.bottom);
         }
-        currentTime();
+
+        const div1 = document.getElementById('div1');
+        const div2 = document.getElementById('div2');
+
+        if (isColliding(div1, div2)) {
+            console.log('div1 和 div2 重叠');
+        } else {
+            console.log('div1 和 div2 不重叠');
+        }
     </script>
 </body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Clock</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 200px;
-        }
-        #clock {
-            font-size: 48px;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div id="clock">00:00:00 AM</div>
 
-    <script>
-        function currentTime() {
-            let date = new Date(); 
-            let hh = date.getHours();
-            let mm = date.getMinutes();
-            let ss = date.getSeconds();
-            let session = "AM";
-
-            if(hh == 0){
-                hh = 12;
-            }
-            if(hh > 12){
-                hh = hh - 12;
-                session = "PM";
-            }
-
-            hh = (hh < 10)? "0" + hh : hh;
-            mm = (mm < 10)? "0" + mm : mm;
-            ss = (ss < 10)? "0" + ss : ss;
-            
-            let time = hh + ":" + mm + ":" + ss + " " + session;
-
-            document.getElementById("clock").innerText = time; 
-            let t = setTimeout(function(){ currentTime() }, 1000);
-        }
-        currentTime();
-    </script>
-</body>
 </html>

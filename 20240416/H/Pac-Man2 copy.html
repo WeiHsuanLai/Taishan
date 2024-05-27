@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>扇形渐变示例</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #main {
+      position: relative;
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #clock {
+      width: 600px;
+      height: 600px;
+      background: gray;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    #hour {
+      width: 20%;
+      height: 10px;
+      background: skyblue;
+      position: absolute;
+      left: 30%;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    #minute {
+      width: 40%;
+      height: 10px;
+      background-color: pink;
+      position: absolute;
+      left: 10%;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    #second {
+      width: 40%;
+      height: 4px;
+      animation: sec 1s linear 0 infinite;
+      position: absolute;
+      left: 10%;
+      top: calc(50% - 2px);
+      border-radius: 5px;
+      transform-origin: right center;
+      z-index: 1000;
+    }
+
+    #test {
+      width: 45%;
+      height: 4px;
+      background-color: blue;
+      position: absolute;
+      left: 5%;
+      top: calc(50% - 2px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    #test1 {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: conic-gradient(gray 45deg, yellow 45deg, yellow 315deg, gray 45deg);
+      display: block;
+      position: absolute;
+      top: -10px;
+      animation: clockHand 0.3s infinite;
+      z-index: 10;
+    }
+
+    .circle {
+      width: 39%;
+      height: 10px;
+      position: absolute;
+      left: 11%;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+      transform: rotate(-90deg);
+      display: flex;
+      z-index: 0;
+    }
+
+    .circle1 {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: blue;
+      display: block;
+      position: absolute;
+      top: 0;
+      z-index: 0;
+    }
+
+    .container {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border: 1px solid black;
+      display: flex;
+    }
+
+    #mill {
+      width: 50%;
+      height: 10px;
+      background-color: blue;
+      position: absolute;
+      left: 0;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+      transform: rotate(-90deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <div id="clock">
+      <div id="hour"></div>
+      <div id="minute"></div>
+      <div id="second">
+        <div id="test1"></div>
+      </div>
+      <div class="circle">
+        <div class="circle1"></div>
+      </div>
+    </div>
+    <p id="text">00:00:00</p>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0-beta/jquery.min.js" integrity="sha512-5DIV4rFAkqgNzEqQuiczycmrnUZW8/+Gj7Dbhc5Ga6UYMPMV3CeSnMO6f0xy9G9kSgd1buwT6WlFS5VO7ATNDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    $(document).ready(function () {
+      const elHour = $("#hour");
+      const elMinute = $("#minute");
+      const elSecond = $("#second");
+      const elText = $("#text");
+      const gradientElement = $("#test1");
+
+      const clock = () => {
+        const date = new Date();
+        const hour = date.getHours();
+        const minute = date.getMinutes();
+        const second = date.getSeconds();
+        const mill = date.getMilliseconds();
+        elHour.css('transform', `rotate(${hour * 30 + 90}deg)`);
+        elMinute.css('transform', `rotate(${minute * 6 + 90}deg)`);
+        elSecond.css('transform', `rotate(${second * 6 + 90 + mill / 1000 * 6}deg)`);
+        elText.text(`${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}:${second.toString().padStart(2, "0")}`);
+
+      };
+    });
+  </script>
+</body>
+
+</html>
