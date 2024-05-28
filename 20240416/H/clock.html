@@ -126,6 +126,15 @@
       };
       setInterval(updateClock, 10);
       updateClock();
+
+      // 新增的函数来获取当前的秒针旋转角度
+      function getSecondAngle() {
+        return `${currentSecond * 6 + 90 + currentMillisecond / 1000 * 6}deg`;
+      }
+
+      // 示例：在需要的地方调用getSecondAngle函数
+      console.log(getSecondAngle());
+
     });
 
     function isColliding(circle1, man) {
@@ -140,12 +149,6 @@
     }
     const circle1 = document.querySelector('.circle1');
     const man = document.querySelector('#man');
-
-    if (isColliding(circle1, man)) {
-      console.log('div1 和 div2 重叠');
-    } else {
-      console.log('div1 和 div2 不重叠');
-    }
 
     setInterval(() => {
       if (isColliding(circle1, man)) {
