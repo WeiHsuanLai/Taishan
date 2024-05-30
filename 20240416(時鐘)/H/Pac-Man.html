@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pac-Man</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #main {
+      position: relative;
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #clock {
+      width: 600px;
+      height: 600px;
+      background: gray;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    #hour {
+      width: 20%;
+      height: 10px;
+      background: skyblue;
+      position: absolute;
+      left: 30%;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    #minute {
+      width: 40%;
+      height: 10px;
+      background-color: pink;
+      position: absolute;
+      left: 10%;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    #second {
+      width: 40%;
+      height: 4px;
+      background-color: greenyellow;
+      position: absolute;
+      left: 10%;
+      top: calc(50% - 2px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    #man {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: conic-gradient(gray 45deg,
+          yellow 45deg,
+          yellow 315deg,
+          gray 45deg);
+      position: absolute;
+      left: -10%;
+      top: calc(50% - 12.5px);
+    }
+
+    .container {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border: 1px solid black;
+    }
+
+    .circle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <div id="clock">
+      <div id="hour"></div>
+      <div id="minute"></div>
+      <div id="second">
+        <div id="man">
+          <div id="second2"></div>
+        </div>
+      </div>
+      <div class="container"></div>
+    </div>
+    <p id="text">00:00:00</p>
+  </div>
+  <script>
+    const elHour = document.getElementById("hour");
+    const elMinute = document.getElementById("minute");
+    const elSecond = document.getElementById("second");
+    const elText = document.getElementById("text");
+
+    const gradientElement = document.getElementById("man");
+    let currentGradient = "conic-gradient(yellow 0 360deg)";
+
+    const clock = () => {
+      const date = new Date();
+      const hour = date.getHours();
+      const minute = date.getMinutes();
+      const second = date.getSeconds();
+      elHour.style.transform = `rotate(${hour * 30 + 90}deg)`;
+      elMinute.style.transform = `rotate(${minute * 6 + 90}deg)`;
+      elSecond.style.transform = `rotate(${second * 6 + 90}deg)`;
+      elText.innerText = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}:${second.toString().padStart(2, "0")}`;
+
+      if (currentGradient === "conic-gradient(yellow 0 360deg)") {
+        currentGradient = "conic-gradient(gray 45deg, yellow 45deg, yellow 315deg, gray 45deg)";
+      } else if (currentGradient === "conic-gradient(gray 45deg, yellow 45deg, yellow 315deg, gray 45deg)") {
+        currentGradient = "conic-gradient(yellow 0 360deg)";
+      }
+
+      gradientElement.style.background = currentGradient;
+      updateRedCircleVisibility();
+    };
+
+    setInterval(clock, 100); // 调整间隔时间以更精确地更新时钟
+    clock();
+
+    const centerX = 300;
+    const centerY = 300;
+
+    for (let angle = 0; angle <= 360; angle += 6) {
+      const radian = angle * Math.PI / 180;
+      const x = centerX + 250 * Math.cos(radian) - 5;
+      const y = centerY + 250 * Math.sin(radian) - 5;
+      const div = document.createElement('div');
+      div.classList.add('circle');
+      div.style.transform = `translate(${x}px, ${y}px)`;
+
+      document.querySelector('.container').appendChild(div);
+    }
+
+    // 计算秒针的角度
+    function getSecondsAngle() {
+      const date = new Date();
+      const seconds = date.getSeconds();
+      return seconds; // 每秒旋转6度
+    }
+
+    // 根据秒针角度更新红色圆圈的显示状态
+    function updateRedCircleVisibility() {
+      const circles = document.querySelectorAll('.circle');
+      const secondsAngle = getSecondsAngle();
+      hideCirclesBasedOnSecondsAngle(circles, secondsAngle);
+    }
+
+    // 隐藏或显示圆圈
+    function hideCirclesBasedOnSecondsAngle(circles, secondsAngle) {
+      circles.forEach((circle, index) => {
+        if (index < secondsAngle) {
+          circle.style.display = 'none'; // 隐藏小于秒针角度的圆
+        } else {
+          circle.style.display = ''; // 显示大于等于秒针角度的圆
+        }
+      });
+    }
+
+  </script>
+</body>
+
+</html>

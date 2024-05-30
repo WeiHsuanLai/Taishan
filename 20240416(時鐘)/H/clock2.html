@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>clock2</title>
+  <style>
+    #clock {
+      width: 300px;
+      height: 300px;
+      background: gray;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    #hour {
+      width: 20%;
+      height: 10px;
+      background: skyblue;
+      position: absolute;
+      left: 30%;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    #minute {
+      width: 40%;
+      height: 10px;
+      background-color: pink;
+      position: absolute;
+      left: 10%;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    #second {
+      width: 45%;
+      height: 4px;
+      background-color: greenyellow;
+      position: absolute;
+      left: 5%;
+      top: calc(50% - 2px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    #man {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: conic-gradient(gray 45deg, yellow 45deg, yellow 315deg, gray 45deg);
+      display: block;
+      position: absolute;
+      top: -8.5px;
+      animation: sec 0.3s infinite;
+      z-index: 10;
+    }
+
+    @keyframes sec {
+      from {
+        background: conic-gradient(transparent 45deg, yellow 45deg, yellow 315deg, transparent 45deg);
+      }
+
+      to {
+        background: conic-gradient(yellow 0 360deg);
+      }
+    }
+
+    #ball {
+      width: 45%;
+      height: 4px;
+      background-color: greenyellow;
+      position: absolute;
+      left: 5%;
+      top: calc(50% - 2px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    .smallball {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: green;
+      position: absolute;
+      top: -3px;
+      left: 5px;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="clock">
+    <div id="hour"></div>
+    <div id="minute"></div>
+    <div id="second">
+      <div id="man"></div>
+    </div>
+    <div id="ball">
+      <div class="smallball"></div>
+    </div>
+  </div>
+  <p id="text">00:00:00</p>
+  <script>
+    const elHour = document.getElementById('hour')
+    const elMinute = document.getElementById('minute')
+    const elSecond = document.getElementById('second')
+    const elText = document.getElementById('text')
+
+    const clock = () => {
+      const date = new Date()
+      const hour = date.getHours()
+      const minute = date.getMinutes()
+      const second = date.getSeconds()
+      const mill = date.getMilliseconds();
+      elHour.style.transform = `rotate(${hour * 30 + 90}deg)`
+      elMinute.style.transform = `rotate(${minute * 6 + 90}deg)`
+      elSecond.style.transform = `rotate(${second * 6 + 90 + mill / 1000 * 6}deg)`
+      elText.innerText = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`
+    }
+
+    function getSecondsAngle() {
+      const date = new Date();
+      const seconds = date.getSeconds();
+      return seconds; // 每秒旋转6度
+    }
+    setInterval(getSecondsAngle)
+    setInterval(clock, 10)
+    clock()
+  </script>
+</body>
+
+</html>
