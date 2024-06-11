@@ -1,4 +1,5 @@
 import axios from 'axios'
+import 'dotenv/config'
 import template from '../templates/culture.js'
 
 export default async (event) => {
@@ -26,7 +27,12 @@ export default async (event) => {
 
 			return t
 		})
-		await event.reply(replies)
+		const replyMessage = {
+			type: 'flex',
+			altText: '查詢',
+			contents: replies[0]
+		}
+		await event.reply(replyMessage)
 		console.log('Replies sent successfully!')
 	} catch (error) {
 		console.error('Error occurred:', error)
