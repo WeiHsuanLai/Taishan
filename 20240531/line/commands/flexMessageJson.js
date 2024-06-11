@@ -24,15 +24,30 @@ export default async (event) => {
 
 			if (d.TicketPrice) t.body.contents[1].contents[3].contents[1].text = d.TicketPrice
 			else t.body.contents[1].contents[3].contents[1].text = 'N/A' // 如果 TicketPrice 為空，設置為 'N/A'
-
 			return t
 		})
-		const replyMessage = {
+		console.log(replies)
+		// const replyMessages = []
+
+		// for (let i = 0; i < replies.length; i++) {
+		// 	const replyMessage = {
+		// 		type: 'flex',
+		// 		altText: '查詢',
+		// 		contents: replies[i]
+		// 	}
+		// 	replyMessages.push(replyMessage)
+		// }
+		const result = await event.reply({
 			type: 'flex',
-			altText: '查詢',
-			contents: replies[0]
-		}
-		await event.reply(replyMessage)
+			altText: '查詢結果',
+			contents: {
+				type: 'carousel',
+				contents: replies
+			}
+		})
+
+		console.log(result)
+		await event.reply(result)
 		console.log('Replies sent successfully!')
 	} catch (error) {
 		console.error('Error occurred:', error)

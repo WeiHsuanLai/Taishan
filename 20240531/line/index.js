@@ -3,6 +3,7 @@ import linebot from 'linebot' // 引用 linebot 套件
 import axios from 'axios' // 引用 axios 套件
 import { handleExhibitionRequest } from './commands/handleExhibitionRequest.js'
 import flexMessageJson from './commands/flexMessageJson.js'
+import flexMessageJson2 from './commands/flexMessageJson2.js'
 
 // 設定環境變數
 const bot = linebot({
@@ -26,6 +27,8 @@ bot.on('message', async (event) => {
 				console.error('處理展覽2請求時出錯:', error)
 				event.reply({ type: 'text', text: '哩喜勒工沙小2' })
 			}
+		} else if (event.message.text === '展覽3') {
+			await flexMessageJson2(event)
 		} else {
 			// 回覆未知命令
 			await event.reply({ type: 'text', text: '哩喜勒工沙小' })
