@@ -29,8 +29,8 @@ export default async (event) => {
 			if (d.EndDate) t.body.contents[2].contents[3].contents[1].text = d.EndDate
 			else t.body.contents[2].contents[3].contents[1].text = 'N/A'
 			// 票價
-			if (d.TicketPrice) t.body.contents[2].contents[3].contents[1].text = d.TicketPrice
-			else t.body.contents[2].contents[3].contents[1].text = 'N/A'
+			if (d.TicketPrice) t.body.contents[2].contents[3].contents[2].text = d.TicketPrice
+			else t.body.contents[2].contents[3].contents[2].text = 'N/A'
 			// 連結
 			if (d.WebsiteLink) t.footer.contents[0].action.uri = d.WebsiteLink
 			else t.footer.contents[0].action.uri = 'N/A'
