@@ -21,13 +21,8 @@ export default () => {
 					type: 'text',
 					text: '古蹟探祕—勸業銀行舊廈古蹟',
 					weight: 'bold',
-					size: 'lg'
-				},
-				{
-					type: 'text',
-					text: '修復常設展',
-					weight: 'bold',
-					size: 'lg'
+					size: 'lg',
+					wrap: true
 				},
 				{
 					type: 'box',

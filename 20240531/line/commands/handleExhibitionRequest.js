@@ -6,9 +6,7 @@ export const handleExhibitionRequest = async (event) => {
 		const exhibitions = data.filter((item) => item.Category === '展覽')
 		const topFiveExhibitions = exhibitions.slice(0, 1)
 		const richContents = topFiveExhibitions.map((exhibition) => {
-			const caption = exhibition.Caption // Accessing the Caption property
-			// const middleIndex = Math.floor(caption.length / 2)
-			// console.log(caption.length)
+			const caption = exhibition.Caption
 			const frontHalf = caption.slice(0, 13)
 			const backHalf = caption.slice(13, caption.length)
 

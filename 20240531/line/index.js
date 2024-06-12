@@ -15,7 +15,7 @@ const bot = linebot({
 bot.on('message', async (event) => {
 	console.log(event)
 	if (event.message.type === 'text') {
-		if (event.message.text === '展覽') {
+		if (event.message.text === '展覽4') {
 			// 處理展覽請求
 			await handleExhibitionRequest(event)
 		} else if (event.message.text === '展覽2') {
@@ -27,7 +27,7 @@ bot.on('message', async (event) => {
 				console.error('處理展覽2請求時出錯:', error)
 				event.reply({ type: 'text', text: '哩喜勒工沙小2' })
 			}
-		} else if (event.message.text === '展覽3') {
+		} else if (event.message.text === '展覽') {
 			await flexMessageJson2(event)
 		} else {
 			// 回覆未知命令
