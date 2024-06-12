@@ -8,16 +8,18 @@ export default async (event) => {
 		const { data } = await axios.get('https://cultureexpress.taipei/OpenData/Event/C000003')
 		const replies2 = data.slice(0, 5).map((d) => {
 			const t = template2()
-
+			const caption = d.Caption
+			const frontHalf = caption.slice(0, 13)
+			const backHalf = caption.slice(13, caption.length)
 			// 檢查並設置回覆內容
 			// 照片
 			if (d.ImageFile) t.hero.url = d.ImageFile
 			else t.hero.url = 'N/A'
 			// 第一段標題
-			if (d.Caption) t.body.contents[0].text = d.Caption
+			if (d.Caption) t.body.contents[0].text = frontHalf
 			else t.body.contents[0].text = 'N/A'
 			// 第二段標題
-			if (d.Caption) t.body.contents[1].text = d.Caption
+			if (d.Caption) t.body.contents[1].text = backHalf
 			else t.body.contents[1].text = 'N/A'
 			// 地點
 			if (d.Company) t.body.contents[2].contents[0].contents[1].text = d.Company
