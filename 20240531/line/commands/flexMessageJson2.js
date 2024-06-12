@@ -11,8 +11,8 @@ export default async (event) => {
 
 			// 檢查並設置回覆內容
 			// 照片
-			if (d.ImageFile) t.hero.action.uri = d.ImageFile
-			else t.hero.action.uri = 'N/A'
+			if (d.ImageFile) t.hero.url = d.ImageFile
+			else t.hero.url = 'N/A'
 			// 第一段標題
 			if (d.Caption) t.body.contents[0].text = d.Caption
 			else t.body.contents[0].text = 'N/A'
