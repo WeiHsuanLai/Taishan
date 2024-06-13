@@ -1,22 +1,18 @@
 import axios from 'axios'
 import 'dotenv/config'
-import template2 from '../templates/culture2.js'
+import template from '../templates/culture.js'
 
 export default async (event) => {
 	try {
 		console.log('Fetching data from API...')
 		const response = await axios.get('https://cultureexpress.taipei/OpenData/Event/C000003')
 		const data = response.data
-		const exhibitions = data.filter((item) => item.Category === '展覽')
+		const exhibitions = data.filter((item) => item.Category === '親子活動')
 		// console.log(exhibitions)
 
 		// 然後從過濾出的項目中選擇前五個
 		const replies2 = exhibitions.slice(0, 5).map((d) => {
-			const t = template2()
-			// const caption = d.Caption
-			// const frontHalf = caption.slice(0, 13)
-			// const backHalf = caption.slice(13, caption.length)
-
+			const t = template()
 			// 檢查並設置回覆內容
 			// 照片
 			if (d.ImageFile) t.hero.url = d.ImageFile
@@ -44,7 +40,7 @@ export default async (event) => {
 
 			// 票價
 			if (d.TicketPrice) t.body.contents[1].contents[3].contents[1].text = d.TicketPrice
-			else t.body.contents[1].contents[3].contents[1].text = 'N/A'
+			else t.body.contents[1].contents[3].contents[1].text = '免費'
 
 			// 連結
 			if (d.WebsiteLink) t.footer.contents[0].action.uri = d.WebsiteLink

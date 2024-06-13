@@ -1,9 +1,13 @@
 import 'dotenv/config' // 引用 dotenv 套件
 import linebot from 'linebot' // 引用 linebot 套件
 import axios from 'axios' // 引用 axios 套件
-import { handleExhibitionRequest } from './commands/handleExhibitionRequest.js'
-import flexMessageJson from './commands/flexMessageJson.js'
-import flexMessageJson2 from './commands/flexMessageJson2.js'
+import exhibition from './commands/exhibition.js'
+import lecture from './commands/lecture.js'
+import citylife from './commands/citylife.js'
+import music from './commands/music.js'
+import performingarts from './commands/performingarts.js'
+import Topics from './commands/Topics.js'
+import familyactive from './commands/familyactive.js'
 
 // 設定環境變數
 const bot = linebot({
@@ -15,23 +19,24 @@ const bot = linebot({
 bot.on('message', async (event) => {
 	console.log(event)
 	if (event.message.type === 'text') {
-		if (event.message.text === '展覽4') {
+		if (event.message.text === '展覽') {
 			// 處理展覽請求
-			await handleExhibitionRequest(event)
-		} else if (event.message.text === '展覽2') {
-			try {
-				// 處理展覽2請求
-				await flexMessageJson(event)
-			} catch (error) {
-				// 捕獲錯誤並回覆預設文本消息
-				console.error('處理展覽2請求時出錯:', error)
-				event.reply({ type: 'text', text: '哩喜勒工沙小2' })
-			}
-		} else if (event.message.text === '展覽') {
-			await flexMessageJson2(event)
+			await exhibition(event)
+		} else if (event.message.text === '講座') {
+			await lecture(event)
+		} else if (event.message.text === '城市生活圈') {
+			await citylife(event)
+		} else if (event.message.text === '音樂現場') {
+			await music(event)
+		} else if (event.message.text === '表演藝術') {
+			await performingarts(event)
+		} else if (event.message.text === '專題特區') {
+			await Topics(event)
+		} else if (event.message.text === '親子活動') {
+			await familyactive(event)
 		} else {
 			// 回覆未知命令
-			await event.reply({ type: 'text', text: '哩喜勒工沙小' })
+			await event.reply({ type: 'text', text: '哩喜勒考喔' })
 		}
 	}
 })
