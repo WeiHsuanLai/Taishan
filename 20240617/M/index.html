@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./02.Scss_bs/css/bootstrap.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="bg-primary">1234</h1>
+    <h1 class="bg-mainColor">  聖誕節-顏色1</h1>
+    <h1 class="bg-secondColor">聖誕節-顏色2</h1>
+    <h1 class="bg-thirdColor"> 聖誕節-顏色3</h1>
+    <hr>
+    <h1 class="bg-coffee-dark">咖啡色-顏色1</h1>
+    <h1 class="bg-coffee-light">咖啡色-顏色2</h1>
+    <h1 class="bg-coffee-medium">咖啡色-顏色3</h1>
+    <hr>
+    <h1 class="bg-pikachu-yellow">皮卡丘-顏色1</h1>
+    <h1 class="bg-pikachu-red">皮卡丘-顏色2</h1>
+    <h1 class="bg-pikachu-coffee">皮卡丘-顏色3</h1>
+    <hr>
+    <h1 class="mx-5">1234</h1>
+    <hr>
+    <div class="card" style="width: 18rem;">
+      <img src="https://picsum.photos/300/200/?random=10" class="card-img">
+      <div class="card-body">
+        <h5 class="card-title">Card-title</h5>
+        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto atque non eos asperiores adipisci mollitia! Ea laudantium possimus repellat id, repudiandae maiores, autem ducimus, exercitationem in facere rem facilis iste?  
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="row row-cols-8 border border-10 border-coffee-dark">
+      <div class="col">item</div>
+      <div class="col">item</div>
+      <div class="col">item</div>
+      <div class="col">item</div>
+      <div class="col">item</div>
+      <div class="col">item</div>
+      <div class="col">item</div>
+      <div class="col">item</div>
+      <div class="col">item</div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Show a second modal and hide this one with the button below.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Hide this modal and show the first with the button below.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
+    <h1 class="kai-solid1" style="width: 100px; height: 100px;">1</h1>
+    <h1 class="kai-solid2" style="width: 100px; height: 100px;">2</h1>
+    <h1 class="kai-solid3" style="width: 100px; height: 100px;">3</h1>
+    <h2 class="kai-dashed1"></h2>
+    <h2 class="kai-dashed2"></h2>
+    <h2 class="kai-dashed3"></h2>
+  </div>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
