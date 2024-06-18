@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 綁定標籤屬性 -->
+    <img v-bind:src="img" height="100">
+    <img :src="img" height="100">
+    <a :href="link.url">{{link.text}}</a>
+    <!-- 綁定 style -->
+    <P :style="textStyle">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, labore?</P>
+    <p :style="{color:textcolor,textAlign}">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, labore?</p>
+  </div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.29/vue.global.min.js' integrity='sha512-tDB38TReqnxc5xy1tHRvsZ6Z9MibKnxAfYljGOPOkSkkyZacntaykjGZUi5vBR/sKsazQRR7fTCQ0TxIkNyEFg==' crossorigin='anonymous'></script>
+  <script>
+    Vue.createApp({
+        data() {
+            return {
+              img:'https://github.com/weihsuanlai.png',
+              link:{
+                url:'https://x.com',
+                text:'推特'
+              },
+              textStyle:{
+                color:'lightblue',
+                textAlign:'center',
+                'background-color':'grey'
+              },
+              textcolor:'pink',
+              textAlign:'right'
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>
