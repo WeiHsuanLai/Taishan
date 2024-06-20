@@ -17,11 +17,9 @@
 </style>
 </head>
 <body>
-
 <div id="app">
   <canvas ref="gameCanvas" width="800" height="600"></canvas>
 </div>
-
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.29/vue.global.min.js' integrity='sha512-tDB38TReqnxc5xy1tHRvsZ6Z9MibKnxAfYljGOPOkSkkyZacntaykjGZUi5vBR/sKsazQRR7fTCQ0TxIkNyEFg==' crossorigin='anonymous'></script>
 <script>
   Vue.createApp({
@@ -32,9 +30,10 @@
           keysPressed: {},
           characters: [
             { x: 400, y: 300, color: 'red', controls: { left: 'ArrowLeft', right: 'ArrowRight', up: 'ArrowUp', down: 'ArrowDown' } },
-            { x: 200, y: 150, color: 'blue', controls: { left: 'a', right: 'd', up: 'w', down: 's' } },
+            { x: 200, y: 150, color: 'blue', controls: { left: 'a', right: 'd', up: 'w', down: 's', shoot: 'e' } },
             { x: 600, y: 450, color: 'green', controls: { left: 'j', right: 'l', up: 'i', down: 'k' } }
-          ]
+          ],
+          bullets: []
         }
       };
     },
@@ -48,6 +47,7 @@
 
         const update = () => {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
+
           this.game.characters.forEach(character => {
             if (this.game.keysPressed[character.controls.left]) {
               character.x -= this.game.speed;
@@ -64,11 +64,25 @@
             ctx.fillStyle = character.color;
             ctx.fillRect(character.x, character.y, 50, 50);
           });
+
+          this.game.bullets.forEach((bullet, index) => {
+            bullet.y -= bullet.speed;
+            ctx.fillStyle = bullet.color;
+            ctx.fillRect(bullet.x, bullet.y, 5, 10);
+            if (bullet.y < 0) {
+              this.game.bullets.splice(index, 1);
+            }
+          });
+
           requestAnimationFrame(update);
         };
 
         const handleKeyDown = (e) => {
           this.game.keysPressed[e.key] = true;
+
+          if (e.key === this.game.characters[1].controls.shoot) {
+            this.shootBullet(this.game.characters[1]);
+          }
         };
 
         const handleKeyUp = (e) => {
@@ -79,10 +93,17 @@
         window.addEventListener('keyup', handleKeyUp);
 
         update();
+      },
+      shootBullet(character) {
+        this.game.bullets.push({
+          x: character.x + 22.5, // Center the bullet horizontally
+          y: character.y,
+          speed: 10,
+          color: character.color
+        });
       }
     }
   }).mount('#app');
 </script>
-
 </body>
 </html>
