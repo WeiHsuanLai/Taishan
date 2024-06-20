@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue Character Movement Example</title>
+<style>
+  #app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  canvas {
+    border: 1px solid black;
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <canvas ref="gameCanvas" width="800" height="600"></canvas>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.29/vue.global.min.js' integrity='sha512-tDB38TReqnxc5xy1tHRvsZ6Z9MibKnxAfYljGOPOkSkkyZacntaykjGZUi5vBR/sKsazQRR7fTCQ0TxIkNyEFg==' crossorigin='anonymous'></script>
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        game: {
+          speed: 5,
+          keysPressed: {},
+          characters: [
+            { x: 400, y: 300, color: 'red', controls: { left: 'ArrowLeft', right: 'ArrowRight', up: 'ArrowUp', down: 'ArrowDown' } },
+            { x: 200, y: 150, color: 'blue', controls: { left: 'a', right: 'd', up: 'w', down: 's' } },
+            { x: 600, y: 450, color: 'green', controls: { left: 'j', right: 'l', up: 'i', down: 'k' } }
+          ]
+        }
+      };
+    },
+    mounted() {
+      this.initializeGame();
+    },
+    methods: {
+      initializeGame() {
+        const canvas = this.$refs.gameCanvas;
+        const ctx = canvas.getContext('2d');
+
+        const update = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          this.game.characters.forEach(character => {
+            if (this.game.keysPressed[character.controls.left]) {
+              character.x -= this.game.speed;
+            }
+            if (this.game.keysPressed[character.controls.right]) {
+              character.x += this.game.speed;
+            }
+            if (this.game.keysPressed[character.controls.up]) {
+              character.y -= this.game.speed;
+            }
+            if (this.game.keysPressed[character.controls.down]) {
+              character.y += this.game.speed;
+            }
+            ctx.fillStyle = character.color;
+            ctx.fillRect(character.x, character.y, 50, 50);
+          });
+          requestAnimationFrame(update);
+        };
+
+        const handleKeyDown = (e) => {
+          this.game.keysPressed[e.key] = true;
+        };
+
+        const handleKeyUp = (e) => {
+          delete this.game.keysPressed[e.key];
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keyup', handleKeyUp);
+
+        update();
+      }
+    }
+  }).mount('#app');
+</script>
+
+</body>
+</html>

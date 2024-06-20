@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Character Movement Example</title>
+<style>
+  #gameCanvas {
+    border: 1px solid black;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<script>
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+
+  let characterX = 400;
+  let characterY = 300;
+  let speed = 5;
+
+  function update() {
+    // 清除屏幕
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 检查键盘输入并更新角色的位置
+    if (keysPressed['ArrowLeft']) {
+      characterX -= speed;
+    }
+    if (keysPressed['ArrowRight']) {
+      characterX += speed;
+    }
+    if (keysPressed['ArrowUp']) {
+      characterY -= speed;
+    }
+    if (keysPressed['ArrowDown']) {
+      characterY += speed;
+    }
+
+    // 绘制角色
+    ctx.fillRect(characterX, characterY, 50, 50);
+
+    // 请求下一次更新
+    requestAnimationFrame(update);
+  }
+
+  // 初始化键盘事件监听器
+  window.addEventListener('keydown', (e) => {
+    keysPressed[e.key] = true;
+  });
+
+  window.addEventListener('keyup', (e) => {
+    delete keysPressed[e.key];
+  });
+
+  // 存储按下的键
+  const keysPressed = {};
+
+  // 开始游戏循环
+  update();
+
+</script>
+
+</body>
+</html>

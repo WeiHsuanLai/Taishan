@@ -12,14 +12,22 @@
     <img :src="img" height="100">
     <a :href="link.url">{{link.text}}</a>
     <!-- 綁定 style -->
-    <P :style="textStyle">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, labore?</P>
-    <p :style="{color:textcolor,textAlign}">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, labore?</p>
+    <P :style="textStyle,fontstyle">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, labore?</P>
+    <p :style="{
+                  color:textcolor,
+                  textAlign,
+                  fontStyle:num === 10 ? 'italic':'normal'}">
+                  <!-- 綁定 style -->
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, labore?
+    </p>
+    <!-- 綁定 class -->
   </div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.29/vue.global.min.js' integrity='sha512-tDB38TReqnxc5xy1tHRvsZ6Z9MibKnxAfYljGOPOkSkkyZacntaykjGZUi5vBR/sKsazQRR7fTCQ0TxIkNyEFg==' crossorigin='anonymous'></script>
   <script>
     Vue.createApp({
         data() {
             return {
+              num: 10,
               img:'https://github.com/weihsuanlai.png',
               link:{
                 url:'https://x.com',
