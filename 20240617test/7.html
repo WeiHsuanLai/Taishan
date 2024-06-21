@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<title>jQuery 角色移動示例</title>
+<title>jQuery射擊對戰遊戲</title>
 <style>
   #app {
     display: flex;
@@ -27,20 +27,20 @@
       speed: 5,
       keysPressed: {},
       characters: [
-        { id: 0, x: 0, y: 0, color: 'red', controls: { left: 'ArrowLeft', right: 'ArrowRight', up: 'ArrowUp', down: 'ArrowDown', shoot: '1' }, size: 50 },
-        { id: 1, x: 950, y: 755, color: 'blue', controls: { left: 'a', right: 'd', up: 'w', down: 's', shoot: 'e' }, size: 50 },
+        { id: 0, x: 0, y: 0, color: 'red', controls: { left: 'ArrowLeft', right: 'ArrowRight', up: 'ArrowUp', down: 'ArrowDown', shoot: '1' }, size: 50, defaultDirection: 'down' },
+        { id: 1, x: 950, y: 750, color: 'blue', controls: { left: 'a', right: 'd', up: 'w', down: 's', shoot: 'e' }, size: 50, defaultDirection: 'up' },
       ],
       bullets: []
     };
 
-    const canvas = document.getElementById('gameCanvas');
+    const canvas = $('#gameCanvas')[0];
     const ctx = canvas.getContext('2d');
 
     function update() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // 更新角色位置
-      game.characters.forEach(character => {
+      $.each(game.characters, function(_, character) {
         if (game.keysPressed[character.controls.left]) {
           character.x = (character.x - game.speed + canvas.width) % canvas.width;
         }
@@ -73,8 +73,7 @@
         ctx.fillRect(bullet.x, bullet.y, 5, 10);
 
         // 檢測子彈與角色的碰撞
-        for (let i = 0; i < game.characters.length; i++) {
-          const character = game.characters[i];
+        $.each(game.characters, function(i, character) {
           if (bullet.x < character.x + character.size &&
               bullet.x + 5 > character.x &&
               bullet.y < character.y + character.size &&
@@ -82,9 +81,9 @@
             // 子彈擊中角色並且不是自身
             game.characters.splice(i, 1); // 移除角色
             game.bullets.splice(bulletIndex, 1); // 移除子彈
-            break; // 退出循環，只移除一個角色
+            return false; // 退出迴圈，只移除一個角色
           }
-        }
+        });
 
         // 移除超出畫布的子彈
         if (bullet.y < 0 || bullet.y > canvas.height || bullet.x < 0 || bullet.x > canvas.width) {
@@ -97,7 +96,7 @@
 
     function shootBullet(character) {
       let bulletSpeed = 10;
-      let direction = '';
+      let direction = character.defaultDirection;
 
       // 根據按下的鍵確定子彈方向
       if (game.keysPressed[character.controls.up]) {
@@ -123,7 +122,7 @@
 
     $(document).keydown(function(e) {
       game.keysPressed[e.key] = true;
-      game.characters.forEach(character => {
+      $.each(game.characters, function(_, character) {
         if (e.key === character.controls.shoot) {
           shootBullet(character);
         }

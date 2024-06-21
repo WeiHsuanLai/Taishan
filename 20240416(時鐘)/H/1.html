@@ -5,9 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>時鐘</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
   <style>
     body{
       background: black;
+      overflow: hidden;
     }
     /* 時鐘容器 */
     #clock {
@@ -19,14 +23,7 @@
       border-radius: 50%;
       position: relative;
     }
-    #clock::before {
-      margin: auto;
-      width: 200px;
-      height: 200px;
-      /* background: gray; */
-      border: 2px solid blue;
-      border-radius: 50%;
-    }
+    
 
     /* 時針樣式 */
     #hour {
@@ -43,12 +40,12 @@
 
     /* 分針樣式 */
     #minute {
-      width: 40%;
+      width: 30%;
       height: 10px;
       /* background-color: pink; */
       border: 2px solid pink;
       position: absolute;
-      left: 10%;
+      left: 20%;
       top: calc(50% - 5px);
       border-radius: 5px;
       transform-origin: right center;
@@ -87,7 +84,8 @@
       background: conic-gradient(gray 45deg, yellow 45deg, yellow 315deg, gray 45deg);
       display: block;
       position: absolute;
-      top: -8.5px;
+      top: -8.6px;
+      left: 1px;
       animation: sec 0.3s infinite;
       z-index: 10;
     }
@@ -116,8 +114,83 @@
       }
     }
     #text{
+      color: white;
+      font-size: 5rem;
+      font-family: "DotGothic16", sans-serif;
       margin: auto;
       text-align: center;
+    }
+    #smailcircle{
+      margin: auto;
+      top: 40px;
+      left: 40px;
+      width: 220px;
+      height: 220px;
+      /* background: gray; */
+      border: 2px solid blue;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    #gif img{
+      height: 100px;
+      margin: auto;
+      text-align: center;
+      top: 350px;
+      animation:ss 12s infinite;
+    }
+    #ghost img{
+      width: 70px;
+      animation:ss2 8s infinite;
+    }
+    #blueghost{
+      margin-left: 500px;
+      animation:ss3 20s infinite;
+    }
+    #redghost{
+      margin-left: 1500px;
+      animation:ss3 18s infinite;
+  }
+  #pinkghost{
+    margin-left: 1700px;
+    animation:ss4 23s infinite;
+  }
+  #orangeghost{
+    margin-left: 300px;
+    animation:ss4 27s infinite;
+  }
+
+    @keyframes ss {
+      from {
+        transform: translateX(-500px);
+      }
+      to {
+        transform: translateX(2000px);
+      }
+    }
+    @keyframes ss2 {
+      from {
+        transform: translateX(2000px);
+      }
+      to {
+        transform: translateX(-500px);
+      }
+    }
+    @keyframes ss3 {
+      from {
+        transform: translateY(2000px);
+      }
+      to {
+        transform: translateY(-1000px);
+      }
+    }
+    @keyframes ss4 {
+      from {
+        transform: translateY(-1000px);
+      }
+      to {
+        transform: translateY(2000px);
+      }
     }
   </style>
 </head>
@@ -130,8 +203,15 @@
       <div id="man"></div>
     </div>
     <div id="circle"></div> <!-- 這裡是放置小圓點的容器 -->
+    <div id="smailcircle"></div>
   </div>
+  <div id="gif"><img src="./pcman.gif"></div>
+  <div id="ghost"><img src="./ghost.gif" alt=""><&&&&><img src="./oacmn.gif"></div>
   <p id="text">00:00:00</p>
+  <div id="blueghost"><img src="./blue.gif"></div>
+  <div id="redghost"><img src="./red.gif" alt=""></div>
+  <div id="orangeghost"><img src="./orange.gif" alt=""></div>
+  <div id="pinkghost"><img src="./pink.gif" alt=""></div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -144,12 +224,14 @@
           const circle = document.createElement('div');
           circle.className = 'circle1';
           circle.style.transform = `rotate(${i * 6}deg) translate(125px)`; // 每隔6度旋轉一個小圓點
-          circle.style.left=`130px`
+          circle.style.left=`137px`
+          circle.style.top=`4px`
           circleContainer.appendChild(circle);
         }
       }
 
       createCircles(); // 初始化時生成小圓點
+      setInterval(createCircles, 60000);
 
       // 函式：更新時鐘時間
       const updateClock = function () {
