@@ -6,14 +6,18 @@ const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 const playerWidth = 50;
 const playerHeight = 50;
-const bulletWidth = 5;
-const bulletHeight = 10;
+const bulletWidth = 50;
+const bulletHeight = 100;
 const enemyWidth = 50;
 const enemyHeight = 50;
 const powerUpWidth = 20;
 const powerUpHeight = 20;
 const maxHealth = 5;
 const initialHealth = 3;
+
+// 加载子弹图片
+const bulletImage = new Image();
+bulletImage.src = './bullet.png'; // 替换为你本地端子弹图片的路径
 
 let player = {
     x: WIDTH / 2 - playerWidth / 2,
@@ -55,7 +59,8 @@ function createBullet() {
             y: player.y,
             width: bulletWidth,
             height: bulletHeight,
-            speed: 7
+            speed: 7,
+            image: bulletImage // 保存图片引用
         });
         player.lastShotTime = currentTime;
     }
@@ -80,7 +85,8 @@ function createEnemyBullet(enemy) {
         y: enemy.y + enemy.height,
         width: bulletWidth,
         height: bulletHeight,
-        speed: 0.1
+        speed: 1,
+        image: bulletImage
     });
 }
 
@@ -200,6 +206,14 @@ function update() {
     });
 }
 
+function drawRotatedImage(image, x, y, width, height, angle) {
+    ctx.save();
+    ctx.translate(x + width / 2, y + height / 2);
+    ctx.rotate(angle);
+    ctx.drawImage(image, -width / 2, -height / 2, width, height);
+    ctx.restore();
+}
+
 function draw() {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
@@ -208,9 +222,13 @@ function draw() {
     ctx.fillRect(player.x, player.y, player.width, player.height);
 
     // 繪制玩家子彈
-    ctx.fillStyle = 'red';
     player.bullets.forEach(bullet => {
-        ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+        if (bullet.image.complete) {
+            ctx.drawImage(bullet.image, bullet.x, bullet.y, bullet.width, bullet.height);
+        } else {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+        }
     });
 
     // 繪制敵人
@@ -220,9 +238,13 @@ function draw() {
     });
 
     // 繪制敵人子彈
-    ctx.fillStyle = 'orange';
     enemyBullets.forEach(bullet => {
-        ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+        if (bullet.image.complete) {
+            drawRotatedImage(bullet.image, bullet.x, bullet.y, bullet.width, bullet.height, Math.PI); // 上下颠倒
+        } else {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+        }
     });
 
     // 繪制道具

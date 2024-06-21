@@ -51,7 +51,6 @@
     #circle {
       width: 45%;
       height: 4px;
-      background-color: red;
       position: absolute;
       left: 5%;
       top: calc(50% - 2px);
@@ -104,58 +103,11 @@
       <div id="man"></div>
     </div>
     <div id="circle">
+      <div class="circle1"></div>
     </div>
   </div>
   <p id="text">00:00:00</p>
 
-  <!-- <script>
-    $(document).ready(function () {
-      const updateClock = function () {
-        const date = new Date();
-        const hour = date.getHours();
-        const minute = date.getMinutes();
-        const second = date.getSeconds();
-        const mill = date.getMilliseconds();
-
-        $('#hour').css('transform', `rotate(${hour * 30 + 90}deg)`);
-        $('#minute').css('transform', `rotate(${minute * 6 + 90}deg)`);
-        $('#second').css('transform', `rotate(${second * 6 + 90 + mill / 1000 * 6}deg)`);
-        $('#text').text(`${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`);
-      };
-      setInterval(updateClock, 10);
-      updateClock();
-
-      // 新增的函数来获取当前的秒针旋转角度
-      function getSecondAngle() {
-        return `${currentSecond * 6 + 90 + currentMillisecond / 1000 * 6}deg`;
-      }
-
-      // 示例：在需要的地方调用getSecondAngle函数
-      console.log(getSecondAngle());
-
-    });
-
-    function isColliding(circle1, man) {
-      const rect1 = circle1.getBoundingClientRect();
-      const rect2 = man.getBoundingClientRect();
-
-      // 检查两个矩形是否重叠
-      return !(rect1.right < rect2.left ||
-        rect1.left > rect2.right ||
-        rect1.bottom < rect2.top ||
-        rect1.top > rect2.bottom);
-    }
-    const circle1 = document.querySelector('.circle1');
-    const man = document.querySelector('#man');
-
-    setInterval(() => {
-      if (isColliding(circle1, man)) {
-        console.log('div1 和 div2 重叠');
-      } else {
-        console.log('div1 和 div2 不重叠');
-      }
-    }, 1000);
-  </script> -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const updateClock = function () {
@@ -173,27 +125,8 @@
       updateClock();
 
       function addRotatedChildrenToCircle() {
-    // 定義旋轉角度範圍
-    const startAngle = 0;
-    const endAngle = 360;
-    const angleIncrement = 6; // 每個元素增加的角度
-
-    // 在指定範圍內創建元素
-    for (let angle = startAngle; angle <= endAngle; angle += angleIncrement) {
-        // 創建一個新的div元素
-        const newChild = document.createElement('div');
-        newChild.classList.add('circle1'); // 將'child'類添加到新元素
-
-        // 設定旋轉角度
-        newChild.style.transform = `rotate(${angle}deg)`;
-
-        // 將新元素作為子元素添加到#circle中
-        document.getElementById('circle').appendChild(newChild);
-    }
 }
 
-// 調用函數添加子元素
-addRotatedChildrenToCircle();
 
       // 函数检查元素之间的碰撞
       function isColliding(circle1, man) {

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>jQuery 角色移动示例</title>
+<style>
+  #app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  canvas {
+    border: 1px solid black;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <canvas id="gameCanvas" width="800" height="600"></canvas>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js' integrity='sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==' crossorigin='anonymous'></script>
+<script>
+  $(document).ready(function() {
+    const game = {
+      speed: 5,
+      keysPressed: {},
+      characters: [
+        { id: 0, x: 400, y: 300, color: 'red', controls: { left: 'ArrowLeft', right: 'ArrowRight', up: 'ArrowUp', down: 'ArrowDown', shoot: '1' }, size: 50 },
+        { id: 1, x: 200, y: 150, color: 'blue', controls: { left: 'a', right: 'd', up: 'w', down: 's', shoot: 'e' }, size: 50 },
+      ],
+      bullets: []
+    };
+
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function update() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      game.characters.forEach(character => {
+        if (game.keysPressed[character.controls.left]) {
+          character.x = (character.x - game.speed + canvas.width) % canvas.width;
+        }
+        if (game.keysPressed[character.controls.right]) {
+          character.x = (character.x + game.speed + canvas.width) % canvas.width;
+        }
+        if (game.keysPressed[character.controls.up]) {
+          character.y = (character.y - game.speed + canvas.height) % canvas.height;
+        }
+        if (game.keysPressed[character.controls.down]) {
+          character.y = (character.y + game.speed + canvas.height) % canvas.height;
+        }
+        ctx.fillStyle = character.color;
+        ctx.fillRect(character.x, character.y, character.size, character.size);
+      });
+
+      game.bullets.forEach((bullet, bulletIndex) => {
+        if (bullet.type === 'red') {
+          bullet.y -= bullet.speed; // 红色角色的子弹向上移动
+        } else if (bullet.type === 'blue') {
+          bullet.y += bullet.speed; // 蓝色角色的子弹向下移动
+        }
+        ctx.fillStyle = bullet.color;
+        ctx.fillRect(bullet.x, bullet.y, 5, 10);
+
+        // 检测子弹与角色的碰撞
+        for (let i = 0; i < game.characters.length; i++) {
+          const character = game.characters[i];
+          if (bullet.type === 'red' && bullet.x < character.x + character.size &&
+              bullet.x + 5 > character.x &&
+              bullet.y < character.y + character.size &&
+              bullet.y + 10 > character.y && bullet.id !== character.id) {
+            // 子弹击中角色并且不是自身
+            game.characters.splice(i, 1); // 移除角色
+            game.bullets.splice(bulletIndex, 1); // 移除子弹
+            break; // 退出循环，只移除一个角色
+          }
+          if (bullet.type === 'blue' && bullet.x < character.x + character.size &&
+              bullet.x + 5 > character.x &&
+              bullet.y < character.y + character.size &&
+              bullet.y + 10 > character.y && bullet.id !== character.id) {
+            // 子弹击中角色并且不是自身
+            game.characters.splice(i, 1); // 移除角色
+            game.bullets.splice(bulletIndex, 1); // 移除子弹
+            break; // 退出循环，只移除一个角色
+          }
+        }
+
+        if (bullet.y < 0 || bullet.y > canvas.height) {
+          game.bullets.splice(bulletIndex, 1); // 移除超出画布的子弹
+        }
+      });
+
+      requestAnimationFrame(update);
+    }
+
+    function shootBullet(character) {
+      let bulletSpeed = 10;
+      let bulletType = 'blue';
+
+      // Determine bullet direction based on key pressed
+      if (game.keysPressed[character.controls.up]) {
+        bulletSpeed = -Math.abs(bulletSpeed); // 向上移动的速度
+      } else if (game.keysPressed[character.controls.down]) {
+        bulletSpeed = Math.abs(bulletSpeed); // 向下移动的速度
+      }
+
+      // Create a new bullet
+      game.bullets.push({
+        id: character.id,
+        x: character.x + 22.5, // 子弹水平居中
+        y: character.y, // 子弹从角色的位置射出
+        speed: bulletSpeed,
+        color: character.color,
+        type: bulletType
+      });
+    }
+
+    $(document).keydown(function(e) {
+      game.keysPressed[e.key] = true;
+      game.characters.forEach(character => {
+        if (e.key === character.controls.shoot) {
+          shootBullet(character);
+        }
+      });
+    });
+
+    $(document).keyup(function(e) {
+      delete game.keysPressed[e.key];
+    });
+
+    update();
+  });
+</script>
+</body>
+</html>
