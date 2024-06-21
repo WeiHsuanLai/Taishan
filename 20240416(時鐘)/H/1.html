@@ -212,66 +212,68 @@
   <div id="redghost"><img src="./red.gif" alt=""></div>
   <div id="orangeghost"><img src="./orange.gif" alt=""></div>
   <div id="pinkghost"><img src="./pink.gif" alt=""></div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const clock = document.getElementById('clock');
+  const circleContainer = document.getElementById('circle');
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const clock = document.getElementById('clock');
-      const circleContainer = document.getElementById('circle');
+  // 函式：生成和定位小圓點
+  function createCircles() {
+    // 先清除之前的圓點
+    circleContainer.innerHTML = '';
+    for (let i = 0; i < 60; i++) {
+      const circle = document.createElement('div');
+      circle.className = 'circle1';
+      circle.style.transform = `rotate(${i * 6}deg) translate(125px)`; // 每隔6度旋轉一個小圓點
+      circle.style.left = `137px`;
+      circle.style.top = `4px`;
+      circleContainer.appendChild(circle);
+    }
+  }
 
-      // 函式：生成和定位小圓點
-      function createCircles() {
-        for (let i = 0; i < 60; i++) {
-          const circle = document.createElement('div');
-          circle.className = 'circle1';
-          circle.style.transform = `rotate(${i * 6}deg) translate(125px)`; // 每隔6度旋轉一個小圓點
-          circle.style.left=`137px`
-          circle.style.top=`4px`
-          circleContainer.appendChild(circle);
-        }
+  // 初始化時生成小圓點
+  createCircles();
+
+  // 每分鐘重新生成小圓點
+  setInterval(createCircles, 60000);
+
+  // 函式：更新時鐘時間
+  const updateClock = function () {
+    const date = new Date();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
+    const mill = date.getMilliseconds();
+    document.getElementById('hour').style.transform = `rotate(${hour * 30 + 90}deg)`; // 每小時30度
+    document.getElementById('minute').style.transform = `rotate(${minute * 6 + 90}deg)`; // 每分鐘6度
+    document.getElementById('second').style.transform = `rotate(${second * 6 + 90 + mill / 1000 * 6}deg)`; // 每秒6度
+    document.getElementById('text').textContent = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
+  };
+
+  setInterval(updateClock, 10); // 每10毫秒更新一次時鐘
+  updateClock(); // 初始化時更新一次時鐘
+
+  // 函式：檢查兩個元素是否碰撞
+  function isColliding(circle1, man) {
+    const rect1 = circle1.getBoundingClientRect();
+    const rect2 = man.getBoundingClientRect();
+    return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
+  }
+
+  const man = document.querySelector('#man'); // 取得人物元素
+
+  // 每秒檢查一次碰撞
+  setInterval(() => {
+    const circles = document.querySelectorAll('.circle1'); // 取得所有小圓點的集合
+    circles.forEach(circle => {
+      if (isColliding(circle, man)) {
+        circle.style.display = 'none'; // 隱藏碰撞的小圓點
       }
-
-      createCircles(); // 初始化時生成小圓點
-      setInterval(createCircles, 60000);
-
-      // 函式：更新時鐘時間
-      const updateClock = function () {
-        const date = new Date();
-        const hour = date.getHours();
-        const minute = date.getMinutes();
-        const second = date.getSeconds();
-        const mill = date.getMilliseconds();
-        document.getElementById('hour').style.transform = `rotate(${hour * 30 + 90}deg)`; // 每小時30度
-        document.getElementById('minute').style.transform = `rotate(${minute * 6 + 90}deg)`; // 每分鐘6度
-        document.getElementById('second').style.transform = `rotate(${second * 6 + 90 + mill / 1000 * 6}deg)`; // 每秒6度
-        document.getElementById('text').textContent = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
-      };
-
-      setInterval(updateClock, 10); // 每10毫秒更新一次時鐘
-      updateClock(); // 初始化時更新一次時鐘
-
-      // 函式：檢查兩個元素是否碰撞
-      function isColliding(circle1, man) {
-        const rect1 = circle1.getBoundingClientRect();
-        const rect2 = man.getBoundingClientRect();
-        return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
-      }
-
-      const circle1 = document.querySelectorAll('.circle1'); // 取得所有小圓點的集合
-      const man = document.querySelector('#man'); // 取得人物元素
-
-      // 每秒檢查一次碰撞
-      setInterval(() => {
-        circle1.forEach(circle => {
-          if (isColliding(circle, man)) {
-            console.log('小圓點和人物碰撞了');
-            circle.style.display = 'none';
-          } else {
-            console.log('小圓點和人物沒有碰撞');
-          }
-        });
-      }, 2000);
     });
-  </script>
+  }, 1000);
+});
+
+</script>
 </body>
 
 </html>
