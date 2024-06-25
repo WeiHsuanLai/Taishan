@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSAP</title>
+  <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.css />
+  <style>
+    #main {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #main .left-door {
+      width: 50%;
+      height: 100%;
+      filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #main .right-door {
+      width: 50%;
+      height: 100%;
+      filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #main .bg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #main .princess {
+      width: 600px;
+      height: 800px;
+      margin: auto;
+      position: relative;
+      top: 50%;
+    }
+
+    #main .princess img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: scale(1);
+    }
+  </style>
+</head>
+
+<body>
+  <section id="main">
+    <div class="bg"><img src="./images/fantasy-bg.jpg" alt=""></div>
+    <div class="princess"><img src="./images/fantasy-princess.png" alt=""></div>
+    <div class="left-door"><img src="./images/fantasy-left-door.png" alt=""></div>
+    <div class="right-door"><img src="./images/fantasy-right-door.png" alt=""></div>
+  </section>
+  <section id="section01">
+    <div class="container">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum aspernatur dolorum praesentium consectetur, temporibus modi accusamus enim provident. Explicabo laborum facere nisi ipsa. Illum, corporis debitis sunt eos provident ipsa quisquam? Eum ipsam cum minima impedit repellendus dolorum. Ab, excepturi ducimus! Eum animi, nesciunt aliquam blanditiis, quod molestias facilis obcaecati provident odit at neque excepturi. Cumque et blanditiis similique iure, tempora nulla beatae reprehenderit, ipsam quasi veritatis, ipsa eaque harum doloribus cupiditate nihil quae aspernatur dolore voluptatum accusantium eius facere rem eos perspiciatis. Cumque corporis aspernatur exercitationem voluptates odio sunt reprehenderit dolores totam id. Porro, quae qui? Id adipisci eveniet vel aliquid, totam ullam nemo voluptatem laborum quia sint exercitationem nam velit doloribus nisi veritatis laboriosam in tenetur. Voluptate et, perferendis possimus quos facilis quam ipsam voluptas optio recusandae tempore molestias repellat corporis autem eos tenetur facere! Consequuntur, labore vel nemo consequatur nesciunt error obcaecati explicabo omnis mollitia, voluptas nostrum inventore minus unde laudantium voluptatem cupiditate. Accusamus rem optio at esse amet, dignissimos alias, consectetur iusto inventore tempore, repudiandae recusandae mollitia. Accusamus porro vel ut pariatur eius perspiciatis nobis fuga, odio omnis quae perferendis rem sunt dolor! Mollitia nisi quia, quaerat vitae beatae iure aliquam quo doloremque nesciunt molestias! Perferendis?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum aspernatur dolorum praesentium consectetur, temporibus modi accusamus enim provident. Explicabo laborum facere nisi ipsa. Illum, corporis debitis sunt eos provident ipsa quisquam? Eum ipsam cum minima impedit repellendus dolorum. Ab, excepturi ducimus! Eum animi, nesciunt aliquam blanditiis, quod molestias facilis obcaecati provident odit at neque excepturi. Cumque et blanditiis similique iure, tempora nulla beatae reprehenderit, ipsam quasi veritatis, ipsa eaque harum doloribus cupiditate nihil quae aspernatur dolore voluptatum accusantium eius facere rem eos perspiciatis. Cumque corporis aspernatur exercitationem voluptates odio sunt reprehenderit dolores totam id. Porro, quae qui? Id adipisci eveniet vel aliquid, totam ullam nemo voluptatem laborum quia sint exercitationem nam velit doloribus nisi veritatis laboriosam in tenetur. Voluptate et, perferendis possimus quos facilis quam ipsam voluptas optio recusandae tempore molestias repellat corporis autem eos tenetur facere! Consequuntur, labore vel nemo consequatur nesciunt error obcaecati explicabo omnis mollitia, voluptas nostrum inventore minus unde laudantium voluptatem cupiditate. Accusamus rem optio at esse amet, dignissimos alias, consectetur iusto inventore tempore, repudiandae recusandae mollitia. Accusamus porro vel ut pariatur eius perspiciatis nobis fuga, odio omnis quae perferendis rem sunt dolor! Mollitia nisi quia, quaerat vitae beatae iure aliquam quo doloremque nesciunt molestias! Perferendis?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum aspernatur dolorum praesentium consectetur, temporibus modi accusamus enim provident. Explicabo laborum facere nisi ipsa. Illum, corporis debitis sunt eos provident ipsa quisquam? Eum ipsam cum minima impedit repellendus dolorum. Ab, excepturi ducimus! Eum animi, nesciunt aliquam blanditiis, quod molestias facilis obcaecati provident odit at neque excepturi. Cumque et blanditiis similique iure, tempora nulla beatae reprehenderit, ipsam quasi veritatis, ipsa eaque harum doloribus cupiditate nihil quae aspernatur dolore voluptatum accusantium eius facere rem eos perspiciatis. Cumque corporis aspernatur exercitationem voluptates odio sunt reprehenderit dolores totam id. Porro, quae qui? Id adipisci eveniet vel aliquid, totam ullam nemo voluptatem laborum quia sint exercitationem nam velit doloribus nisi veritatis laboriosam in tenetur. Voluptate et, perferendis possimus quos facilis quam ipsam voluptas optio recusandae tempore molestias repellat corporis autem eos tenetur facere! Consequuntur, labore vel nemo consequatur nesciunt error obcaecati explicabo omnis mollitia, voluptas nostrum inventore minus unde laudantium voluptatem cupiditate. Accusamus rem optio at esse amet, dignissimos alias, consectetur iusto inventore tempore, repudiandae recusandae mollitia. Accusamus porro vel ut pariatur eius perspiciatis nobis fuga, odio omnis quae perferendis rem sunt dolor! Mollitia nisi quia, quaerat vitae beatae iure aliquam quo doloremque nesciunt molestias! Perferendis?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum aspernatur dolorum praesentium consectetur, temporibus modi accusamus enim provident. Explicabo laborum facere nisi ipsa. Illum, corporis debitis sunt eos provident ipsa quisquam? Eum ipsam cum minima impedit repellendus dolorum. Ab, excepturi ducimus! Eum animi, nesciunt aliquam blanditiis, quod molestias facilis obcaecati provident odit at neque excepturi. Cumque et blanditiis similique iure, tempora nulla beatae reprehenderit, ipsam quasi veritatis, ipsa eaque harum doloribus cupiditate nihil quae aspernatur dolore voluptatum accusantium eius facere rem eos perspiciatis. Cumque corporis aspernatur exercitationem voluptates odio sunt reprehenderit dolores totam id. Porro, quae qui? Id adipisci eveniet vel aliquid, totam ullam nemo voluptatem laborum quia sint exercitationem nam velit doloribus nisi veritatis laboriosam in tenetur. Voluptate et, perferendis possimus quos facilis quam ipsam voluptas optio recusandae tempore molestias repellat corporis autem eos tenetur facere! Consequuntur, labore vel nemo consequatur nesciunt error obcaecati explicabo omnis mollitia, voluptas nostrum inventore minus unde laudantium voluptatem cupiditate. Accusamus rem optio at esse amet, dignissimos alias, consectetur iusto inventore tempore, repudiandae recusandae mollitia. Accusamus porro vel ut pariatur eius perspiciatis nobis fuga, odio omnis quae perferendis rem sunt dolor! Mollitia nisi quia, quaerat vitae beatae iure aliquam quo doloremque nesciunt molestias! Perferendis?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum aspernatur dolorum praesentium consectetur, temporibus modi accusamus enim provident. Explicabo laborum facere nisi ipsa. Illum, corporis debitis sunt eos provident ipsa quisquam? Eum ipsam cum minima impedit repellendus dolorum. Ab, excepturi ducimus! Eum animi, nesciunt aliquam blanditiis, quod molestias facilis obcaecati provident odit at neque excepturi. Cumque et blanditiis similique iure, tempora nulla beatae reprehenderit, ipsam quasi veritatis, ipsa eaque harum doloribus cupiditate nihil quae aspernatur dolore voluptatum accusantium eius facere rem eos perspiciatis. Cumque corporis aspernatur exercitationem voluptates odio sunt reprehenderit dolores totam id. Porro, quae qui? Id adipisci eveniet vel aliquid, totam ullam nemo voluptatem laborum quia sint exercitationem nam velit doloribus nisi veritatis laboriosam in tenetur. Voluptate et, perferendis possimus quos facilis quam ipsam voluptas optio recusandae tempore molestias repellat corporis autem eos tenetur facere! Consequuntur, labore vel nemo consequatur nesciunt error obcaecati explicabo omnis mollitia, voluptas nostrum inventore minus unde laudantium voluptatem cupiditate. Accusamus rem optio at esse amet, dignissimos alias, consectetur iusto inventore tempore, repudiandae recusandae mollitia. Accusamus porro vel ut pariatur eius perspiciatis nobis fuga, odio omnis quae perferendis rem sunt dolor! Mollitia nisi quia, quaerat vitae beatae iure aliquam quo doloremque nesciunt molestias! Perferendis?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum aspernatur dolorum praesentium consectetur, temporibus modi accusamus enim provident. Explicabo laborum facere nisi ipsa. Illum, corporis debitis sunt eos provident ipsa quisquam? Eum ipsam cum minima impedit repellendus dolorum. Ab, excepturi ducimus! Eum animi, nesciunt aliquam blanditiis, quod molestias facilis obcaecati provident odit at neque excepturi. Cumque et blanditiis similique iure, tempora nulla beatae reprehenderit, ipsam quasi veritatis, ipsa eaque harum doloribus cupiditate nihil quae aspernatur dolore voluptatum accusantium eius facere rem eos perspiciatis. Cumque corporis aspernatur exercitationem voluptates odio sunt reprehenderit dolores totam id. Porro, quae qui? Id adipisci eveniet vel aliquid, totam ullam nemo voluptatem laborum quia sint exercitationem nam velit doloribus nisi veritatis laboriosam in tenetur. Voluptate et, perferendis possimus quos facilis quam ipsam voluptas optio recusandae tempore molestias repellat corporis autem eos tenetur facere! Consequuntur, labore vel nemo consequatur nesciunt error obcaecati explicabo omnis mollitia, voluptas nostrum inventore minus unde laudantium voluptatem cupiditate. Accusamus rem optio at esse amet, dignissimos alias, consectetur iusto inventore tempore, repudiandae recusandae mollitia. Accusamus porro vel ut pariatur eius perspiciatis nobis fuga, odio omnis quae perferendis rem sunt dolor! Mollitia nisi quia, quaerat vitae beatae iure aliquam quo doloremque nesciunt molestias! Perferendis?
+    </div>
+  </section>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js></script>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js></script>
+  <!-- gsap 主程式 -->
+  <!-- <script src=https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.js></script> -->
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.js></script>
+  <!-- 先有 gsap 主程式，才能引入 gsap 的 plugins -->
+  <script src="./plugins/ScrollTrigger.js"></script>
+  <script>
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#main',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        markers: true
+      }
+    })
+
+    tl
+      .to('.left-door', {
+        xPercent: -100
+      })
+      .to('.right-door', {
+        xPercent: 100
+      }, '<0')
+      .to('.princess', {
+        scale: 1.2,
+        y: 150
+      }, '<0')
+      .to('.bg img', {
+        scale: 2,
+        y: 300
+      }, '<0')
+  </script>
+</body>
+
+</html>
