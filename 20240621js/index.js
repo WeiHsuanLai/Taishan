@@ -9,17 +9,17 @@ const app = express()
 
 app.use(express.json())
 app.use((_, req, res, next) => {
-  res.status(StatusCodes.BAD_REQUEST).json({
-    success: false,
-    message: '資料格式錯誤'
-  })
+	res.status(StatusCodes.BAD_REQUEST).json({
+		success: false,
+		message: '資料格式錯誤'
+	})
 })
 
 app.use('/user', routeUser)
 app.use('/product', routeProduct)
 
 app.listen(process.env.PORT || 4000, async () => {
-  console.log('貓咪大戰爭九周年伺服器啟動')
-  await mongoose.connect(process.env.DB_URL)
-  console.log('貓咪大戰爭九周年資料庫連線成功')
+	console.log('貓咪大戰爭九周年伺服器啟動')
+	await mongoose.connect(process.env.DB_URL)
+	console.log('貓咪大戰爭九周年資料庫連線成功')
 })
