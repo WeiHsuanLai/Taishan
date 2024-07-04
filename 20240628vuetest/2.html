@@ -61,7 +61,10 @@
             num: 0,
             radio: undefined,
             radio2: undefined,
-            check: ['50']
+            // check預設是五十嵐，所以用 check: ['50'],
+            check: ['50'],
+            // select 選擇 Vue，所以用  select: 'v',在這邊之所以不用 [] 是因為 select 只有一個選項 而非 check 可以多選
+            select: 'v',
           },
           checkOptions:
             [
