@@ -56,6 +56,7 @@
     Vue.createApp({
       data() {
         return {
+<<<<<<< Updated upstream
           form: {
             text: '',
             num: 0,
@@ -78,6 +79,15 @@
               { value: 'a', label: 'Angular' },
               { value: 'r', label: 'React' },
             ]
+=======
+
+        }
+      },
+      // 在 vue 裡面要使用 function 必須在這邊用 methods:{} 把要用的 function 放入裡面
+      methods: {
+        nnotify() {
+          alert('123')
+>>>>>>> Stashed changes
         }
       }
     }).mount('#app')
