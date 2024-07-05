@@ -9,16 +9,28 @@
 
 <body>
   <div id="app">
-
+    <v-template>
+      <div>
+        <p>Name: {{ userName }}</p>
+        <p>Age: {{ userAge }}</p>
+      </div>
+    </v-template>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.min.js' integrity='sha512-jDpwxJN+g4BhXLdba5Z1rn2MpR9L5Wp3WVf2dJt5A0mkPHnHLZHZerpyX4JC9bM0pkCL7RmAR8FwOm02h7RKFg==' crossorigin='anonymous'></script>
   <script>
     Vue.createApp({
       data() {
         return {
-
-        }
+          userName: 'John Doe',
+          userAge: 30
+        };
       },
+      methods: {
+        updateUserDetails(newName, newAge) {
+          this.userName = newName;
+          this.userAge = newAge;
+        }
+      }
     }).mount('#app')
   </script>
 </body>

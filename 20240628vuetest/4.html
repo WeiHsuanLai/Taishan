@@ -4,27 +4,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>4</title>
   <script src=https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.min.js integrity="sha512-jDpwxJN+g4BhXLdba5Z1rn2MpR9L5Wp3WVf2dJt5A0mkPHnHLZHZerpyX4JC9bM0pkCL7RmAR8FwOm02h7RKFg==" crossorigin="anonymous" referrerpolicy="no-referrer">
   </script>
 </head>
 
 <body>
   <div id="app">
+    <!-- 點擊事件 -->
+    <!-- <input type="button" value="notify" v-on:click="notify"> -->
+    <!-- @click="notify" 為 v-on:click="notify" 的簡寫 -->
+    <!-- v-on 主要功能為事件監聽和處理 DOM 事件 -->
+
+    <input type="button" value="notify" v-on:click="notify">
+    <input type="button" value="notify" @click="notify">
+    <input type="button" value="notify2('456')" @click="notify2('456')">
+    <!-- (注一)這裡要加 $event 是固定的寫法 -->
+    <input type="button" value="notify3('789')" @click="notify3('789',$event)">
+
+    <!-- 另類寫法 -->
+    <!-- 後面的 notify(event) 的 event 是取前面的 event -->
+    <input type="button" value="event => notify(event)" @click="event => notify(event)">
+    <input type="button" value="() => notify2('456')" @click="() => notify2('456')">
+    <input type="button" value="event => notify3('789',event)" @click="event => notify3('789',$event)">
+
+    <!-- 各種事件修飾符 -->
+    <!--@click.once 只監聽一次  -->
+    <input type="button" value="notify(once)" @click.once="notify">
+    <!-- .left .right .middle 指定滑鼠按鍵 -->
+    <input type="button" value="notify(middle)" @click.middle="notify">
+    <!-- .prevent -> event.prevent 取消事件的默認行為
+         .stop ->  event.stopPropagation 用於阻止事件的傳播。這個方法主要用於阻止事件冒泡，即阻止事件從子元素向上傳播到父元素。
+    -->
+    <a href="https://x.com" @click.prevent="notify">X</a>
+    <hr>
+    <!-- 將內容輸入 input 清單中 enter會觸發 add() -->
+    <input type="text" v-model="input" @keydown.enter="add">
+    <ul>
+      <li v-for="item in list">{{item}}</li>
+    </ul>
+
 
   </div>
   <script>
     Vue.createApp({
       data() {
         return {
-
-          }},
-          // 在 vue 裡面要使用 function 必須在這邊用 methods:{} 把要用的 function 放入裡面
-          methods:{
-            nnotify(){
-            alert('123')
-            }
-          }
+          input: '',
+          list: []
+        }
+      },
+      // 在 vue 裡面要使用 function 必須在這邊用 methods:{} 把要用的 function 放入裡面
+      methods: {
+        // 在 function的 () 中加入 event 可以取得事件的物件
+        notify(event) {
+          console.log(event);
+          alert('123')
+        },
+        // text 這個寫法無法取得事件的物件，只會取得 notify2('456') 裡面的值 456
+        notify2(event) {
+          alert(event)
+        },
+        // 所以必須在後面加入 , event (注一)
+        notify3(text, event) {
+          console.log(event);
+          alert(text)
+        },
+        add() {
+          if (this.input.length === 0) return;
+          this.list.push(this.input);//把清單加入 this.input
+          this.notify2(this.input); // 然後呼叫 notify() 並將 this.input 事件加入
+          this.input = ''; // 清空輸入框
+        }
+      }
     }).mount('#app')
   </script>
 </body>
