@@ -34,10 +34,28 @@
           console.log('methods 更新');
           return this.lastName + this.firstName
         }
-      }, computed: {
+      },
+      computed: {
         fullName() {
           console.log('computed 更新');
           return this.lastName + this.firstName
+        }
+      },
+      // watch 功能是資料的監聽
+      watch: {
+        // 提供兩個值 oldValue 修改前的值 newValue 修改後的值 
+        // 如果今天物件是陣列 watch 監聽是淺層的監聽
+        firstName(newValue, oldValue) {
+          console.log(`firstName:${oldValue} --> ${newValue}`);
+        },
+        lastName: {
+          handler(newValue, oldValue) {
+            console.log(`lastName:${oldValue} --> ${newValue}`);
+          },
+          // once: true 只監聽一次
+          // once: true 為 3.4 的功能，舊版的 vue 可能會沒有
+          once: true,
+          // deep:true 可監聽深層物件，但會消耗較多的資源
         }
       }
     }).mount('#app')

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1 id="title" ref="title">{{text}}</h1>
+    <input type="button" :value="num" @click="plus" ref="btn">
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.min.js' integrity='sha512-jDpwxJN+g4BhXLdba5Z1rn2MpR9L5Wp3WVf2dJt5A0mkPHnHLZHZerpyX4JC9bM0pkCL7RmAR8FwOm02h7RKFg==' crossorigin='anonymous'></script>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          text: 'aaa',
+          num: 0
+        }
+      }, methods: {
+
+        // plus() {
+        //   this.num++
+        //    這裡的 console.log 之所以比頁面上的數字小 1 ，是因為 Vue 不是立即更新頁面的東西，雖然是綁定，會有個緩衝
+        //   console.log(this.$refs.btn.value);
+        // }
+
+        // 如果要直接接到下一個要在 functon 前面加上 async 然後接上  await this.$nextTick()
+        async plus() {
+          // Vue 資料更新後不會立刻重新渲染，所以還是舊的值
+          this.num++
+          console.log(this.$refs.btn.value);
+          // 等待下一次渲染完畢
+          await this.$nextTick()
+          // 才會是新的值
+          console.log(this.$refs.btn.value);
+        }
+      },
+      // created 是 Vue 部分初始化完成，還沒有把 HTML 渲染載 DOM，所以還沒有辦法抓到元素
+      created() {
+        console.log('created', document.getElementById('title'));
+      },
+      // mounted 是 Vue 的 JS 和 HTML 部分初始化完成，才可以抓到元素
+      mounted() {
+        console.log('mounted', document.getElementById('title'));
+        // Vue 提供 ref 可以取頁面上的東西，就不用使用 document.getElementById
+        // 所以在 Vue 裡面通常不需要使用 document.getElementById 除非有特殊需要
+        // 所以寫 Vue 很少在做 DOM 的處理，因為東西都綁在一起
+
+        // this.$refs.標籤上的 ref 取得元素
+        console.log(this.$refs.title.innerText);
+        console.log(this.$refs.btn.value);
+      },
+    }).mount('#app')
+  </script>
+  <!-- 動態生成標題 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var title = window.location.pathname.split('/').pop().replace('.html', '');
+      document.title = title;
+    });
+  </script>
+</body>
+
+</html>

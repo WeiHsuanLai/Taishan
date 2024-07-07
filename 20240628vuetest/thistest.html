@@ -16,9 +16,17 @@
     Vue.createApp({
       data() {
         return {
-
-        }
+          msg: 'Hello World!'
+        };
       },
+      methods: {
+        displayMessage() {
+          alert(this.msg); // 使用 this 访问数据属性
+        },
+        toggleDisplay() {
+          this.displayMessage(); // 使用 this 调用方法
+        }
+      }
     }).mount('#app')
   </script>
   <!-- 動態生成標題 -->
