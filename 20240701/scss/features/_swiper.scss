@@ -1,8 +1,8 @@
-// swiper -------------------------------------------------------------------------
+/* swiper ------------------------------------------ */
 #swiper {
-	height: 470px;
 	// swiper 提供的原生變數可以修改主題顏色
 	--swiper-theme-color: white;
+	height: 470px;
 	.swiper-pagination-bullet {
 		background: white;
 		opacity: 0.5;

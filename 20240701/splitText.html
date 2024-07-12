@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text</title>
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- lightbox -->
+  <link rel="stylesheet" href="./css/magnific-popup.css">
+  <link rel="stylesheet" href="./css/magnific-popup_self.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- main styles -->
+  <link rel="stylesheet" href="./css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      height: 100vh;
+      overflow-x: hidden;
+      font-family: "Press Start 2P", system-ui;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    section {
+      color: white;
+      height: 100%;
+      background-color: #000;
+      border-bottom: 1px solid #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    section:nth-child(1) {
+      background: url("./ff5.jpg") no-repeat center/cover;
+    }
+
+    section:nth-child(2) {
+      background:
+        linear-gradient(0deg, black, transparent),
+        url("./bh3.jpg")no-repeat center/cover;
+    }
+
+    #text01 {
+      width: 70%;
+      height: 250px;
+      font-size: 1.5rem;
+      padding: 1rem;
+      background: #070d7f;
+      border: 5px solid #eee;
+      border-radius: 10px;
+
+      position: absolute;
+      bottom: 5%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 1;
+    }
+
+    #text02 {
+      width: 100%;
+      height: 100%;
+      color: red;
+      text-align: center;
+      font-size: 8rem;
+      font-weight: 500;
+      display: none;
+      justify-content: space-evenly;
+      align-items: flex-end;
+    }
+  </style>
+</head>
+
+
+<body>
+  <section>
+    <div id="text01">
+      《Final Fantasy V》（日語：ファイナルファンタジーV，英語：Final Fantasy V，台灣舊譯「太空戰士V」）是由史克威爾開發並發行的電子角色扮演遊戲，是Final Fantasy系列的第五部正傳作品。1992年日文版遊戲於超級任天堂平台首發，後有1998年PlayStation和2006年Game Boy Advance的移植版。玩家扮演主角旅行者巴茲，乘著陸行鳥波可探索著奇幻背景的世界。
+    </div>
+  </section>
+
+  <section>
+    <div id="text02">
+      生化危機3
+    </div>
+  </section>
+  <!-- gsap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
+  <script src="./js/SplitText.min.js"></script>
+  <script>
+    // 註冊
+    gsap.registerPlugin(SplitText)
+
+    const text01 = new SplitText('#text01', {
+      type: 'chars',
+    })
+
+    // 可以將文字切割成字元、單字、行，他們都是陣列型態
+    console.log('chars', text01.chars);
+    console.log('chars', text01.words);
+    console.log('chars', text01.lines);
+
+    // gsap 也可以用物件當作目標
+    gsap.from(text01.chars, {
+      opacity: 0,
+      stagger: {
+        each: 0.1
+      },
+      // x: 100,
+      // y: 100,
+      // rotation: 100,
+      ease: 'power1.out'
+    })
+
+    let bh_duration = 5
+    const text02 = new SplitText('#text02', {
+      type: 'chars'
+    })
+
+    gsap.set('#text02', {
+      display: 'flex'
+    })
+    gsap.set(text02.chars, {
+      margin: '0 -300'
+    })
+    gsap.from(text02.chars, {
+      scale: 20,
+      filter: 'blur(50px)',
+      duration: bh_duration,
+      opacity: 0,
+      stagger: {
+        each: 1,
+        fram: 'random'
+      }
+    })
+    gsap.from('#text02', {
+      background: 'red',
+      filter: 'blur(50px)',
+      backdropFilter: 'blur(100px)',
+      duration: bh_duration
+    })
+  </script>
+</body>
+
+</html>

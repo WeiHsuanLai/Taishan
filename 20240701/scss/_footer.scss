@@ -1,7 +1,8 @@
-// footer -------------------------------------------------------------------
+/* footer ------------------------------------------------------*/
 #footer {
 	color: white;
 	background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+
 	a {
 		color: white;
 		text-decoration: none;
@@ -10,8 +11,10 @@
 			color: yellow;
 		}
 	}
+
 	.info {
 		padding: 2rem 1rem;
+
 		h5 {
 			font-size: 1.3rem;
 			padding-bottom: 0.5rem;
@@ -63,6 +66,7 @@
 				}
 			}
 		}
+
 		.site-map,
 		.related-link,
 		.about-me {
@@ -76,6 +80,7 @@
 			}
 		}
 	}
+
 	.copyright {
 		padding-top: 1rem;
 		padding-bottom: 5rem;
@@ -84,6 +89,7 @@
 		justify-content: center;
 		align-items: flex-end;
 	}
+
 	@include lg {
 		.info {
 			.site-map,
