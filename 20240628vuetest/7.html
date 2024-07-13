@@ -15,15 +15,18 @@
       <input type="text" v-model="input" :style="{border:inputBorder}">
       <input type="submit" value="新增">
     </form>
+    <hr>
+    <input type="text" v-model="search">
+    <hr>
     <ul>
-      <li v-for="item in items">
+      <li v-for="(item,i) in items">
         <!-- 第一種，當輸入 input 時，item.done 更改為相反狀態，原本為 false -> true 然後 :checked 狀態等於改變後的 item.done-->
         <!-- <input type="checkbox" @input="item.done = !item.done" :checked="item.done"> -->
         <input type="checkbox" v-model="item.done">
         <!-- v-if指令来检查 item.done 属性的值，如果 item.done 為 true，則會增加刪除線 -->
         <del v-if="item.done">{{item.text}}</del>
         <span v-else>{{item.text}}</span>
-
+        <input type="button" value="x" @click="delItem(i)">
       </li>
     </ul>
   </div>
@@ -42,6 +45,11 @@
           if (this.input.length === 0) return '5px solid black'
           else if (this.input.length < 2) return '5px solid red'
           else return '5px solid green'
+        },
+        filteredItems() {
+          return this.items.filter(item => {
+            return item.text.icludes(this.search)
+          })
         }
       },
       // methods 通常要使用的 function 都會放在這裡 
@@ -51,8 +59,11 @@
           //  done 代表布林值
           this.items.push({ done: false, text: this.input })
           this.input = ''
+        },
+        delItem(i) {
+          // 在您提供的 delItem(i) 函數中，決定是否刪除、修改或新增元素主要取決於 .splice() 方法的第二個參數——deleteCount。在這個情況下，deleteCount 被設定為 1，意味著將刪除一個元素。
+          this.items.splice(i, 1)
         }
-
       },
     }).mount('#app')
   </script>
