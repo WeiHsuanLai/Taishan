@@ -19,14 +19,16 @@
     <input type="text" v-model="search">
     <hr>
     <ul>
-      <li v-for="(item,i) in items">
+      <!-- v-for迴圈取代成 filteredItems -->
+      <li v-for="(item,i) in filteredItems">
         <!-- 第一種，當輸入 input 時，item.done 更改為相反狀態，原本為 false -> true 然後 :checked 狀態等於改變後的 item.done-->
         <!-- <input type="checkbox" @input="item.done = !item.done" :checked="item.done"> -->
         <input type="checkbox" v-model="item.done">
         <!-- v-if指令来检查 item.done 属性的值，如果 item.done 為 true，則會增加刪除線 -->
         <del v-if="item.done">{{item.text}}</del>
         <span v-else>{{item.text}}</span>
-        <input type="button" value="x" @click="delItem(i)">
+        <!-- 原本的  @click="delItem(i) 改成 item.id 因為新增了過濾功能，過濾前的索引和過濾後的不一樣所以改成取 id 來刪除 -->
+        <input type="button" value="x" @click="delItem(item.id)">
       </li>
     </ul>
   </div>
@@ -35,8 +37,12 @@
     Vue.createApp({
       data() {
         return {
+          // items: localStorage.vueTodo || [],
           items: [],
-          input: ''
+          input: '',
+          search: '',
+          // 設定初始 id 為 1
+          id: 1
         }
       },
       // computed 只有修改時才會偵測，通常用於計算
@@ -47,9 +53,18 @@
           else return '5px solid green'
         },
         filteredItems() {
+          // return this.items.filter( function(){
+
+          // 如果這裡使用 function() 這邊的 this 會指到 function 裡面的 this，而不是整個 vue 的 this
+
+          //   return item.text.icludes(this.search)
+          // })
+
+          // filter 的功能是讓每個東西執行裡面的 function 達到過濾
           return this.items.filter(item => {
-            return item.text.icludes(this.search)
-          })
+            // 所以這邊要用箭頭函式的 this 才能取到整個 data 的search
+            return item.text.includes(this.search);
+          });
         }
       },
       // methods 通常要使用的 function 都會放在這裡 
@@ -57,14 +72,41 @@
         addItem() {
           if (this.input.length < 2) return
           //  done 代表布林值
-          this.items.push({ done: false, text: this.input })
+          // 新增 this.id++ 先給值再加一，第一個值是 1 第二個值加一等於 2
+          this.items.push({ done: false, text: this.input, id: this.id++ })
+          this.$nextTick(() => {
+            localStorage.vueTodo = JSON.stringify(this.items);
+          });
           this.input = ''
         },
-        delItem(i) {
+        delItem(id) {
           // 在您提供的 delItem(i) 函數中，決定是否刪除、修改或新增元素主要取決於 .splice() 方法的第二個參數——deleteCount。在這個情況下，deleteCount 被設定為 1，意味著將刪除一個元素。
+          // findIndex 讓陣列裡面的東西都執行後面的 function，裡面的 item 代表陣列裡面的值，然後執行 return item.id === id，把第一個為 true 的索引回傳
+          const i = this.items.findIndex(item => {
+            return item.id === id
+          })
+          // 再用索引去 splice 去刪除
           this.items.splice(i, 1)
         }
       },
+      watch: {
+        items: {
+          // localStorage 可以在 F12 裡面的 Application 找到
+          handler(newValue, oldValue) {
+            console.log(newValue, oldValue);
+            localStorage.vueTodo = JSON.stringify(newValue)
+          },
+        },
+        // 陣列或物件的深層監聽
+        // deep: true
+      }, mouunted() {
+        // 如果你的 localStorage 沒有 vueTodo 會得到 undifind 之後 || '[]' 會給他一個空陣列
+        const item = JSON.parse(localStorage.vueTodo || '[]')
+        this.items = items
+        if (this.items.length > 0) {
+          this.id = this.items[this.items.length - 1].id + 1
+        }
+      }
     }).mount('#app')
   </script>
   <!-- 動態生成標題 -->
