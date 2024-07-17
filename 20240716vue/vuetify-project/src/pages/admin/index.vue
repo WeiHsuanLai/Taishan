@@ -13,7 +13,9 @@ import { definePage } from 'vue-router/auto'
 
 definePage({
   meta: {
-    title: '購物網 | 管理'
+    title: '購物網 | 管理',
+    login: true,
+    admin: true
   }
 })
 </script>
