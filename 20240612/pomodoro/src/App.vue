@@ -14,10 +14,8 @@
         <!-- keep-alive 保持被包住的元件不被銷毀 -->
         <!-- 使用 include 指定只有 index 這個元件不被銷毀 -->
         <keep-alive include="index">
-          <!--
-            component 動態元件
-            is = 要使用的元件
-          -->
+          <!-- component 動態元件 -->
+          <!-- is = 要使用的元件 -->
           <component :is="Component"></component>
         </keep-alive>
       </router-view>
@@ -26,5 +24,5 @@
 </template>
 
 <script setup>
-//
+// 這裡可以放置 JavaScript 或 TypeScript 代碼
 </script>

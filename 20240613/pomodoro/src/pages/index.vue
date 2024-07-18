@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container :style="{ background: statusColor }">
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" >
         <h1>目前事項 {{ currentText }}</h1>
         <h2>剩餘時間 {{ currentTime }}</h2>
       </v-col>
@@ -113,5 +113,18 @@ const currentTime = computed(() => {
   const m = Math.floor(timeleft.value / 60).toString().padStart(2, '0')
   const s = (timeleft.value % 60).toString().padStart(2, '0')
   return m + ':' + s
+})
+
+const statusColor = computed(() => {
+  switch (status.value) {
+    case STATUS.STOP:
+      return 'orange'
+    case STATUS.COUNTING:
+      return 'green'
+    case STATUS.PAUSE:
+      return 'yellow'
+    default:
+      return ''
+  }
 })
 </script>
