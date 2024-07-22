@@ -106,7 +106,9 @@ import { useSnackbar } from 'vuetify-use-dialog'
 
 definePage({
   meta: {
-    title: '購物網 | 商品管理'
+    title: '購物網 | 商品管理',
+    login: true,
+    admin: true
   }
 })
 

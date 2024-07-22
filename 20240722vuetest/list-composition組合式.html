@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- @submit 為事件監聽器，而 .prevent 則是阻止 Vue 的默認事件，然後執行指定的 function -->
+    <form @submit.prevent="addItem">
+      <input type="text" v-model="input" :style="{border:inputBorder}">
+      <input type="submit" value="新增">
+    </form>
+
+    <hr>
+
+    <input type="text" v-model="search">
+
+    <hr>
+
+    <ul>
+      <li v-for="item in filteredItems">
+        <input type="checkbox" v-model="item.done">
+        <!-- del 標籤打勾會有刪除線 -->
+        <del v-if="item.done">{{item.text}}</del>
+        <span v-else>{{item.text}}</span>
+        <input type="button" value="x" @click="delItem(item.id)">
+      </li>
+    </ul>
+
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.min.js' integrity='sha512-jDpwxJN+g4BhXLdba5Z1rn2MpR9L5Wp3WVf2dJt5A0mkPHnHLZHZerpyX4JC9bM0pkCL7RmAR8FwOm02h7RKFg==' crossorigin='anonymous'></script>
+  <script>
+    // 組合式語法建議用解構
+    // 在組合式語法裡面生命週期都要加上 on 然後第一個字改成大寫
+    const { ref, reactive, computed, watch, onMounted, createApp } = Vue
+    createApp({
+      // 組合式語法都放在 setup() 裡面 
+      setup() {
+        // ref: 所有資料型態都可以使用，使用時加 .value，不會深層監聽陣列物件
+        // reactive: 只有陣列物件可以使用，不用加 .value，可以深層監聽
+        // 不須響應式 let aaa = 111
+        // 需響應式 const aaa = Vue.ref() 這是沒解構要加 Vue.
+
+        // 輸入欄位只能用 ref
+        // 這邊放空的文字 ''
+        const input = ref('')
+        // 陣列則使用 reactive
+        const items = reactive([])
+        const search = ref('')
+
+        // 上方的 html 並沒有直接使用到，不需要響應式，所以可以不用 return
+        let id = 1
+
+        // computed 只有修改時才會偵測，通常用於計算(複習)
+        const inputBorder = computed(() => {
+          // 在選項式中我們使用 this.input 這邊組合式使用 名字.value
+          if (input.value.length === 0) return '5px solid black'
+          else if (input.value.length < 2) return '5px solid red'
+          else return '5px solid green'
+        })
+
+        // 只要是 reactive 都不用加 value
+        const filteredItems = computed(() => {
+          return items.filter(item => {
+            return item.text.includes(search.value);
+          });
+        })
+
+        const delItem = (id) => {
+          const i = items.findIndex(item => {
+            return item.id === id
+          })
+          // 再用索引去 splice 去刪除
+          items.splice(i, 1)
+        }
+
+
+        // 組合式直接寫 function() 不需要像選項式一樣再多開 methods
+        // 組合式較自由
+        const addItem = () => {
+          if (input.value.length < 2) return
+          // 現在 items 陣列是 reactive 不用加 value，但是 text:input 還是要加 .value
+          items.push({ done: false, text: input.value, id: id++ })
+          // 提交完後清空
+          input.value = ''
+        }
+
+        onMounted(() => {
+          const itemsJson = JSON.parse(localStorage.vueTodo || '[]')
+
+          // 組合式不行寫成 items = itemsJson 因為是 const 變數 宣告後不能再改變
+
+          // items.splice(0, 0, ...itemsJson)
+          // 陣列.splice(目標索引,刪除數量,插入項目一,插入項目二...)
+
+          // Object.assign() 是 JS 中的一個內建方法，用於將一個或多個來源物件的屬性和值複製到目標物件。這個方法會回傳目標對象
+          // 物件合併，將 B 合併進 A
+          Object.assign(items, itemsJson)
+          if (items.length > 0) {
+            id = items[items.length - 1].id + 1
+          }
+        })
+
+        watch(items, (newValue) => {
+          localStorage.vueTodo = JSON.stringify(newValue)
+        })
+
+
+        // 只要上面 html 用到的所有 變數 都要 return 出去，順序不影響
+        return {
+          input,
+          items,
+          search,
+          inputBorder,
+          filteredItems,
+          addItem,
+          delItem,
+        }
+      }
+    }).mount('#app')
+  </script>
+  <!-- 動態生成標題 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var path = window.location.pathname;
+      var segments = path.split('/');
+      var lastSegment = segments.pop();
+      var titleBase = lastSegment.replace('.html', '');
+      var decodedTitleBase = decodeURIComponent(titleBase);
+      document.title = decodedTitleBase;
+    });
+  </script>
+</body>
+
+</html>

@@ -99,9 +99,9 @@
         },
         // 陣列或物件的深層監聽
         // deep: true
-      }, mouunted() {
+      }, mounted() {
         // 如果你的 localStorage 沒有 vueTodo 會得到 undifind 之後 || '[]' 會給他一個空陣列
-        const item = JSON.parse(localStorage.vueTodo || '[]')
+        const items = JSON.parse(localStorage.vueTodo || '[]')
         this.items = items
         if (this.items.length > 0) {
           this.id = this.items[this.items.length - 1].id + 1

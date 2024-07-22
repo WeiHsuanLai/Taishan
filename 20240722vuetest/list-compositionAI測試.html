@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <form @submit.prevent="addItem">
+      <input type="text" v-model="input" :style="{border:inputBorder.value}">
+      <input type="submit" value="新增">
+    </form>
+    <hr>
+    <input type="text" v-model="search">
+    <hr>
+    <ul>
+      <li v-for="(item,i) in filteredItems" :key="item.id">
+        <input type="checkbox" v-model="item.done">
+        <del v-if="item.done">{{item.text}}</del>
+        <span v-else>{{item.text}}</span>
+        <input type="button" value="x" @click="delItem(item.id)">
+      </li>
+    </ul>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.min.js' integrity='sha512-jDpwxJN+g4BhXLdba5Z1rn2MpR9L5Wp3WVf2dJt5A0mkPHnHLZHZerpyX4JC9bM0pkCL7RmAR8FwOm02h7RKFg==' crossorigin='anonymous'></script>
+  <script>
+    import { ref, computed, onMounted, watchEffect } from 'vue';
+
+    Vue.createApp({
+      setup() {
+        const items = reactive([])
+        const input = ref('');
+        const search = ref('');
+        let id = ref(items.value.length > 0 ? items.value[items.value.length - 1].id + 1 : 1);
+
+        const inputBorder = computed(() => {
+          if (input.value.length === 0) return '5px solid black';
+          else if (input.value.length < 2) return '5px solid red';
+          else return '5px solid green';
+        });
+
+        const filteredItems = computed(() => {
+          return items.value.filter(item => item.text.includes(search.value));
+        });
+
+        function addItem() {
+          if (input.value.length < 2) return;
+          items.value.push({ done: false, text: input.value, id: id.value++ });
+          localStorage.vueTodo = JSON.stringify(items.value);
+          input.value = '';
+        }
+
+        function delItem(idToDelete) {
+          items.value = items.value.filter(item => item.id !== idToDelete);
+          localStorage.vueTodo = JSON.stringify(items.value);
+        }
+
+        onMounted(() => {
+          if (items.value.length > 0) {
+            id.value = items.value[items.value.length - 1].id + 1;
+          }
+        });
+
+        watchEffect(() => {
+          localStorage.vueTodo = JSON.stringify(items.value);
+        });
+
+        return {
+          items,
+          input,
+          search,
+          inputBorder,
+          filteredItems,
+          addItem,
+          delItem
+        };
+      },
+    }).mount('#app');
+  </script>
+  <!-- 動態生成標題 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var path = window.location.pathname;
+      var segments = path.split('/');
+      var lastSegment = segments.pop();
+      var titleBase = lastSegment.replace('.html', '');
+      var decodedTitleBase = decodeURIComponent(titleBase);
+      document.title = decodedTitleBase;
+    });
+  </script>
+</body>
+
+</html>
