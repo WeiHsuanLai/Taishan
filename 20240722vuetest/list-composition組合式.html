@@ -36,7 +36,7 @@
   <script>
     // 組合式語法建議用解構
     // 在組合式語法裡面生命週期都要加上 on 然後第一個字改成大寫
-    const { ref, reactive, computed, watch, onMounted, createApp } = Vue
+    const { ref, reactive, computed, nextTick, watch, onMounted, createApp } = Vue
     createApp({
       // 組合式語法都放在 setup() 裡面 
       setup() {
