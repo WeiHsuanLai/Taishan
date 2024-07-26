@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+    用標籤屬性傳入文件
+    price="1000" -> 資料陣列是文字
+    :price="1000" -> 資料陣列是數字
+    布林值只要寫名字就好，有寫就是 true，沒寫就是 false
+    -->
+    <card title="木木梟" img="https://github.com/WeiHsuanLai.png" :price="1000" sell></card>
+
+    <!-- <card v-for="product in products" :img="product.img" :title="product.title" :price="product.price" :sell="product.sell"></card> -->
+    <!-- 當資料物件的 key 和元件的 props 名稱完全相同時，可以用 v-bind 一次綁定 -->
+    <card v-for="product in products" v-bind="product"></card>
+
+    <!-- 這個 changePrice 是 div app 那層 所以要把 function 寫在 setup() 裡面 -->
+    <input type="button" value="漲價" @click="changePrice">
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.min.js' integrity='sha512-jDpwxJN+g4BhXLdba5Z1rn2MpR9L5Wp3WVf2dJt5A0mkPHnHLZHZerpyX4JC9bM0pkCL7RmAR8FwOm02h7RKFg==' crossorigin='anonymous'>
+  </script>
+  <script type="text/x-template" id="plus">
+    <input type="button" :value="number" @click="chamge">
+  </script>
+  <script>
+
+    const { reactive, toRef, toRefs, createApp } = Vue
+    createApp({
+
+    })
+      .component('Card', {
+        template: '#card',
+        // 定義元件接收資料的名稱
+        // props: ['img', 'title', 'price', 'sell']
+        props: {
+          // 指定型態
+          sell: Boolean,
+          price: {
+            type: Number
+          },
+          // 指定必填
+          img: {
+            type: String,
+            required: true
+          },
+          // 指定預設值、自訂
+          title: {
+            type: String,
+            // 這是預設值 
+            default() {
+              return '商品'
+            },
+            // 這是判斷式 
+            validator(value) {
+              return value.length > 2
+            }
+          }
+        },
+        // methods: {
+        //   info() {
+        //     // 選項式因為這邊是用 this 所以 props 的名字不能和元件的 data 名稱重複
+        //     console.log(this.price);
+        //   }
+        // }
+
+        // 在 setup ()裡面加上 props，第二個是使用 context 可以取得各種標籤的屬性
+        setup(props) {
+
+          // 如果直接把 props 解構會失去響應性
+          const { price } = props
+
+          // 需要 toRefs 或是 toRef 維持響應性，但最好的方法是不要解構
+          // 轉成 ref 後需要加 .value
+          const { price: priceRefs } = toRefs(props)
+          const priceRef = toRef(props, 'price')
+
+
+          const info = () => {
+            console.log('props.price', props.price);
+            console.log('price', price);
+
+            console.log('priceRefs', priceRefs.value);
+            console.log('priceRef', priceRef.value);
+          }
+          return { info }
+        }
+      })
+      .mount('#app')
+  </script>
+  <!-- 動態生成標題 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var title = window.location.pathname.split('/').pop().replace('.html', '');
+      document.title = title;
+    });
+  </script>
+  <!-- 動態生成標題 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var path = window.location.pathname;
+      var segments = path.split('/');
+      var lastSegment = segments.pop();
+      var titleBase = lastSegment.replace('.html', '');
+      var decodedTitleBase = decodeURIComponent(titleBase);
+      document.title = decodedTitleBase;
+    });
+  </script>
+</body>
+
+</html>
