@@ -10,13 +10,40 @@
 <body>
   <div id="app">
     <Btn></Btn>
-    <Btn>ABCD</Btn>
+    <Btn>{{text}}</Btn>
     <Btn>
       <img src="https://github.com/WeiHsuanLai.png" height="100">
     </Btn>
+
+    <Card>
+      <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, possimus!</h1>
+      <template v-slot:title>
+        <h1>標題</h1>
+      </template>
+      <!-- # 為 v-slot: 的簡寫 -->
+      <template #footer>
+        <h1>底部</h1>
+      </template>
+    </Card>
+
+    <!-- 
+    data 在 Vue 中扮演着存储组件状态的角色，无论是通过 Composition API 在 setup() 函数中定义的响应式数据，还是通过作用域插槽从子组件传递给父组件的数据，都使得Vue应用程序能够根据状态变化动态更新视图。
+    -->
+    <Product>
+      <template #title="data">{{data.productName}}</template>
+      <template #footer="{price,info}">
+        {{price}}
+        <input type="button" value="按鈕" @click="info">
+      </template>
+      <template v-slot="data">{{data.content}}</template>
+    </Product>
   </div>
+
+  <!-- vue 檔案 -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.min.js' integrity='sha512-jDpwxJN+g4BhXLdba5Z1rn2MpR9L5Wp3WVf2dJt5A0mkPHnHLZHZerpyX4JC9bM0pkCL7RmAR8FwOm02h7RKFg==' crossorigin='anonymous'>
   </script>
+
+  <!-- 元件一 -->
   <script type="text/x-template" id="btn">
     <button>
       按鈕
@@ -26,13 +53,64 @@
       <slot>123</slot>
     </button>
   </script>
-  <script>
-    const { createApp } = Vue
-    createApp({
 
+  <!-- 元件二 -->
+  <script type="text/x-template" id="card">
+    <div class="card">
+      <div class="card-title">
+        <slot name="title"></slot>
+      </div>
+      <div class="card-body">
+        <slot></slot>
+      </div>
+      <div class="card-footer">
+        <slot name="footer"></slot>
+      </div>
+    </div>
+  </script>
+
+  <!-- 元件三 -->
+  <script type="text/x-template" id="product">
+    <div class="product">
+      <div class="product-title">
+        <slot name="title" :product-name="name"></slot>
+      </div>
+      <div class="product-body">
+        <slot :content="content"></slot>
+      </div>
+      <div class="product-footer">
+        <slot name="footer" :price="price" :info="info"></slot>
+      </div>
+    </div>
+  </script>
+
+  <script>
+    const { createApp, ref } = Vue
+    createApp({
+      setup() {
+        const text = ref('ABCDE')
+        return { text }
+      }
     })
       .component('Btn', {
         template: '#btn'
+      })
+      .component('Card', {
+        template: '#card'
+      })
+      .component('Product', {
+        template: '#product',
+        setup() {
+          const name = ref('AAA')
+          const price = ref(1000)
+          const content = ref('asdasdasdghsjdf')
+          const info = () => {
+            console.log(name.value)
+          }
+          return {
+            name, price, content, info
+          }
+        }
       })
       .mount('#app')
   </script>

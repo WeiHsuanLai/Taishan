@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.min.js' integrity='sha512-jDpwxJN+g4BhXLdba5Z1rn2MpR9L5Wp3WVf2dJt5A0mkPHnHLZHZerpyX4JC9bM0pkCL7RmAR8FwOm02h7RKFg==' crossorigin='anonymous'>
+  </script>
+  <script>
+    // const { ref, reactive, computed, nextTick, watch, onMounted, createApp } = Vue
+    // = ref('')
+    // = reactive([])
+    // const XXX = computed(() => {
+
+    // })
+    const { createApp } = Vue
+    createApp({
+      setup() {
+
+        return {
+
+        }
+      },
+    }).mount('#app')
+  </script>
+  <!-- 動態生成標題 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var title = window.location.pathname.split('/').pop().replace('.html', '');
+      document.title = title;
+    });
+  </script>
+  <!-- 動態生成標題 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var path = window.location.pathname;
+      var segments = path.split('/');
+      var lastSegment = segments.pop();
+      var titleBase = lastSegment.replace('.html', '');
+      var decodedTitleBase = decodeURIComponent(titleBase);
+      document.title = decodedTitleBase;
+    });
+  </script>
+</body>
+
+</html>

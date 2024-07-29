@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 
+    事件監聽器：@submit
+
+    @submit 是一個事件監聽器，它指示 Vue 在當前元素（在此範例中是一個 <form> 元素）上監聽submit事件。當用戶提交表單時，這個事件會被觸發。
+    在 Vue 中，@符號是 v-on: 指令的縮寫形式，用於監聽 DOM 事件。因此， @submit 等同於 v-on:submit，它們都是用來監聽表單的提交事件。
+
+    事件修飾符：.prevent
+    .prevent 是一個事件修飾符，它調用 event.preventDefault() 方法。這個方法阻止了表單的預設提交行為，即阻止了頁面的刷新。
+    在Vue中，事件修飾符是由.開頭的特殊後綴，用於指示事件處理函數的額外操作。在此範例中，.prevent修飾符確保即使表單被提交，頁面也不會重新加載，這對於單頁應用（SPA）來說尤其重要，   因為它允許應用程序在不刷新頁面的情況下處理表單提交。
+
+    方法：addItem
+    "addItem" 是在 submit 事件被觸發時應該調用的方法名稱。這個方法應該在 Vue 實例的methods物件中定義。在這個方法中，你可以執行添加新項目到列表、向服務器發送數據等操作。
+    當表單被提交時，Vue 會自動阻止表單的預設提交行為，然後調用 addItem 方法。你可以在這個方法中實現自訂邏輯，比如更新應用程序的狀態或與服務器通信。
+    
+    -->
+    <form @submit.prevent="addItem">
+      <input type="text" v-model="newItem" :style="{border:inputBorder}">
+      <input type="submit" value="新增">
+    </form>
+    <hr>
+    <input type="button" value="全部已完成">
+    <input type="button" value="全部未完成">
+    <br>
+    <input type="button" value="全部顯示">
+    <input type="button" value="顯示已完成">
+    <input type="button" value="顯示未完成">
+    <br>
+    <input type="button" value="清除全部">
+    <input type="button" value="清除已完成">
+    <input type="button" value="清除未完成">
+    <hr>
+    目前顯示:{{}}，共{{}}個
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.27/vue.global.min.js' integrity='sha512-jDpwxJN+g4BhXLdba5Z1rn2MpR9L5Wp3WVf2dJt5A0mkPHnHLZHZerpyX4JC9bM0pkCL7RmAR8FwOm02h7RKFg==' crossorigin='anonymous'>
+  </script>
+  <script>
+    // const { ref, reactive, computed, nextTick, watch, onMounted, createApp } = Vue
+    // = ref('')
+    // = reactive([])
+    // const XXX = computed(() => {
+
+    // })
+    const { ref, reactive, computed, watch, onMounted, createApp } = Vue
+    createApp({
+      setup() {
+        const newItem = ref('')
+        const items = reactive([])
+        const filtered = ref('全部')
+        let id = 1
+
+        // 使用 ref 要加上 .value
+        const inputBorder = computed(() => {
+          if (newItem.value.length === 0) { return '3px solid black' }
+          else if (newItem.value.length < 2) {
+            return '3px solid red'
+          } else { return '3px solid green' }
+        })
+
+        const filteredItems = computed(() => {
+          return items.fiter(item => {
+            if (filter.value === '全部') return true
+            // else if (filter.value === '已完成') return item.done === true
+            else if (filter.value === '已完成') return item.done
+            else return item.done === false
+          })
+        })
+
+        const addItem = () => {
+          if (newItem.value.length < 2) return
+
+          // 當東西的陣列是 reactive 時，不需要加上 .value
+          items.push({
+            id: id++,
+            name: newItem.value,
+            done: false,
+            edit: false,
+            model: newItem.value
+          })
+          newItem.value = ''
+        }
+
+        return {
+          newItem, items, inputBorder, addItem
+        }
+      }
+    }).mount('#app')
+  </script>
+  <!-- 動態生成標題 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var title = window.location.pathname.split('/').pop().replace('.html', '');
+      document.title = title;
+    });
+  </script>
+  <!-- 動態生成標題 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var path = window.location.pathname;
+      var segments = path.split('/');
+      var lastSegment = segments.pop();
+      var titleBase = lastSegment.replace('.html', '');
+      var decodedTitleBase = decodeURIComponent(titleBase);
+      document.title = decodedTitleBase;
+    });
+  </script>
+</body>
+
+</html>
