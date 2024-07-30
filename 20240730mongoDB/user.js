@@ -1,6 +1,7 @@
+// 建立 Schema, model 和 ERROR 物所以要用 {  }，而 validator 不是物件而是導入模塊所以不用
 import { Schema, model } from 'mongoose'
 import { ERROR } from './code.js'
-import validator, { Validator } from 'validator'
+import validator from 'validator'
 const schema = new Schema({
 	// 資料欄位名稱
 	account: {
@@ -40,4 +41,4 @@ const schema = new Schema({
 // 你可以在不同的文件中重用相同的模型定義，而不需要在每個文件中都重新定義。
 // 導出模型
 // model(collection 名稱 ,schema)
-export default model('user', schema)
+export default model('users', schema)
