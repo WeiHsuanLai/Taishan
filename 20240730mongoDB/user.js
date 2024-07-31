@@ -1,7 +1,18 @@
-// 建立 Schema, model 和 ERROR 物所以要用 {  }，而 validator 不是物件而是導入模塊所以不用
+// 建立 Schema, model 和 ERROR 是物件所以要用 {  }，而 validator 不是物件而是導入模塊所以不用
 import { Schema, model } from 'mongoose'
 import { ERROR } from './code.js'
 import validator from 'validator'
+
+// 應用程式中的 Schema（例如 Mongoose） 
+// 在一些程式框架和函式庫中，Schema 用於定義應用程式中資料模型的結構。這種用法在 NoSQL 資料庫（如 MongoDB）和 ORM（物件關聯映射）庫中非常常見。 
+// Mongoose 中的 Schema Mongoose 是一個用於 MongoDB 的 Node.js ORM 函式庫，它使用 Schema 來定義文件的結構。
+// 功能： 模型定義：描述 MongoDB 集合中的文件結構，包括欄位及其類型。
+// 驗證：在儲存到資料庫之前驗證資料的正確性。
+// 中間件：在執行某些操作（如儲存、更新）之前或之後執行一些函數。
+// 虛擬屬性：定義一些不直接儲存在資料庫中的屬性，可以透過計算得到。
+// 方法與靜態方法：定義模型實例方法和靜態方法。
+
+
 const schema = new Schema({
 	// 資料欄位名稱
 	account: {
