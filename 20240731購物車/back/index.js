@@ -6,7 +6,6 @@ import { StatusCodes } from 'http-status-codes'
 import mongoSanitize from 'express-mongo-sanitize'
 import rateLimit from 'express-rate-limit'
 import routeUser from './routes/user.js'
-import './passport/passport.js'
 
 const app = express()
 
@@ -22,20 +21,6 @@ app.use(rateLimit({
       success: false,
       message: options.message
     })
-  }
-}))
-
-app.use(cors({
-  // origin = 請求的來源
-  // callback(錯誤, 是否允許)
-  origin (origin, callback) {
-    if (origin === undefined ||
-      origin.includes('github.io') || origin.includes('localhost') || origin.includes('127.0.0.1')
-    ) {
-      callback(null, true)
-    } else {
-      callback(new Error('CORS'), false)
-    }
   }
 }))
 

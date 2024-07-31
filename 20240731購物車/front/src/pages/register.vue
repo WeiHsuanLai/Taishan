@@ -5,7 +5,7 @@
         <h1 class="text-center">註冊</h1>
       </v-col>
       <v-divider></v-divider>
-      <v-col cols="12">
+      <v-col cols="12" class="text-center">
         <v-form @submit.prevent="submit" :disabled="isSubmitting">
           <v-text-field
             label="帳號"
@@ -30,9 +30,7 @@
             v-model="passwordConfirm.value.value"
             :error-messages="passwordConfirm.errorMessage.value"
           ></v-text-field>
-          <div class="text-center">
-            <v-btn type="submit" color="green" :loading="isSubmitting">註冊</v-btn>
-          </div>
+          <v-btn type="submit" color="green" :loading="isSubmitting">註冊</v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -45,18 +43,9 @@ import * as yup from 'yup'
 import validator from 'validator'
 import { useApi } from '@/composables/axios'
 import { useRouter } from 'vue-router'
-import { definePage } from 'vue-router/auto'
-import { useSnackbar } from 'vuetify-use-dialog'
-
-definePage({
-  meta: {
-    title: '購物網 | 註冊'
-  }
-})
 
 const { api } = useApi()
 const router = useRouter()
-const createSnackbar = useSnackbar()
 
 const schema = yup.object({
   account: yup
@@ -102,26 +91,15 @@ const passwordConfirm = useField('passwordConfirm')
 
 const submit = handleSubmit(async (values) => {
   try {
-    await api.post('/user', {
+    await api.post('/users', {
       account: values.account,
       email: values.email,
       password: values.password
     })
-    createSnackbar({
-      text: '註冊成功',
-      snackbarProps: {
-        color: 'green'
-      }
-    })
     router.push('/login')
   } catch (error) {
     console.log(error)
-    createSnackbar({
-      text: error?.response?.data?.message || '發生錯誤',
-      snackbarProps: {
-        color: 'red'
-      }
-    })
+    alert(error?.response?.data?.message || '發生錯誤')
   }
 })
 </script>

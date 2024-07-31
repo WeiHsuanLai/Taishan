@@ -1,6 +1,7 @@
-// 建立 Schema, model 和 ERROR 是物件所以要用 {  }，而 validator 不是物件而是導入模塊所以不用
+// 建立 Schema, model是物件所以要用 {  }，而 validator 不是物件而是導入模塊所以不用
 import { Schema, model } from 'mongoose'
-import { ERROR } from './code.js'
+// ERROR 是默認導出 (export default)  不需要花括號
+import  ERROR  from './code.js'
 import validator from 'validator'
 
 // 應用程式中的 Schema（例如 Mongoose） 
