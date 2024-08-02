@@ -14,14 +14,14 @@
       <v-btn @click="openDialog">
         <DialogForm ref="dialogForm" />
       </v-btn>
-      <!-- <v-btn
+      <v-btn
         v-btn
         v-for="item in navItems"
         :key="item.to"
         :prepend-icon="item.icon"
         :to="item.to"
         >{{ item.text }}</v-btn
-      > -->
+      >
     </template>
     </v-container>
   </v-app-bar>
