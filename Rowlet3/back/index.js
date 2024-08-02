@@ -5,7 +5,7 @@ import cors from 'cors'
 import { StatusCodes } from 'http-status-codes'
 import mongoSanitize from 'express-mongo-sanitize'
 import rateLimit from 'express-rate-limit'
-import routeUser from './routes/user.js'
+import routeUser from './router/router_user.js'
 
 const app = express()
 
@@ -37,16 +37,6 @@ app.use(cors({
     }
   }
 }))
-
-app.use(express.json())
-app.use((_, req, res, next) => {
-  res.status(StatusCodes.BAD_REQUEST).json({
-    success: false,
-    message: '資料格式錯誤'
-  })
-})
-
-app.use(mongoSanitize())
 
 app.use(express.json())
 app.use((_, req, res, next) => {
