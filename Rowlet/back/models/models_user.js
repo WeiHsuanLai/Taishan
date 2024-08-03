@@ -6,7 +6,7 @@ import validator from 'validator'
 // bcrypt 密碼哈希處理
 import bcrypt from 'bcrypt'
 // 引入管理權限
-import UserRole from '../enums/UserRole.js'
+import UserRole from '../enums/UserRoles.js'
 
 // 建立購物車結構
 const cartSchema = new Schema({

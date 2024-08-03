@@ -1,22 +1,14 @@
+<!-- 這裡不需要 v-app 也不需要 v-main，因為 v-main 已經在 layout 了 -->
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="12">
+  <v-responsive class="mx-auto" max-width="300">
         <h1 class="text-center">註冊</h1>
-      </v-col>
       <v-divider></v-divider>
-      <v-col cols="12" class="text-center">
-        <v-form @submit.prevent="submit" :disabled="isSubmitting">
+      <v-form @submit.prevent="submit" :disabled="isSubmitting">
           <v-text-field
             label="帳號"
             minlength="4" maxlength="20" counter
             v-model="account.value.value"
             :error-messages="account.errorMessage.value"
-          ></v-text-field>
-          <v-text-field
-            label="信箱" type="email"
-            v-model="email.value.value"
-            :error-messages="email.errorMessage.value"
           ></v-text-field>
           <v-text-field
             label="密碼" type="password"
@@ -30,11 +22,14 @@
             v-model="passwordConfirm.value.value"
             :error-messages="passwordConfirm.errorMessage.value"
           ></v-text-field>
+          <v-text-field
+            label="信箱" type="email"
+            v-model="email.value.value"
+            :error-messages="email.errorMessage.value"
+          ></v-text-field>
           <v-btn type="submit" color="green" :loading="isSubmitting">註冊</v-btn>
         </v-form>
-      </v-col>
-    </v-row>
-  </v-container>
+  </v-responsive>
 </template>
 
 <script setup>
@@ -47,19 +42,22 @@ import { useRouter } from 'vue-router'
 const { api } = useApi()
 const router = useRouter()
 
+// 定義 schema 1變數為物件的型態
 const schema = yup.object({
+  // 帳號
   account: yup
     .string()
     .required('使用者帳號必填')
-    .min(4, '使用者帳號長度不符')
-    .max(20, '使用者帳號長度不符')
+    .min(4, '使用者帳長度必須大於等於4')
+    .max(20, '使用者帳號長度不得超過20')
     .test(
       // .test(自訂驗證名稱, 錯誤訊息, 驗證 function)
-      'isAlphanumeric', '使用者帳號格式錯誤',
+      'isAlphanumeric', '帳號需使用英文或數字',
       (value) => {
         return validator.isAlphanumeric(value)
       }
-    ),
+  ),
+    // 信箱
   email: yup
     .string()
     .required('使用者信箱必填')
@@ -68,12 +66,20 @@ const schema = yup.object({
       (value) => {
         return validator.isEmail(value)
       }
-    ),
+  ),
+    // 密碼
   password: yup
     .string()
     .required('使用者密碼必填')
     .min(4, '使用者密碼長度不符')
-    .max(20, '使用者密碼長度不符'),
+    .max(20, '使用者密碼長度不符')
+    .test(
+      // .test(自訂驗證名稱, 錯誤訊息, 驗證 function)
+      'isAlphanumeric', '密碼需使用英文或數字',
+      (value) => {
+        return validator.isAlphanumeric(value)
+      })
+  ,
   passwordConfirm: yup
     .string()
     // .oneOf(陣列, 錯誤訊息) 只允許符合陣列內其中一個值
