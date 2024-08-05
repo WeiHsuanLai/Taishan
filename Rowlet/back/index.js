@@ -1,11 +1,15 @@
 import 'dotenv/config'
 import express from 'express'
 import mongoose from 'mongoose'
+// cors 是一個中間件，用於處理跨源資源共享（CORS）的問題。
+// 當你的網頁應用需要從不同的域名、協議或端口發送請求到你的後端服務器時，就會遇到跨源請求問題。
+// CORS是一種W3C標準，通過添加特殊的HTTP響應頭來告訴瀏覽器允許哪些源可以讀取後端服務器上的資源。
 import cors from 'cors'
 import { StatusCodes } from 'http-status-codes'
 import mongoSanitize from 'express-mongo-sanitize'
 import rateLimit from 'express-rate-limit'
-import routeUser from './router/router_user.js'
+import routeUser from './routes/user.js'
+import './passport/passport.js'
 
 const app = express()
 

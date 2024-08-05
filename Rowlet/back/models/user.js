@@ -9,14 +9,14 @@ import bcrypt from 'bcrypt'
 import UserRole from '../enums/UserRole.js'
 
 // 建立購物車結構
-const cartSchema = new Schema({
+const cartSchema = Schema({
   p_id: {
     type: ObjectId,
     // 使用 ref 跟 product 做連結
     ref: 'products',
     required: [true, '使用者購物車商品必填']
   },
-  quanity: {
+  quantity: {
     type: Number,
     required: [true, '使用者購物車商品數量必填'],
     min: [1, '使用者購物車商品數量不符']
@@ -24,88 +24,73 @@ const cartSchema = new Schema({
 })
 
 // 建立使用者結構
-const schema = new Schema(
-  {
-    // 資料欄位名稱
-    account: {
-      // 設定資料型態
-      type: String,
-      // required 是用來設定是否為必填 true 為必填
-      required: [true, '使用者帳號必填'],
-      // unique: true 表示這個值必須為唯一
-      unique: true,
-      // isAlphanumeric 方法用於檢查給定的字符串是否只包含字母（不區分大小寫）和數字。如果字符串完全由字母和數字組成，則該方法返回 true；否則，它返回 false。
-      validator: {
-        validator (value) {
-          return validator.isAlphanumeric(value)
-        },
-        message: '使用者帳號格式錯誤'
+const schema = new Schema({
+  // 資料欄位名稱
+  account: {
+    // 設定資料型態
+    type: String,
+    // required 是用來設定是否為必填 true 為必填
+    required: [true, '使用者帳號必填'],
+    // 限制文字長度
+    minlength: [4, '使用者帳號長度不符'],
+    maxlength: [20, '使用者帳號長度不符'],
+    // unique: true 表示這個值必須為唯一
+    unique: true,
+    // isAlphanumeric 方法用於檢查給定的字符串是否只包含字母（不區分大小寫）和數字。如果字符串完全由字母和數字組成，則該方法返回 true；否則，它返回 false。
+    validate: {
+      validator (value) {
+        return validator.isAlphanumeric(value)
       },
-      // 限制文字長度
-      minLength: [4, '使用者帳號長度不符'],
-      maxLength: [20, '使用者帳號長度不符'],
-      // 設定正則表達式 Regex
-      match: [/^[a-zA-Z0-9]+$/],
-      // 自動使用 文字.trim() 去除前後空白
-      trim: true
-    },
-    pasword: {
-      type: String,
-      required: [true, '使用者密碼必填'],
-      validator: {
-        validator (value) {
-          return validator.isAlphanumeric(value)
-        },
-        message: '使用者密碼格式錯誤'
-      }
-    },
-    // 登入 tokens 身份驗證令牌
-    token: {
-      type: [String]
-    },
-    cart: {
-      type: [cartSchema]
-    },
-    role: {
-      type: Number,
-      default: UserRole.User
-    },
-    email: {
-      // 設定資料型態
-      type: String,
-      // required 是用來設定是否為必填 true 為必填
-      required: [],
-      unique: true,
-      validator: {
-        // 自訂驗證 function
-        // Validator(value) 是 mongoose 的設定, return validator.isEmail(value) 是我們引用的套件
-        Validator (value) {
-          return validator.isEmail(value)
-        },
-        // 自訂驗證錯誤訊息
-        message: '使用者信箱格式錯誤'
-      }
+      message: '使用者帳號格式錯誤'
     }
   },
-  {
-    // 帳號建立時間
-    timestamps: true,
-    // 把 __v 去除 versionKey 是為了記錄資料改了幾次
-    versionKey: false
+  password: {
+    type: String,
+    required: [true, '使用者密碼必填']
+  },
+  email: {
+    type: String,
+    required: [true, '使用者信箱必填'],
+    unique: true,
+    validate: {
+      // 自訂驗證 function
+      // Validator(value) 是 mongoose 的設定, return validator.isEmail(value) 是我們引用的套件
+      validator (value) {
+        return validator.isEmail(value)
+      },
+      // 自訂驗證錯誤訊息
+      message: '使用者信箱格式錯誤'
+    }
+  },
+  // 登入 tokens 身份驗證令牌
+  tokens: {
+    type: [String]
+  },
+  cart: {
+    type: [cartSchema]
+  },
+  role: {
+    type: Number,
+    default: UserRole.USER
   }
-)
+}, {
+  // 帳號建立時間
+  timestamps: true,
+  // 把 __v 去除 versionKey 是為了記錄資料改了幾次
+  versionKey: false
+})
 
 // Schema.pre() 方法用於註冊一個預保存的中介件，這意味著在每次保存文檔之前，Mongoose 都會執行這個函數
 schema.pre('save', function (next) {
   // this 引用正在被保存的文檔。因此，user 變量現在指向這個文檔。
   const user = this
   // isModified(path) 方法檢查指定的路徑（在這個例子中是 'password'）是否在最後一次保存或更新之後被修改過。
-  if (user.isModifed('password')) {
-    if (user.pasword.length < 4 || user.pasword.length > 20) {
+  if (user.isModified('password')) {
+    if (user.password.length < 4 || user.password.length > 20) {
       // 這行代碼創建了一個新的 ValidationError 實例，用於表示驗證錯誤
       const error = new Error.ValidationError()
       // addError(name, error) 方法用於添加一個錯誤到驗證錯誤對象中
-      error.addError('password', new Error.ValidationError({ message: '使用者密碼長度不符' }))
+      error.addError('password', new Error.ValidatorError({ message: '使用者密碼長度不符' }))
       // next(error) 函數用於將錯誤傳遞給下一個中介件或終止保存操作。如果在中介件中引發了錯誤，則不應呼叫 next()，以阻止保存操作繼續。
       next(error)
       // return 語句立即退出函數，防止代碼繼續執行到 else 塊
@@ -126,13 +111,13 @@ schema.pre('save', function (next) {
 // 虛擬字段不是存儲在 MongoDB 中的實際數據，而是基於其他字段計算得出的值。
 // cartQuantity 虛擬字段計算的是用戶購物車中商品的總數量。
 // 這裡不能寫箭頭函式，因為箭頭函式不能使用 this，就無法取得使用者的資料
-schema.virtual('cartQuanity').get(function () {
+schema.virtual('cartQuantity').get(function () {
   const user = this
   // reduce 方法用於遍歷陣列中的每個元素，並將其累加到一個總計中。在這裡，reduce 用於計算購物車中所有商品的總數量。
   // total 是累加器，初始值設定為 0，也就是 },0 ，代表累加的結果
   // current 是當前陣列元素的值，代表購物車中每個商品的數量。
   return user.cart.reduce((total, current) => {
-    return total + current.quanity
+    return total + current.quantity
   }, 0)
 })
 
@@ -140,4 +125,4 @@ schema.virtual('cartQuanity').get(function () {
 // 你可以在不同的文件中重用相同的模型定義，而不需要在每個文件中都重新定義。
 // 導出模型
 // model(collection 名稱 ,schema)
-export default model('models_user', schema)
+export default model('users', schema)

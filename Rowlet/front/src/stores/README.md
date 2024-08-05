@@ -1,5 +1,14 @@
 # Store
+在Vue.js應用中，store資料夾通常用於存放與狀態管理相關的代碼，例如使用Vuex或Pinia等狀態管理庫時所需的代碼。
+在Vue.js中，store可以被視為一個集中管理應用程序中所有組件共享的狀態的地方。以下是一些關於store資料夾可能包含的內容：
 
-Pinia stores are used to store reactive state and expose actions to mutate it.
+狀態(state)：這是應用程序中所有組件共享的狀態，例如用戶信息、應用程序配置等。
+動作(actions)：這些是對應於修改狀態的方法，它們可以是同步的也可以是異步的。
+getter：這些是用於計算基於狀態的值的方法，它們可以讓組件更容易地訪問和使用這些計算結果。
+mutations：這些是直接修改狀態的方法，它們通常用於處理異步操作完成後的狀態更新。
+modules：如果應用程序的狀態管理需求較為複雜，可以將狀態管理分割成多個模塊，每個模塊都有自己的狀態、動作、getter和mutations。
+根據4，在Vue應用中，store資料夾通常位於src資料夾之內，並且可以根據需要進一步組織成子資料夾以區分不同的模塊或功能。
 
-Full documentation for this feature can be found in the Official [Pinia](https://pinia.esm.dev/) repository.
+此外，根據1，在Vue.js中，store不僅限於Vuex，它還可以指代任何集中管理應用程序狀態的方案，包括但不限於Pinia、Vue.observable等。
+
+總結來說，store資料夾在Vue.js應用中扮演著關鍵角色，它提供了一個集中管理應用程序狀態的場所，使得狀態管理變得更加簡潔和高效。
