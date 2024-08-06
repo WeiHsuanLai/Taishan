@@ -42,7 +42,7 @@ export const create = async (req, res) => {
 export const login = async (req, res) => {
   try {
     // 使用jwt.sign方法生成一個JWT。這個方法接受三個參數：要加密的payload（在這裡是用戶的ID）、一個秘鑰（在這裡是從環境變量中取得的JWT_SECRET），以及一個選項對象，其中指定了Token的有效期為7天。
-    const token = jwt.sign({ _id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7 days' })
+    const token = jwt.sign({ _id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7 day' })
     // 將新生成的JWT添加到用戶的令牌列表中。
     req.user.tokens.push(token)
     // 保存用戶資料，包括新的令牌。這一步是異步的，因此使用await關鍵字等待操作完成

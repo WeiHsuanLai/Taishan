@@ -57,6 +57,7 @@ export const useUserStore = defineStore('user', () => {
       role.value = data.result.role
       cart.value = data.result.cart
     } catch (error) {
+      console.log(error)
       token.value = ''
       account.value = ''
       role.value = UserRole.USER
@@ -64,12 +65,15 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  // 登出狀態
   const logout = async () => {
     try {
+      // 用 apiAuth 去帶 jwt
       await apiAuth.delete('/user/logout')
     } catch (error) {
       console.log(error)
     }
+    // 全部的值重設
     token.value = ''
     account.value = ''
     role.value = UserRole.USER

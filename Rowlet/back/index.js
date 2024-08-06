@@ -9,6 +9,8 @@ import { StatusCodes } from 'http-status-codes'
 import mongoSanitize from 'express-mongo-sanitize'
 import rateLimit from 'express-rate-limit'
 import routeUser from './routes/user.js'
+// 引用 product 的路由
+import routeProduct from './routes/product.js'
 import './passport/passport.js'
 
 const app = express()
@@ -29,8 +31,8 @@ app.use(rateLimit({
 }))
 
 app.use(cors({
-  // origin = 請求的來源
-  // callback(錯誤, 是否允許)
+    // origin = 請求的來源
+    // callback(錯誤, 是否允許)
   origin (origin, callback) {
     if (origin === undefined ||
       origin.includes('github.io') || origin.includes('localhost') || origin.includes('127.0.0.1')
@@ -53,6 +55,7 @@ app.use((_, req, res, next) => {
 app.use(mongoSanitize())
 
 app.use('/user', routeUser)
+app.use('/product', routeProduct)
 
 app.all('*', (req, res) => {
   res.status(StatusCodes.NOT_FOUND).json({

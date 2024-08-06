@@ -14,11 +14,6 @@
             :error-messages="account.errorMessage.value"
           ></v-text-field>
           <v-text-field
-            label="信箱" type="email"
-            v-model="email.value.value"
-            :error-messages="email.errorMessage.value"
-          ></v-text-field>
-          <v-text-field
             label="密碼" type="password"
             minlength="4" maxlength="20" counter
             v-model="password.value.value"
@@ -29,6 +24,11 @@
             minlength="4" maxlength="20" counter
             v-model="passwordConfirm.value.value"
             :error-messages="passwordConfirm.errorMessage.value"
+          ></v-text-field>
+          <v-text-field
+            label="信箱" type="email"
+            v-model="email.value.value"
+            :error-messages="email.errorMessage.value"
           ></v-text-field>
           <div class="text-center">
             <v-btn type="submit" color="green" :loading="isSubmitting">註冊</v-btn>
