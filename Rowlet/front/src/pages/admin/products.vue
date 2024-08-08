@@ -79,6 +79,7 @@
             v-model="description.value.value"
             :error-messages="description.errorMessage.value"
           ></v-textarea>
+                      <!--vue-file-agentx 裡面的 deletable 打X按鈕 -->
           <vue-file-agent
             v-model="fileRecords"
             v-model:raw-model-value="rawFileRecords"
@@ -281,7 +282,9 @@ tableLoadItems()
 // 標題
 definePage({
   meta: {
-    title: '商品管理'
+    title: '商品管理',
+    login: true,
+    admin: true
   }
 })
 </script>

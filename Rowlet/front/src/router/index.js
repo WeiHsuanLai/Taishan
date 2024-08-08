@@ -22,8 +22,16 @@ router.beforeEach(async (to, from, next) => {
   if (from === START_LOCATION) {
     await user.profile()
   }
-  // 必須使用 next() 才能去下一步
-  next()
+  if (user.isLogin && ['/register', '/login'].includes(to.path)) {
+    next('/')
+  } else if (to.meta.login && !user.isLogin) {
+    next('/login')
+  } else if (to.meta.admin && !user.isAdmin) {
+    next('/')
+  } else {
+    // 必須使用 next() 才能去下一步
+    next()
+  }
 })
 // 在每次路由切換後執行的回調函數，將頁面標題設置為當前路由的元數據中的title。
 router.afterEach((to, from) => {

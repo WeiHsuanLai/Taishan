@@ -44,7 +44,9 @@ import { useSnackbar } from 'vuetify-use-dialog'
 definePage({
   meta: {
     // 設定頁面標題
-    title: '登入'
+    title: '登入',
+    login: false,
+    admin: false
   }
 })
 // 初始化路由

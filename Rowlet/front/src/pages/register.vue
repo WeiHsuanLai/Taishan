@@ -51,7 +51,9 @@ import { useSnackbar } from 'vuetify-use-dialog'
 
 definePage({
   meta: {
-    title: '註冊'
+    title: '註冊',
+    login: false,
+    admin: false
   }
 })
 
