@@ -2,6 +2,7 @@
   <!-- 手機板側欄 -->
   <v-navigation-drawer v-if="mobile" v-model="drawer">
     <v-list nav>
+      <v-list-item :prepend-avatar="user.image" :title="user.account" @click="openDialog(null)"></v-list-item>
       <template v-for="item in navItems" :key="item.to">
         <!-- 如果 item.show 有登入 才顯示 -->
         <v-list-item
@@ -41,15 +42,41 @@
             <v-badge color="red" :content="user.cart" v-if="item.to === '/cart' && user.cart > 0" floating></v-badge>
           </v-btn>
         </template>
+        <v-list-item :prepend-avatar="user.image" :title="user.account" @click="openDialog(null)"></v-list-item>
         <!-- 有登入才會顯示登出 -->
         <v-btn prepend-icon="mdi-account-arrow-right" v-if="user.isLogin" @click="logout">登出</v-btn>
       </template>
     </v-container>
   </v-app-bar>
+  <!-- 更換大頭貼 -->
+  <template>
+    <v-dialog v-model="dialog.open" persistent width="500">
+    <v-form @submit.prevent="submit" :disabled="isSubmitting">
+      <v-card>
+        <v-card-title>{{ dialog.id ? '編輯商品' : '新增商品' }}</v-card-title>
+        <v-card-text>
+          <vue-file-agent
+            v-model="fileRecords"
+            v-model:raw-model-value="rawFileRecords"
+            accept="image/jpeg,image/png"
+            deletable
+            max-size="1MB"
+            help-text="選擇檔案或拖曳到這裡"
+            :error-text="{ type: '檔案格式不支援', size: '檔案大小不能超過 1MB' }"
+            ref="fileAgent"
+          ></vue-file-agent>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="red" :loading="isSubmitting" @click="closeDialog">取消</v-btn>
+          <v-btn color="green" type="submit" :loading="isSubmitting">送出</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-form>
+  </v-dialog>
+  </template>
   <!-- 主要內容 -->
   <v-main>
     <router-view>
-
     </router-view>
   </v-main>
 </template>
@@ -59,6 +86,7 @@ import { ref, computed } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useUserStore } from '@/stores/user'
 import { useSnackbar } from 'vuetify-use-dialog'
+import { useApi } from '@/composables/axios'
 
 // 使用 Vuetify 的 useDisplay 獲取手機模式狀態
 const { mobile } = useDisplay()
@@ -68,6 +96,53 @@ const user = useUserStore()
 const createSnackbar = useSnackbar()
 // 定義一個響應式變量來控制側邊欄的顯示與隱藏
 const drawer = ref(false)
+
+const { apiAuth } = useApi()
+
+const fileAgent = ref(null)
+const dialog = ref({
+  open: false,
+})
+
+const openDialog = (item) => {
+  dialog.value.open = true
+}
+
+const closeDialog = () => {
+  dialog.value.open = false
+  fileAgent.value.deleteFileRecord()
+}
+
+const fileRecords = ref([])
+const rawFileRecords = ref([])
+
+const submit = async (values) => {
+  if (fileRecords.value[0]?.error) return
+  if (fileRecords.value.length < 1) return
+  try {
+    const fd = new FormData()
+    if (fileRecords.value.length > 0) {
+      fd.append('image', fileRecords.value[0].file)
+    }
+    const { data } = await apiAuth.post('/photo', fd)
+    user.image = data.result
+    createSnackbar({
+      text: dialog.value.id === '' ? '新增成功' : '編輯成功',
+      snackbarProps: {
+        color: 'green'
+      }
+    })
+    closeDialog()
+  } catch (error) {
+    console.log(error)
+    createSnackbar({
+      text: error?.response?.data?.message || '發生錯誤',
+      snackbarProps: {
+        color: 'red'
+      }
+    })
+  }
+}
 
 // 導覽列
 // 計算導航項目，根據用戶登錄狀態和權限顯示不同的菜單
@@ -93,4 +168,8 @@ const logout = async () => {
     }
   })
 }
+
+const avatar = computed(() => {
+  return `https://api.multiavatar.com/${user.account}.png`
+})
 </script>

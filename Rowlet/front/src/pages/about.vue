@@ -6,9 +6,7 @@
         <v-container class="d-flex">
           <v-row>
             <v-col>
-              <p>123</p>
-              <abc></abc>
-              <efg></efg>
+              <chat></chat>
             </v-col>
           </v-row>
         </v-container>
@@ -19,8 +17,6 @@
 <script setup>
 //
 import { definePage } from 'vue-router/auto'
-import abc from '../components/ABC.vue'
-import efg from '../components/EFG.vue'
 definePage({
   meta: {
     title: '關於我們',

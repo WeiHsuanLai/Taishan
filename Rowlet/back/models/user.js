@@ -72,7 +72,14 @@ const schema = new Schema({
   role: {
     type: Number,
     default: UserRole.USER
-  }
+  },
+  image: {
+    type: String,
+    required: [true, '商品圖片必填'],
+    default() {
+      return `https://api.multiavatar.com/${this.account}.png`
+    }
+  },
 }, {
   // 帳號建立時間
   timestamps: true,

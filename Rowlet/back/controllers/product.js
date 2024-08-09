@@ -2,6 +2,7 @@ import Product from '../models/product.js'
 import { StatusCodes } from 'http-status-codes'
 import validator from 'validator'
 
+// 創建產品create
 export const create = async (req, res) => {
   try {
     req.body.image = req.file.path
@@ -27,7 +28,7 @@ export const create = async (req, res) => {
     }
   }
 }
-
+// 獲取所有產品 (getAll)
 export const getAll = async (req, res) => {
   try {
     const sortBy = req.query.sortBy || 'createdAt'
@@ -70,7 +71,7 @@ export const getAll = async (req, res) => {
     })
   }
 }
-
+// 更新產品 (edit)
 export const edit = async (req, res) => {
   try {
     if (!validator.isMongoId(req.params.id)) throw new Error('ID')
@@ -108,7 +109,7 @@ export const edit = async (req, res) => {
     }
   }
 }
-
+// 獲取單個產品 (get)
 export const get = async (req, res) => {
   try {
     const sortBy = req.query.sortBy || 'createdAt'
@@ -118,8 +119,8 @@ export const get = async (req, res) => {
     const regex = new RegExp(req.query.search || '', 'i')
 
     const data = await Product
-    .find({
-        sell:true,
+      .find({
+        sell: true,
         $or: [
           { name: regex },
           { description: regex }
@@ -136,7 +137,7 @@ export const get = async (req, res) => {
       .skip((page - 1) * itemsPerPage)
       .limit(itemsPerPage)
 
-    const total = await Product.estimatedDocumentCount()
+    const total = await Product.countDocuments({ sell: true })
     res.status(StatusCodes.OK).json({
       success: true,
       message: '',
@@ -152,11 +153,13 @@ export const get = async (req, res) => {
     })
   }
 }
-
+// 獲取單個產品詳細信息 (getId)
 export const getId = async (req, res) => {
   try {
     if (!validator.isMongoId(req.params.id)) throw new Error('ID')
-    const result = await Product.findById(req.params.id).orFail(new Error('Not FOUND'))
+
+    const result = await Product.findById(req.params.id).orFail(new Error('NOT FOUND'))
+
     res.status(StatusCodes.OK).json({
       success: true,
       message: '',
