@@ -41,13 +41,15 @@ const headers = [
   { title: '單價', key: 'p_id.price' },
   { title: '數量', key: 'quantity' },
   { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity },
-  { title: '操作', key: 'action' }
+  { title: '日期', key: 'p_id.model', value: item => item.p_id.data },
+  { title: '操作', key: 'action' },
 ]
 
 const loadItems = async () => {
   try {
     const { data } = await apiAuth.get('/user/cart')
     items.value = data.result
+    console.log(data.result)
   } catch (error) {
     console.log(error)
     createSnackbar({
@@ -75,7 +77,6 @@ const checkout = async () => {
   loading.value = true
 
   const result = await user.checkout()
-
   createSnackbar({
     text: result.text,
     snackbarProps: {

@@ -37,6 +37,9 @@
           <template #[`item.sell`]="{ value }">
             <v-icon icon="mdi-check" v-if="value"></v-icon>
           </template>
+          <template #[`item.date`]="{ value }">
+            <v-icon icon="mdi-check" v-if="value"></v-icon>
+          </template>
           <template #[`item.action`]="{ item }">
             <v-btn icon="mdi-pencil" variant="text" color="blue" @click="openDialog(item)"></v-btn>
           </template>
@@ -102,17 +105,17 @@
 
 <script setup>
 import { definePage } from 'vue-router/auto'
-import { ref } from 'vue'
+import { ref, shallowRef, watch } from 'vue'
 import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
 import { useApi } from '@/composables/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
+// import { VDateInput } from 'vuetify/labs/VDateInput'
 
 const { apiAuth } = useApi()
 const createSnackbar = useSnackbar()
-
 const fileAgent = ref(null)
-
+// const selectedDate = ref(null) // 假設你需要跟踪所選日期
 // 表單開關
 const dialog = ref({
   // 編輯對話框的狀態
@@ -179,7 +182,8 @@ const { handleSubmit, isSubmitting, resetForm } = useForm({
     price: 0,
     description: '',
     category: '',
-    sell: true // 預設上架
+    sell: true, // 預設上架
+    date: ''
   }
 })
 // 上面設定完，下面就要 useFied
@@ -188,6 +192,7 @@ const price = useField('price')
 const description = useField('description')
 const category = useField('category')
 const sell = useField('sell')
+const date = useField('date')
 
 const fileRecords = ref([])
 const rawFileRecords = ref([])
@@ -204,6 +209,7 @@ const submit = handleSubmit(async (values) => {
     fd.append('description', values.description)
     fd.append('category', values.category)
     fd.append('sell', values.sell)
+    fd.append('date', values.date)
 
     if (fileRecords.value.length > 0) {
       fd.append('image', fileRecords.value[0].file)

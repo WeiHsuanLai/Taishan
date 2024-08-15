@@ -28,6 +28,10 @@ const schema = new Schema({
   sell: {
     type: Boolean,
     required: [true, '商品上架狀態必填']
+  },
+  date: {
+    type: [Date] ,
+    required: [true, '日期範圍必填']
   }
 }, {
   timestamps: true,

@@ -4,13 +4,15 @@
     <v-card-title>
       <router-link :to="'/products/' + _id">{{ name }}</router-link>
     </v-card-title>
+    <v-date-input v-model="model" label="訂房日期" :min="Today" multiple="range"></v-date-input>
+    <v-card-subtitle>剩餘數量:{{ quantity }}</v-card-subtitle>
     <v-card-subtitle>${{ price }}</v-card-subtitle>
     <v-card-text>
       {{ description }}
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="primary" prepend-icon="mdi-cart" @click="addCart" :loading="loading">加入購物車</v-btn>
+      <v-btn color="primary" type="submit" prepend-icon="mdi-cart" @click="addCart">加入購物車</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -19,29 +21,37 @@
 import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
-import { ref } from 'vue'
-
+import { VDateInput } from 'vuetify/labs/VDateInput'
+import { computed, ref } from 'vue'
 const user = useUserStore()
 const router = useRouter()
 const createSnackbar = useSnackbar()
 
-const props = defineProps(['_id', 'category', 'description', 'image', 'name', 'price', 'sell'])
-
-const loading = ref(false)
+const props = defineProps(['_id', 'category', 'description', 'quantity', 'image', 'name', 'price', 'sell'])
 
 const addCart = async () => {
   if (!user.isLogin) {
     router.push('/login')
     return
   }
-  loading.value = true
-  const result = await user.addCart(props._id, 1)
-  createSnackbar({
-    text: result.text,
-    snackbarProps: {
-      color: result.color
-    }
-  })
-  loading.value = false
+  if (!isNaN(props.quantity) && props.quantity > 0 && props.quantity >= 1 && model.value) {
+    const result = await user.addCart(props._id, 1, model.value)
+    createSnackbar({
+      text: result.text,
+      snackbarProps: {
+        color: result.color
+      }
+    })
+  } else {
+    console.error('庫存不足或未選擇日期')
+    createSnackbar({
+      text: '庫存不足或未選擇日期',
+      snackbarProps: {
+        color: 'red'
+      }
+    })
+  }
 }
+const model = ref(null)
+const Today = computed(() => new Date().toISOString().split('T')[0])
 </script>

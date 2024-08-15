@@ -58,7 +58,7 @@ export const login = async (req, res) => {
 
 export const extend = async (req, res) => {
   try {
-    const idx = req.user.tokens.findIndex(token => token === req.token)
+    const idx = req.user.tokens.findIndex((token) => token === req.token)
     const token = jwt.sign({ _id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7 days' })
     req.user.tokens[idx] = token
     await req.user.save()
@@ -96,7 +96,7 @@ export const profile = (req, res) => {
 
 export const logout = async (req, res) => {
   try {
-    req.user.tokens = req.user.tokens.filter(token => token !== req.token)
+    req.user.tokens = req.user.tokens.filter((token) => token !== req.token)
     await req.user.save()
     res.status(StatusCodes.OK).json({
       success: true,
@@ -114,7 +114,7 @@ export const editCart = async (req, res) => {
   try {
     if (!validator.isMongoId(req.body.product)) throw new Error('ID')
 
-    const idx = req.user.cart.findIndex(item => item.p_id.toString() === req.body.product)
+    const idx = req.user.cart.findIndex((item) => item.p_id.toString() === req.body.product)
     if (idx > -1) {
       // 購物車內有這個商品，檢查修改後的數量
       const quantity = req.user.cart[idx].quantity + parseInt(req.body.quantity)
@@ -124,15 +124,16 @@ export const editCart = async (req, res) => {
       } else {
         // 修改後還有，修改
         req.user.cart[idx].quantity = quantity
+        req.user.cart[idx].date = req.body.date
       }
     } else {
       // 購物車內沒這個商品，檢查商品是否存在
       const product = await Product.findById(req.body.product).orFail(new Error('NOT FOUND'))
       if (!product.sell) throw new Error('SELL')
-
       req.user.cart.push({
         p_id: product._id,
-        quantity: req.body.quantity
+        quantity: req.body.quantity,
+        date: req.body.date
       })
     }
 
@@ -140,7 +141,10 @@ export const editCart = async (req, res) => {
     res.status(StatusCodes.OK).json({
       success: true,
       message: '',
-      result: req.user.cartQuantity
+      result: {
+        cartQuantity: req.user.cartQuantity,
+        date: req.body.date
+      }
     })
   } catch (error) {
     if (error.name === 'CastError' || error.message === 'ID') {
@@ -179,7 +183,7 @@ export const getCart = async (req, res) => {
     const result = await User.findById(req.user._id, 'cart').populate('cart.p_id')
     res.status(StatusCodes.OK).json({
       success: true,
-      message: '',
+      message: '購物車存在',
       result: result.cart
     })
   } catch (error) {

@@ -71,6 +71,12 @@
             v-model="sell.value.value"
             :error-messages="sell.errorMessage.value"
           ></v-checkbox>
+          <v-text-field
+            label="數量"
+            type="number" min="0"
+            v-model="quantity.value.value"
+            :error-messages="quantity.errorMessage.value"
+          ></v-text-field>
           <v-textarea
             label="說明"
             v-model="description.value.value"
@@ -144,7 +150,7 @@ const closeDialog = () => {
   fileAgent.value.deleteFileRecord()
 }
 
-const categories = ['衣服', '手機', '遊戲', '食品']
+const categories = ['單人房', '雙人房', '四人房']
 const schema = yup.object({
   name: yup
     .string()
@@ -163,6 +169,11 @@ const schema = yup.object({
     .test('isCategory', '商品分類錯誤', value => {
       return categories.includes(value)
     }),
+  quantity: yup
+    .number()
+    .typeError('商品數量不符')
+    .required('商品數量必填')
+    .min(0, '商品價格不能小於 0'),
   sell: yup
     .boolean()
 })
@@ -173,6 +184,7 @@ const { handleSubmit, isSubmitting, resetForm } = useForm({
     price: 0,
     description: '',
     category: '',
+    quantity: '',
     sell: true
   }
 })
@@ -180,6 +192,7 @@ const name = useField('name')
 const price = useField('price')
 const description = useField('description')
 const category = useField('category')
+const quantity = useField('quantity')
 const sell = useField('sell')
 
 const fileRecords = ref([])
@@ -196,6 +209,7 @@ const submit = handleSubmit(async (values) => {
     fd.append('price', values.price)
     fd.append('description', values.description)
     fd.append('category', values.category)
+    fd.append('quantity', values.quantity)
     fd.append('sell', values.sell)
 
     if (fileRecords.value.length > 0) {
@@ -239,6 +253,7 @@ const tableHeaders = [
   { title: '價格', align: 'center', sortable: true, key: 'price' },
   { title: '分類', align: 'center', sortable: true, key: 'category' },
   { title: '上架', align: 'center', sortable: true, key: 'sell' },
+  { title: '數量', align: 'center', sortable: true, key: 'quantity' },
   { title: '操作', align: 'center', sortable: false, key: 'action' }
 ]
 const tableLoading = ref(true)
