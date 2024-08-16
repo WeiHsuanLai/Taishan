@@ -43,8 +43,22 @@ const createSnackbar = useSnackbar()
 const items = ref([])
 const headers = [
   { title: '編號', key: '_id' },
-  { title: '日期', key: 'createdAt', value: item => new Date(item.createdAt).toLocaleString() },
+  { title: '下訂日期', key: 'createdAt', value: item => new Date(item.createdAt).toLocaleString() },
   { title: '商品', key: 'cart', sortable: false },
+  {
+    title: '訂房時間',
+    key: 'date',
+    value: item => {
+      return item.cart.map(c => {
+        if (c.date && c.date.length > 0) {
+          const startDate = new Date(c.date[1]).toISOString().split('T')[0]
+          const endDate = new Date(c.date[c.date.length - 1]).toISOString().split('T')[0]
+          return `${startDate} 至 ${endDate}`
+        }
+        return '無日期'
+      }).join(', ')
+    }
+  },
   {
     title: '金額',
     key: 'price',

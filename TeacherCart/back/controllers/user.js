@@ -4,6 +4,7 @@ import { StatusCodes } from 'http-status-codes'
 import jwt from 'jsonwebtoken'
 import validator from 'validator'
 
+// 建立使用者
 export const create = async (req, res) => {
   try {
     await User.create(req.body)
@@ -33,6 +34,7 @@ export const create = async (req, res) => {
   }
 }
 
+// 登入
 export const login = async (req, res) => {
   try {
     const token = jwt.sign({ _id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '7 days' })
@@ -56,6 +58,7 @@ export const login = async (req, res) => {
   }
 }
 
+// 更新jwt令牌
 export const extend = async (req, res) => {
   try {
     const idx = req.user.tokens.findIndex((token) => token === req.token)
@@ -75,6 +78,7 @@ export const extend = async (req, res) => {
   }
 }
 
+// 回傳用戶的個人資訊
 export const profile = (req, res) => {
   try {
     res.status(StatusCodes.OK).json({
@@ -94,6 +98,7 @@ export const profile = (req, res) => {
   }
 }
 
+// 登出
 export const logout = async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter((token) => token !== req.token)
@@ -110,6 +115,7 @@ export const logout = async (req, res) => {
   }
 }
 
+// 編輯購物車
 export const editCart = async (req, res) => {
   try {
     if (!validator.isMongoId(req.body.product)) throw new Error('ID')
@@ -174,6 +180,7 @@ export const editCart = async (req, res) => {
   }
 }
 
+// 獲取購物車
 export const getCart = async (req, res) => {
   try {
     const result = await User.findById(req.user._id, 'cart').populate('cart.p_id')

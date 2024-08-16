@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+
 const schema = new Schema({
   name: {
     type: String,
@@ -21,7 +22,7 @@ const schema = new Schema({
     type: String,
     required: [true, '商品分類必填'],
     enum: {
-      values: ['衣服', '手機', '遊戲', '食品'],
+      values: ['單人房', '雙人房', '四人房'],
       message: '商品分類錯誤'
     }
   },
@@ -29,9 +30,10 @@ const schema = new Schema({
     type: Boolean,
     required: [true, '商品上架狀態必填']
   },
-  date: {
-    type: [Date] ,
-    required: [true, '日期範圍必填']
+  quantity: {
+    type: Number,
+    required: [true, '商品數量必填'],
+    min: [0, '商品數量不能小於 0']
   }
 }, {
   timestamps: true,

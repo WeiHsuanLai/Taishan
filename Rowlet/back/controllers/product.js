@@ -2,7 +2,6 @@ import Product from '../models/product.js'
 import { StatusCodes } from 'http-status-codes'
 import validator from 'validator'
 
-// 創建產品create
 export const create = async (req, res) => {
   try {
     req.body.image = req.file.path
@@ -28,7 +27,7 @@ export const create = async (req, res) => {
     }
   }
 }
-// 獲取所有產品 (getAll)
+
 export const getAll = async (req, res) => {
   try {
     const sortBy = req.query.sortBy || 'createdAt'
@@ -71,7 +70,7 @@ export const getAll = async (req, res) => {
     })
   }
 }
-// 更新產品 (edit)
+
 export const edit = async (req, res) => {
   try {
     if (!validator.isMongoId(req.params.id)) throw new Error('ID')
@@ -109,7 +108,7 @@ export const edit = async (req, res) => {
     }
   }
 }
-// 獲取單個產品 (get)
+
 export const get = async (req, res) => {
   try {
     const sortBy = req.query.sortBy || 'createdAt'
@@ -153,7 +152,7 @@ export const get = async (req, res) => {
     })
   }
 }
-// 獲取單個產品詳細信息 (getId)
+
 export const getId = async (req, res) => {
   try {
     if (!validator.isMongoId(req.params.id)) throw new Error('ID')

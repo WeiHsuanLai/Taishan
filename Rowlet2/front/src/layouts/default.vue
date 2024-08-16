@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-for-template-key -->
 <template>
   <!-- 手機板側欄 -->
   <v-navigation-drawer v-if="mobile" v-model="drawer">
@@ -207,12 +208,12 @@
   })
 </script>
 <style scoped>
-  .logorowelt {
-    max-width: 70px;
-  }
   .v-app-bar {
-    height: 70px;
-    background: white;
+    height: 100px;
+    background: black;
     color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

@@ -12,9 +12,6 @@
 <script setup>
 //
 import { definePage } from 'vue-router/auto'
-import cardtest from '../components/Cardtest'
-import cardtest2 from '../components/Cardtest2'
-import { ref } from 'vue'
 
 definePage({
   meta: {

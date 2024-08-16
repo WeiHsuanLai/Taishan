@@ -10,6 +10,9 @@ const cartSchema = new Schema({
     type: Number,
     required: [true, '使用者購物車商品數量必填'],
     min: [1, '使用者購物車商品數量不符']
+  },
+  date: {
+    type: [Date] // 修改
   }
 })
 

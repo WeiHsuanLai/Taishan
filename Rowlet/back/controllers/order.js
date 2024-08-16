@@ -34,11 +34,6 @@ export const create = async (req, res) => {
         success: true,
         message: '包含下架商品'
       })
-    } else if (error.name === 'SELL') {
-      res.status(StatusCodes.BAD_REQUEST).json({
-        success: true,
-        message: '包含下架商品'
-      })
     } else if (error.name === 'ValidationError') {
       const key = Object.keys(error.errors)[0]
       const message = error.errors[key].message
