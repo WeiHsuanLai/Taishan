@@ -88,7 +88,7 @@
   import { useUserStore } from '@/stores/user'
   import { useSnackbar } from 'vuetify-use-dialog'
   import { useApi } from '@/composables/axios'
-
+  import { useForm } from 'vee-validate'
   // 使用 Vuetify 的 useDisplay 獲取手機模式狀態
   const { mobile } = useDisplay()
   // 使用自定義的useUserStore獲取用戶資訊
@@ -108,7 +108,11 @@
   const openDialog = item => {
     dialog.value.open = true
   }
-
+  const { isSubmitting, handleSubmit } = useForm({
+    initialValues: {
+      quantity: 1
+    }
+  })
   const closeDialog = () => {
     dialog.value.open = false
     fileAgent.value.deleteFileRecord()
@@ -117,7 +121,7 @@
   const fileRecords = ref([])
   const rawFileRecords = ref([])
 
-  const submit = async values => {
+  const submit = handleSubmit(async values => {
     if (fileRecords.value[0]?.error) return
     if (fileRecords.value.length < 1) return
     try {
@@ -126,6 +130,7 @@
         fd.append('image', fileRecords.value[0].file)
       }
       const { data } = await apiAuth.post('/photo', fd)
+      console.log(fd)
       user.image = data.result
       createSnackbar({
         text: dialog.value.id === '' ? '新增成功' : '編輯成功',
@@ -143,7 +148,7 @@
         }
       })
     }
-  }
+  })
 
   // 導覽列
   // 計算導航項目，根據用戶登錄狀態和權限顯示不同的菜單

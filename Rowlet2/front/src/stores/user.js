@@ -76,7 +76,7 @@ export const useUserStore = defineStore(
           date // 修改
         })
         cart.value = data.result
-        console.log('1212121212121212121', cart.value)
+
         return {
           color: 'green',
           text: '成功'

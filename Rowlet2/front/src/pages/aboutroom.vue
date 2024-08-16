@@ -1,5 +1,5 @@
 <template>
-  <v-cnotainer>
+  <v-container>
     <v-row>
     <v-col cols="12">
       <h1 class="text-center">客房介紹</h1>
@@ -18,7 +18,7 @@
       </v-col>
     <v-divider></v-divider>
   </v-row>
-  </v-cnotainer>
+  </v-container>
 </template>
 <script setup>
 //

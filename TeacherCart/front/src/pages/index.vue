@@ -8,8 +8,7 @@
         cols="12" md="6" lg="3"
         v-for="product in products" :key="product._id"
       >
-        <!-- <ProductCard v-bind="product"></ProductCard> -->
-        <ProductCard2></ProductCard2>
+        <ProductCard v-bind="product"></ProductCard>
       </v-col>
       <v-col cols="12">
         <v-pagination v-model="page" :length="pages" rounded="circle" @update:model-value="loadProducts"></v-pagination>
@@ -23,7 +22,7 @@ import { ref } from 'vue'
 import { definePage } from 'vue-router/auto'
 import { useApi } from '@/composables/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
-// import ProductCard from '@/components/ProductCard.vue'
+import ProductCard from '@/components/ProductCard.vue'
 
 definePage({
   meta: {
