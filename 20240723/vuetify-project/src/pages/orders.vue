@@ -51,7 +51,7 @@ const headers = [
     value: item => {
       return item.cart.map(c => {
         if (c.date && c.date.length > 0) {
-          const startDate = new Date(c.date[0]).toISOString().split('T')[0]
+          const startDate = new Date(c.date[1]).toISOString().split('T')[0]
           const endDate = new Date(c.date[c.date.length - 1]).toISOString().split('T')[0]
           return `${startDate} 至 ${endDate}`
         }

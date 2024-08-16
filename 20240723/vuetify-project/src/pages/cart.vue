@@ -10,16 +10,20 @@
           <span v-if="item.p_id.sell">{{ item.p_id.name }}</span>
           <span v-else class="text-red">{{ item.p_id.name }} (已下架)</span>
         </template>
+
+        <!-- 增加和減少房間數量 -->
         <template #[`item.quantity`]="{item}">
           <v-btn variant="text" color="red" @click="addCart(item.p_id._id, -1)">-</v-btn>
           <span>{{ item.quantity }}</span>
           <v-btn variant="text" color="green" @click="addCart(item.p_id._id, 1)">+</v-btn>
         </template>
+
         <template #[`item.action`]="{item}">
           <v-btn variant="text" color="red" icon="mdi-delete" @click="addCart(item.p_id._id, item.quantity * -1)"></v-btn>
         </template>
       </v-data-table>
     </v-col>
+    <!-- 訂單結帳按鈕 -->
     <v-col cols="12" class="text-center">
       <p>總金額: {{ total }}</p>
       <v-btn color="green" :disabled="!canCheckout" @click="checkout">結帳</v-btn>
@@ -51,8 +55,8 @@ const user = useUserStore()
 const items = ref([])
 const headers = [
   { title: '品名', key: 'p_id.name' },
-  { title: '單價', key: 'p_id.price' },
-  { title: '數量', key: 'quantity' },
+  { title: '房間價格', key: 'p_id.price' },
+  { title: '房間數量', key: 'quantity' },
   {
     title: '日期',
     key: 'date',
@@ -60,26 +64,16 @@ const headers = [
     value: item => {
       const dates = item.date // 直接取出 date 陣列
       if (dates && dates.length > 0) {
-        console.log(dates[dates.length - 1])
         // 取出第一個和最後一個日期
-        const startDate = new Date(dates[0]).toISOString().split('T')[0]
-        console.log(new Date(dates[0]).toISOString().split('T')[0])
+        const startDate = new Date(dates[1]).toISOString().split('T')[0]
         const endDate = new Date(dates[dates.length - 1]).toISOString().split('T')[0]
-        console.log(new Date(dates[dates.length - 1]).toISOString().split('T')[0])
         return `${startDate} 至 ${endDate}`
       }
       return '無日期'
-    //   // return item.p_id.date.map(c => {
-    //   //   if (c.date && c.date.length > 0) {
-    //   //     const startDate = new Date(c.date[0]).toISOString().split('T')[0]
-    //   //     const endDate = new Date(c.date[c.date.length - 1]).toISOString().split('T')[0]
-    //   //     return `${startDate} 至 ${endDate}`
-    //   //   }
-    //   //   return '無日期'
-    //   // }).join(', ')
     }
   },
-  { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity },
+  { title: '天數', key: 'days', value: item => (item.date.length - 1) },
+  { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * (item.date.length - 1) },
   { title: '操作', key: 'action' }
 ]
 
@@ -101,7 +95,7 @@ loadItems()
 
 const total = computed(() => {
   return items.value.reduce((total, current) => {
-    return total + current.quantity * current.p_id.price
+    return total + current.quantity * current.p_id.price * (current.date.length - 1)
   }, 0)
 })
 

@@ -54,4 +54,6 @@ const addCart = async () => {
 }
 const model = ref(null)
 const Today = computed(() => new Date().toISOString().split('T')[0])
+console.log(Today)
+
 </script>
