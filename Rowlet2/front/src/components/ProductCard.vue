@@ -4,7 +4,7 @@
     <v-card-title>
       <router-link :to="'/products/' + _id">{{ name }}</router-link>
     </v-card-title>
-    <v-date-input v-model="model" label="訂房日期" :min="Today" multiple="range"></v-date-input>
+    <v-date-input v-model="model" label="訂房日期"  multiple="range"></v-date-input>
     <v-card-subtitle>剩餘數量:{{ quantity }}</v-card-subtitle>
     <v-card-subtitle>${{ price }}</v-card-subtitle>
     <v-card-text>
@@ -54,6 +54,6 @@ const addCart = async () => {
 }
 const model = ref(null)
 const Today = computed(() => new Date().toISOString().split('T')[0])
-console.log(Today)
+// console.log(Today)
 
 </script>

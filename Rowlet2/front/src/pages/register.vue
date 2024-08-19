@@ -30,6 +30,12 @@
             v-model="passwordConfirm.value.value"
             :error-messages="passwordConfirm.errorMessage.value"
           ></v-text-field>
+          <v-text-field
+            label="真實姓名"
+            minlength="2" maxlength="200" counter
+            v-model="name.value.value"
+            :error-messages="name.errorMessage.value"
+          ></v-text-field>
           <div class="text-center">
             <v-btn type="submit" color="green" :loading="isSubmitting">註冊</v-btn>
           </div>
@@ -91,7 +97,12 @@ const schema = yup.object({
     .string()
     // .oneOf(陣列, 錯誤訊息) 只允許符合陣列內其中一個值
     // .ref('password')     代表這個 schema 的 password 的欄位值
-    .oneOf([yup.ref('password')], '密碼不一致')
+    .oneOf([yup.ref('password')], '密碼不一致'),
+  name: yup
+    .string()
+    .required('使用者真實姓名必填')
+    .min(2, '使用者真實姓名長度不符')
+    .max(200, '使用者真實姓名長度不符'),
 })
 
 const { handleSubmit, isSubmitting } = useForm({
@@ -101,13 +112,15 @@ const account = useField('account')
 const email = useField('email')
 const password = useField('password')
 const passwordConfirm = useField('passwordConfirm')
+const name = useField('name')
 
 const submit = handleSubmit(async (values) => {
   try {
     await api.post('/user', {
       account: values.account,
       email: values.email,
-      password: values.password
+      password: values.password,
+      name: values.name
     })
     createSnackbar({
       text: '註冊成功',

@@ -7,3 +7,4 @@ cd front
 cd back
 cd vuetify-project
 npm i
+bbbb@bbbb.bb

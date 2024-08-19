@@ -1,9 +1,8 @@
-<!-- eslint-disable vue/no-v-for-template-key -->
 <template>
   <!-- 手機板側欄 -->
   <v-navigation-drawer v-if="mobile" v-model="drawer">
     <v-list nav>
-      <v-list-item :prepend-avatar="user.image" :title="user.account" @click="openDialog(null)"></v-list-item>
+      <v-list-item :prepend-avatar="user.image" :title="user.name" @click="openDialog(null)"></v-list-item>
       <template v-for="item in navItems" :key="item.to">
         <!-- 如果 item.show 有登入 才顯示 -->
         <v-list-item :prepend-icon="item.icon" :to="item.to" :title="item.text" v-if="item.show">
@@ -43,7 +42,7 @@
             <v-badge color="red" :content="user.cart" v-if="item.to === '/cart' && user.cart > 0" floating></v-badge>
           </v-btn>
         </template>
-        <v-list-item :prepend-avatar="user.image" :title="user.account" @click="openDialog(null)" v-if="user.isLogin"></v-list-item>
+        <v-list-item :prepend-avatar="user.image" :title="user.name" @click="openDialog(null)" v-if="user.isLogin"></v-list-item>
         <!-- 有登入才會顯示登出 -->
         <v-btn prepend-icon="mdi-account-arrow-right" v-if="user.isLogin" @click="logout">登出</v-btn>
       </template>
@@ -98,8 +97,7 @@
   const createSnackbar = useSnackbar()
   // 定義一個響應式變量來控制側邊欄的顯示與隱藏
   const drawer = ref(false)
-
-  const { apiAuth } = useApi()
+const { apiAuth } = useApi()
 
   const fileAgent = ref(null)
   const dialog = ref({
@@ -209,9 +207,9 @@
 </script>
 <style scoped>
   .v-app-bar {
-    height: 100px;
+    height: 70px;
     background: black;
-    color: gray;
+    color: rgb(193, 193, 193);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -7,6 +7,7 @@ import validator from 'validator'
 import bcrypt from 'bcrypt'
 // 引入管理權限
 import UserRole from '../enums/UserRole.js'
+import XRegExp from 'xregexp';
 
 // 建立購物車結構
 const cartSchema = Schema({
@@ -66,6 +67,11 @@ const schema = new Schema(
 				message: '使用者信箱格式錯誤'
 			}
 		},
+		name: {
+			type: [String],
+			required: [true, '使用者真實姓名必填'],
+		}
+		,
 		// 登入 tokens 身份驗證令牌
 		tokens: {
 			type: [String]

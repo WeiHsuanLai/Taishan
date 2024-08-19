@@ -1,10 +1,10 @@
-import { StatusCodes } from 'http-status-codes' // 從 http-status-codes 庫導入 StatusCodes 常量
+import { StatusCodes } from 'http-status-codes' 
 
-export const create = async (req, res) => {     // 定義一個異步函數 create，接收 req 和 res 作為參數
-  try {                                         // 嘗試執行代碼塊
-    req.user.image = req.file.path              // 定義一個異步函數 create，接收 req 和 res 作為參數
-    await req.user.save()                       // 等待 req.user.save() 完成
-    res.status(StatusCodes.OK).json({           // 將 HTTP 狀態碼設置為 OK，並以 JSON 格式回應用戶端
+export const create = async (req, res) => {     
+  try {                                         
+    req.user.image = req.file.path              
+    await req.user.save()                       
+    res.status(StatusCodes.OK).json({           
       success: true,
       message: '',
       result :req.file.path

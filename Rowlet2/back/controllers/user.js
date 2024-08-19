@@ -56,6 +56,7 @@ export const login = async (req, res) => {
 			result: {
 				token,
 				account: req.user.account,
+				name: req.user.name,
 				role: req.user.role,
 				cart: req.user.cartQuantity,
 				image: req.user.image
@@ -103,6 +104,7 @@ export const profile = (req, res) => {
 			result: {
 				// 這裡不需要 token 因為已經在前端了
 				account: req.user.account,
+				name:req.user.name,
 				role: req.user.role,
 				cart: req.user.cartQuantity,
 				image: req.user.image
