@@ -77,7 +77,7 @@ export const useUserStore = defineStore(
         const { data } = await apiAuth.patch('/user/cart', {
           product,
           quantity,
-          date // 修改
+          date
         })
         cart.value = data.result
 
@@ -96,6 +96,7 @@ export const useUserStore = defineStore(
     const checkout = async () => {
       try {
         await apiAuth.post('/order')
+
         cart.value = 0
         return {
           color: 'green',

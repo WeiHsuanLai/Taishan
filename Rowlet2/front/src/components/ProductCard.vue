@@ -1,15 +1,19 @@
 <template>
-  <v-card>
-    <v-img :src="image" cover height="200"></v-img>
+  <v-card class="d-flex">
+    <v-col cols="2">
+      <v-img :src="image" cover height="200"></v-img>
+    </v-col>
     <v-card-title>
       <router-link :to="'/products/' + _id">{{ name }}</router-link>
     </v-card-title>
-    <v-date-input v-model="model" label="訂房日期"  multiple="range"></v-date-input>
     <v-card-subtitle>剩餘數量:{{ quantity }}</v-card-subtitle>
     <v-card-subtitle>${{ price }}</v-card-subtitle>
-    <v-card-text>
-      {{ description }}
-    </v-card-text>
+    <v-col cols="3">
+      <v-card-text>
+        <v-date-input v-model="model" label="訂房日期"  multiple="range" :min="Today" max-height="300"></v-date-input>
+        {{ description }}
+      </v-card-text>
+    </v-col>
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn color="primary" type="submit" prepend-icon="mdi-cart" @click="addCart">加入購物車</v-btn>
@@ -34,7 +38,7 @@ const addCart = async () => {
     router.push('/login')
     return
   }
-  if (!isNaN(props.quantity) && props.quantity > 0 && props.quantity >= 1 && model.value) {
+    console.log(model.value)
     const result = await user.addCart(props._id, 1, model.value)
     createSnackbar({
       text: result.text,
@@ -42,15 +46,6 @@ const addCart = async () => {
         color: result.color
       }
     })
-  } else {
-    console.error('庫存不足或未選擇日期')
-    createSnackbar({
-      text: '庫存不足或未選擇日期',
-      snackbarProps: {
-        color: 'red'
-      }
-    })
-  }
 }
 const model = ref(null)
 const Today = computed(() => new Date().toISOString().split('T')[0])

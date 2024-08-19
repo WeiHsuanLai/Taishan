@@ -106,7 +106,6 @@ const canCheckout = computed(() => {
 const loading = ref(false)
 const checkout = async () => {
   loading.value = true
-
   const result = await user.checkout()
 
   createSnackbar({
@@ -123,8 +122,8 @@ const checkout = async () => {
   loading.value = false
 }
 
-const addCart = async (product, quantity) => {
-  const result = await user.addCart(product, quantity)
+const addCart = async (product, quantity, date) => {
+  const result = await user.addCart(product, quantity, date)
   createSnackbar({
     text: result.text,
     snackbarProps: {

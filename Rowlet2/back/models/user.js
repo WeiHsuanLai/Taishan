@@ -7,7 +7,6 @@ import validator from 'validator'
 import bcrypt from 'bcrypt'
 // 引入管理權限
 import UserRole from '../enums/UserRole.js'
-import XRegExp from 'xregexp';
 
 // 建立購物車結構
 const cartSchema = Schema({
