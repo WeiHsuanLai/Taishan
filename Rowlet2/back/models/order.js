@@ -1,4 +1,7 @@
-import { Schema, model, ObjectId } from 'mongoose'
+import mongoose, { Schema, model } from 'mongoose';
+
+// 从 Schema.Types 引入 ObjectId
+const { ObjectId } = Schema.Types;
 
 const cartSchema = new Schema({
   p_id: {
@@ -12,9 +15,9 @@ const cartSchema = new Schema({
     min: [1, '使用者購物車商品數量不符']
   },
   date: {
-		type: [Date] // 修改
-	}
-})
+    type: [Date] // 修改
+  }
+});
 
 const schema = new Schema({
   user: {
@@ -25,8 +28,8 @@ const schema = new Schema({
   cart: {
     type: [cartSchema],
     validate: {
-      validator (value) {
-        return value.length > 0
+      validator(value) {
+        return value.length > 0;
       },
       message: '訂單購物車必填'
     }
@@ -34,6 +37,6 @@ const schema = new Schema({
 }, {
   versionKey: false,
   timestamps: true
-})
+});
 
-export default model('orders', schema)
+export default model('orders', schema);

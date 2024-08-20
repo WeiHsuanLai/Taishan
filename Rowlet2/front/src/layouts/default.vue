@@ -42,7 +42,7 @@
             <v-badge color="red" :content="user.cart" v-if="item.to === '/cart' && user.cart > 0" floating></v-badge>
           </v-btn>
         </template>
-        <v-list-item :prepend-avatar="user.image" :title="user.name" @click="openDialog(null)" v-if="user.isLogin"></v-list-item>
+        <v-list-item :prepend-avatar="user.image" :title="user.name[0]" @click="openDialog(null)" v-if="user.isLogin"></v-list-item>
         <!-- 有登入才會顯示登出 -->
         <v-btn prepend-icon="mdi-account-arrow-right" v-if="user.isLogin" @click="logout">登出</v-btn>
       </template>
@@ -97,7 +97,7 @@
   const createSnackbar = useSnackbar()
   // 定義一個響應式變量來控制側邊欄的顯示與隱藏
   const drawer = ref(false)
-const { apiAuth } = useApi()
+  const { apiAuth } = useApi()
 
   const fileAgent = ref(null)
   const dialog = ref({

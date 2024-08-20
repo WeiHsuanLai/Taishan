@@ -73,6 +73,7 @@ export const useUserStore = defineStore(
     }
 
     const addCart = async (product, quantity, date) => {
+      console.log(date)
       try {
         const { data } = await apiAuth.patch('/user/cart', {
           product,
@@ -81,6 +82,7 @@ export const useUserStore = defineStore(
         })
         cart.value = data.result
 
+        console.log('11111111111111111111')
         return {
           color: 'green',
           text: '成功'

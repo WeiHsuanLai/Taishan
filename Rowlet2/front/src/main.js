@@ -12,7 +12,6 @@ import App from './App.vue'
 
 // Composables
 import { createApp } from 'vue'
-import { io } from 'socket.io-client'
 
 import { setupCalendar, Calendar, DatePicker } from 'v-calendar'
 import 'v-calendar/style.css'

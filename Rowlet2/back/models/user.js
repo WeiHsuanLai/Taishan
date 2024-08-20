@@ -25,6 +25,13 @@ const cartSchema = Schema({
 		type: [Date] // 修改
 	}
 })
+cartSchema.pre('save', function(next) {
+  this.date = this.date.map(date => {
+    const dateUTC = new Date(date);
+    return new Date(dateUTC.getTime() + 8 * 60 * 60 * 1000); // 加 8 小时
+  });
+  next();
+});
 
 // 建立使用者結構
 const schema = new Schema(

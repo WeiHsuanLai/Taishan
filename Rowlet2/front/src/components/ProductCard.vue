@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex">
+  <v-card class="d-flex align-center">
     <v-col cols="2">
       <v-img :src="image" cover height="200"></v-img>
     </v-col>
@@ -7,11 +7,11 @@
       <router-link :to="'/products/' + _id">{{ name }}</router-link>
     </v-card-title>
     <v-card-subtitle>剩餘數量:{{ quantity }}</v-card-subtitle>
-    <v-card-subtitle>${{ price }}</v-card-subtitle>
-    <v-col cols="3">
+    <v-card-subtitle>價格${{ price }}</v-card-subtitle>
+    <v-col cols="6">
       <v-card-text>
         <v-date-input v-model="model" label="訂房日期"  multiple="range" :min="Today" max-height="300"></v-date-input>
-        {{ description }}
+        <!-- {{ description }} -->
       </v-card-text>
     </v-col>
     <v-card-actions>
@@ -38,8 +38,9 @@ const addCart = async () => {
     router.push('/login')
     return
   }
-    console.log(model.value)
-    const result = await user.addCart(props._id, 1, model.value)
+    // console.log(model.value)
+  const result = await user.addCart(props._id, 1, model.value)
+  console.log(result)
     createSnackbar({
       text: result.text,
       snackbarProps: {

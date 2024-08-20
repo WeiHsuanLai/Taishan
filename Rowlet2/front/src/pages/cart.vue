@@ -65,14 +65,14 @@ const headers = [
       const dates = item.date // 直接取出 date 陣列
       if (dates && dates.length > 0) {
         // 取出第一個和最後一個日期
-        const startDate = new Date(dates[1]).toISOString().split('T')[0]
+        const startDate = new Date(dates[0]).toISOString().split('T')[0]
         const endDate = new Date(dates[dates.length - 1]).toISOString().split('T')[0]
         return `${startDate} 至 ${endDate}`
       }
       return '無日期'
     }
   },
-  { title: '天數', key: 'days', value: item => (item.date.length - 1) },
+  { title: '天數', key: 'days', value: item => (item.date.length) },
   { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * (item.date.length - 1) },
   { title: '操作', key: 'action' }
 ]

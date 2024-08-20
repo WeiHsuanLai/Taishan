@@ -72,6 +72,12 @@
             v-model="category.value.value"
             :error-messages="category.errorMessage.value"
           ></v-select>
+          <v-text-field
+            label="房間數量"
+            type="number" min="1"
+            v-model="quantity.value.value"
+            :error-messages="quantity.errorMessage.value"
+          ></v-text-field>
           <v-checkbox
             label="上架"
             v-model="sell.value.value"
@@ -105,7 +111,7 @@
 
 <script setup>
 import { definePage } from 'vue-router/auto'
-import { ref, shallowRef, watch } from 'vue'
+import { ref } from 'vue'
 import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
 import { useApi } from '@/composables/axios'
@@ -132,6 +138,7 @@ const openDialog = (item) => {
     name.value.value = item.name
     price.value.value = item.price
     description.value.value = item.description
+    quantity.value.value = item.quantity
     category.value.value = item.category
     sell.value.value = item.sell
     // 如果值是 null 沒有就是新增的模式
@@ -149,7 +156,6 @@ const closeDialog = () => {
 }
 // 商品分類
 const categories = ['單人房', '雙人房', '四人房']
-// const categories = ['衣服', '手機', '遊戲', '食品']
 
 // 定義欄位格式，建立表單驗證
 const schema = yup.object({
@@ -170,6 +176,11 @@ const schema = yup.object({
     .test('isCategory', '商品分類錯誤', value => {
       return categories.includes(value)
     }),
+  quantity: yup
+  .number()
+    .typeError('商品數量格式錯誤')
+    .required('商品數量必填')
+    .min(1, '商品數量不能小於 1'),
   sell: yup
     .boolean()
 })
@@ -183,6 +194,7 @@ const { handleSubmit, isSubmitting, resetForm } = useForm({
     price: 0,
     description: '',
     category: '',
+    quantity: 1,
     sell: true, // 預設上架
   }
 })
@@ -192,8 +204,7 @@ const price = useField('price')
 const description = useField('description')
 const category = useField('category')
 const sell = useField('sell')
-const date = useField('date')
-
+const quantity = useField('quantity')
 const fileRecords = ref([])
 const rawFileRecords = ref([])
 
@@ -209,6 +220,7 @@ const submit = handleSubmit(async (values) => {
     fd.append('description', values.description)
     fd.append('category', values.category)
     fd.append('sell', values.sell)
+    fd.append('quantity', values.quantity)
     fd.append('date', values.date)
 
     if (fileRecords.value.length > 0) {
@@ -251,6 +263,7 @@ const tableHeaders = [
   { title: '名稱', align: 'center', sortable: true, key: 'name' },
   { title: '價格', align: 'center', sortable: true, key: 'price' },
   { title: '分類', align: 'center', sortable: true, key: 'category' },
+  { title: '房間數量', align: 'center', sortable: true, key: 'quantity' },
   { title: '上架', align: 'center', sortable: true, key: 'sell' },
   { title: '操作', align: 'center', sortable: false, key: 'action' }
 ]

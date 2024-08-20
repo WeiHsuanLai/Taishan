@@ -29,6 +29,11 @@ const schema = new Schema({
     type: Boolean,
     required: [true, '商品上架狀態必填']
   },
+  quantity: {
+    type: Number,
+    required: [true, '商品數量必填'],
+    min: [1, '商品數量不能小於 1']
+  }
 }, {
   timestamps: true,
   versionKey: false
