@@ -32,7 +32,7 @@ const schema = new Schema({
   quantity: {
     type: Number,
     required: [true, '商品數量必填'],
-    min: [1, '商品數量不能小於 1']
+    min: [0, '商品數量不能小於 0']
   }
 }, {
   timestamps: true,

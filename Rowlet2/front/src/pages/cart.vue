@@ -72,7 +72,7 @@ const headers = [
       return '無日期'
     }
   },
-  { title: '天數', key: 'days', value: item => (item.date.length) },
+  { title: '天數', key: 'days', value: item => (item.date.length - 1) },
   { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * (item.date.length - 1) },
   { title: '操作', key: 'action' }
 ]

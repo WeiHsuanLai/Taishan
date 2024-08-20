@@ -180,7 +180,7 @@ const schema = yup.object({
   .number()
     .typeError('商品數量格式錯誤')
     .required('商品數量必填')
-    .min(1, '商品數量不能小於 1'),
+    .min(0, '商品數量不能小於 0'),
   sell: yup
     .boolean()
 })
@@ -194,7 +194,7 @@ const { handleSubmit, isSubmitting, resetForm } = useForm({
     price: 0,
     description: '',
     category: '',
-    quantity: 1,
+    quantity: 0,
     sell: true, // 預設上架
   }
 })
