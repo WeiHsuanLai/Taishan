@@ -71,12 +71,12 @@ const addCart = async () => {
 
 onMounted(() => {
   watch(model, async (newVal, newVal2) => {
-    console.log('newVal2', newVal2)
+    // console.log('newVal2', newVal2)
     if (newVal !== null || newVal2 !== null) {
       const dateString = newVal[0]
       const dateString2 = newVal[1]
-      console.log('dateString1=====', dateString)
-      console.log('dateString2=====', dateString2)
+      // console.log('dateString1=====', dateString)
+      // console.log('dateString2=====', dateString2)
       const dateObj = new Date(dateString)
       dateObj.setHours(dateObj.getHours() + 8)
       const finaldate = dateObj.toISOString() // 更新 finaldate 為 ISO 8601 格式的字符串
@@ -96,16 +96,16 @@ onMounted(() => {
 const loadItems = async (finaldate) => {
   try {
     const { data } = await apiAuth.get('/order/all')
-    let quantity = props.quantity
-    console.log('quantity======', quantity)
+    const quantity1 = props.quantity
+    console.log('quantity1======', quantity1)
     data.result.forEach(order => {
-      console.log('order.cart.quantity=======', order.cart[0].quantity)
+      console.log('order.cart.quantity=======', order.cart.quantity)
       const orderDate = new Date(order.cart[0].date[0]).toISOString() // 轉換為 ISO 8601 格式的字符串
-      console.log('orderDate', orderDate)
+      console.log('orderDate=============', orderDate)
       console.log('order.cart[0].date.length==========', order.cart[0].date.length - 1)
-      if (orderDate === finaldate) { // 現在可以正確比較
-        quantity -= ((order.cart[0].date.length - 1) * order.cart[0].quantity)
-        console.log('quantity', quantity)
+      if (orderDate === finaldate) {
+        const quantity2 = ((order.cart[0].date.length - 1) + order.cart[0].quantity)
+        console.log('quantity2', quantity2)
       }
     })
     finalQuantity.value = quantity // 更新 finalQuantity 的值
