@@ -14,7 +14,7 @@
       <h3>價格${{ price }}</h3>
     </v-col>
     <v-col cols="2">
-        <v-date-input v-model="model" label="訂房日期" multiple="range" :min="Today" max-height="365"></v-date-input>
+        <v-date-input v-model="model" label="訂房日期" multiple="range" :min="Today" max-weight="365"></v-date-input>
     </v-col>
     <v-col cols="3">
         <v-btn color="primary" type="submit" prepend-icon="mdi-cart" @click="addCart">加入購物車</v-btn>
@@ -51,8 +51,15 @@ const addCart = async () => {
       }
     })
     return
+  } else if (model.value[1] === Today.value) {
+    createSnackbar({
+      text: '結束日期不能為今天',
+      snackbarProps: {
+        color: 'red'
+      }
+    })
+    return
   }
-
   const result = await user.addCart(props._id, 1, model.value)
   createSnackbar({
     text: result.text,
@@ -63,14 +70,25 @@ const addCart = async () => {
 }
 
 onMounted(() => {
-  watch(model, async (newVal) => {
-    if (newVal !== null) {
+  watch(model, async (newVal, newVal2) => {
+    console.log('newVal2', newVal2)
+    if (newVal !== null || newVal2 !== null) {
       const dateString = newVal[0]
+      const dateString2 = newVal[1]
+      console.log('dateString1=====', dateString)
+      console.log('dateString2=====', dateString2)
       const dateObj = new Date(dateString)
       dateObj.setHours(dateObj.getHours() + 8)
       const finaldate = dateObj.toISOString() // 更新 finaldate 為 ISO 8601 格式的字符串
       // 呼叫 loadItems 來更新 finalQuantity
       await loadItems(finaldate)
+    } else {
+      createSnackbar({
+      text: '要選範圍',
+      snackbarProps: {
+        color: 'red'
+      }
+      })
     }
   })
 })
@@ -81,12 +99,12 @@ const loadItems = async (finaldate) => {
     let quantity = props.quantity
     console.log('quantity======', quantity)
     data.result.forEach(order => {
-      console.log('order.cart=======', order.cart)
+      console.log('order.cart.quantity=======', order.cart[0].quantity)
       const orderDate = new Date(order.cart[0].date[0]).toISOString() // 轉換為 ISO 8601 格式的字符串
       console.log('orderDate', orderDate)
       console.log('order.cart[0].date.length==========', order.cart[0].date.length - 1)
       if (orderDate === finaldate) { // 現在可以正確比較
-        quantity -= order.cart[0].date.length - 1
+        quantity -= ((order.cart[0].date.length - 1) * order.cart[0].quantity)
         console.log('quantity', quantity)
       }
     })
