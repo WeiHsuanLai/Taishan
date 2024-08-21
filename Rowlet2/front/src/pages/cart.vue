@@ -15,7 +15,7 @@
         <template #[`item.quantity`]="{item}">
           <v-btn variant="text" color="red" @click="addCart(item.p_id._id, -1)">-</v-btn>
           <span>{{ item.quantity }}</span>
-          <v-btn variant="text" color="green" @click="addCart(item.p_id._id, 1)">+</v-btn>
+          <v-btn variant="text" color="green" @click="addCart(item.p_id._id,1,item.date)">+</v-btn>
         </template>
 
         <template #[`item.action`]="{item}">
@@ -41,7 +41,7 @@ import { useUserStore } from '@/stores/user'
 
 definePage({
   meta: {
-    title: '購物網 | 購物車',
+    title: '購物車',
     login: true,
     admin: false
   }

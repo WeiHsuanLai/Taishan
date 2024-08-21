@@ -26,10 +26,18 @@ const cartSchema = Schema({
 	}
 })
 cartSchema.pre('save', function(next) {
-  this.date = this.date.map(date => {
-    const dateUTC = new Date(date);
-    return new Date(dateUTC.getTime() + 8 * 60 * 60 * 1000); // 加 8 小时
-  });
+  // 確保 this.date 是一個陣列
+  if (Array.isArray(this.date)) {
+    this.date = this.date.map(dateStr => {
+      const dateUTC = new Date(dateStr);
+      // 將日期轉換為 UTC+8 時區
+      return new Date(dateUTC.getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[0];
+    });
+  } else if (typeof this.date === 'string') {
+    const dateUTC = new Date(this.date);
+    // 將日期轉換為 UTC+8 時區
+    this.date = new Date(dateUTC.getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[0];
+  }
   next();
 });
 

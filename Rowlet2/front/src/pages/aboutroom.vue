@@ -17,9 +17,18 @@
 </template>
 
 <script setup>
+import { definePage } from 'vue-router/auto'
 import { ref } from 'vue'
 import { useApi } from '@/composables/axios'
 import ProductCard from '@/components/ProductCard.vue'
+
+definePage({
+  meta: {
+    title: '客房介紹',
+    login: true,
+    admin: false
+  }
+})
 
 const { api } = useApi()
 

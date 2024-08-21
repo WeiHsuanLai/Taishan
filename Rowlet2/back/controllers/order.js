@@ -7,21 +7,17 @@ export const create = async (req, res) => {
   try {
     // 檢查購物車有沒有東西
     if (req.user.cart.length === 0) throw new Error('EMPTY')
-    // if (req.order.cart.date.length === 0) throw new Error('買不了')
-    // console.log(req.user);
-    console.log('=========================================');
-    // console.log(req.user.cart[0].date);
-    console.log(req.user)
-    // console.log(req.user.cart[0].p_id)
+    console.log('req.user', req.user)
+  console.log('=========================================');
+  console.log('req.user.cart',req.user.cart)
+    // console.log(req.user.cart.quantity);
     if (req.user.cart[0].quantity > 0) {
-      console.log('111111111111111111111')
       const findProduct = await Product.findById(req.user.cart[0].p_id)
       const updatedProduct = await Product.findByIdAndUpdate(
         req.user.cart[0].p_id,        // 查找的 ID
         { $set: { quantity: findProduct.quantity - 1 } }, // 更新的字段
         { runValidators: true, new: true } // 選項: 運行驗證器並返回更新後的文檔
       ).orFail(new Error('NOT FOUND')); // 如果沒有找到文檔，則拋出錯誤
-      console.log(updatedProduct)
     }
     // 檢查有沒有下架商品
     const user = await User.findById(req.user._id, 'cart').populate('cart.p_id')
