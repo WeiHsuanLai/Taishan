@@ -13,10 +13,8 @@
 
         <!-- 增加和減少房間數量 -->
         <template #[`item.quantity`]="{item}">
-          <v-btn variant="text" color="red" @click="addCart(item.p_id._id, -1)">-</v-btn>
+          <v-btn variant="text" color="red" @click="addCart(item.p_id._id, -1,item.date)">-</v-btn>
           <span>{{ item.quantity }}</span>
-          <!-- <h2>{{ item }}</h2> -->
-          <h1>{{ item.date }}</h1>
           <v-btn variant="text" color="green" @click="addCart(item.p_id._id,1,item.date)">+</v-btn>
         </template>
 
@@ -61,24 +59,21 @@ const headers = [
   {
     title: '日期',
     key: 'date',
-    // value: item => item.p_id.date.toISOString().split('T')[0]
     value: item => {
-      const dates = item.date // 直接取出 date 陣列
+      const dates = item.date
       if (dates && dates.length > 0) {
-        // 取出第一個和最後一個日期
         const startDate = new Date(dates[0]).toISOString().split('T')[0]
         const endDate = new Date(dates[dates.length - 1]).toISOString().split('T')[0]
         const endDatePlusOneDay = new Date(endDate)
-        endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 1) // 增加一天
-        console.log(endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 1))
-        endDatePlusOneDay.setHours(0, 0, 0, 0) // 重置時間為00:00:00
-        const endDatePlusOneDay2 = endDatePlusOneDay.toISOString().split('T')[0] // 轉換回 YYYY-MM-DD 格式
+        endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 1)
+        endDatePlusOneDay.setHours(0, 0, 0, 0)
+        const endDatePlusOneDay2 = endDatePlusOneDay.toISOString().split('T')[0]
         return `${startDate} 至  ${endDatePlusOneDay2}`
       }
       return '無日期'
     }
   },
-  { title: '天數', key: 'days', value: item => item.date.length },
+  { title: '天數', key: 'days', value: item => item.date.length || item.value[0].date.length },
   { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * item.date.length },
   { title: '操作', key: 'action' }
 ]
@@ -98,6 +93,10 @@ const loadItems = async () => {
   }
 }
 loadItems()
+
+// const days = computed(() => {
+
+// })
 
 const total = computed(() => {
   return items.value.reduce((total, current) => {
@@ -138,6 +137,7 @@ const addCart = async (product, quantity, date) => {
   })
   if (result.color === 'green') {
     const idx = items.value.findIndex(item => item.p_id._id === product)
+    console.log('Date parameter:', date) // 確認 date 參數的值
     items.value[idx].quantity += quantity
     if (items.value[idx].quantity <= 0) {
       items.value.splice(idx, 1)

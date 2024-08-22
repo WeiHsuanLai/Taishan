@@ -145,13 +145,16 @@ export const editCart = async (req, res) => {
 		if (idx > -1) {
 			// 如果購物車內有商品，檢查修改後的數量
 			const quantity = req.user.cart[idx].quantity + parseInt(req.body.quantity)
-			if (quantity <= 0) {
+			const date = req.user.cart[idx].date
+			if (quantity <= 0 || date <=0) {
 				// 如果購物車數量小於 0 或等於 0 就刪除
 				req.user.cart.splice(idx, 1)
 			} else {
 				// 如果修改後還有就修改
 				req.user.cart[idx].quantity = quantity
-				req.user.cart[idx].date = req.body.date 
+				req.user.cart[idx].date = date
+				console.log('req.user.cart[idx].quantity', req.user.cart[idx].quantity);
+				console.log('req.user.cart[idx].date',req.user.cart[idx].date);
 			}
 		} else {
 			// 如果購物車內沒有商品，檢查商品是否存在

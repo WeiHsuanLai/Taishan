@@ -2,7 +2,7 @@
   <!-- 手機板側欄 -->
   <v-navigation-drawer v-if="mobile" v-model="drawer">
     <v-list nav>
-      <v-list-item :prepend-avatar="user.image" :title="user.name" @click="openDialog(null)"></v-list-item>
+      <v-list-item :prepend-avatar="user.image" :title="user.name[0]" @click="openDialog(null)"></v-list-item>
       <template v-for="item in navItems" :key="item.to">
         <!-- 如果 item.show 有登入 才顯示 -->
         <v-list-item :prepend-icon="item.icon" :to="item.to" :title="item.text" v-if="item.show">

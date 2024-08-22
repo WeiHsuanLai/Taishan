@@ -27,9 +27,8 @@ import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
 import { VDateInput } from 'vuetify/labs/VDateInput'
-import { computed, ref, watch, onMounted } from 'vue'
+import { computed, ref } from 'vue'
 import { useApi } from '@/composables/axios'
-import Products from '@/pages/admin/products.vue'
 
 const user = useUserStore()
 const router = useRouter()
@@ -148,7 +147,7 @@ const loadItems = async (finaldate) => {
     )
 
     // 迭代並計算最終數量
-    if (relevantDates.length > 0) {
+    if (relevantDates.length >= 0) {
       finalQuantity.value -= relevantDates.reduce((sum, { quantity }) => sum + quantity, 0)
     }
 
@@ -156,7 +155,7 @@ const loadItems = async (finaldate) => {
   } catch (error) {
     console.log(error)
     createSnackbar({
-      text: error?.response?.data?.message || '發生錯誤',
+      text: error?.response?.data?.message || '數量不符',
       snackbarProps: {
         color: 'red',
       },

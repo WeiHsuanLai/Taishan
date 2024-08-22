@@ -15,7 +15,6 @@ export const useUserStore = defineStore(
     const cart = ref(0)
     const image = ref('')
     const name = ref('')
-    const date = ref('')
     const isLogin = computed(() => {
       return token.value.length > 0
     })
@@ -80,8 +79,8 @@ export const useUserStore = defineStore(
           quantity,
           date
         })
-
         cart.value = data.result.cartQuantity
+        console.log(cart.value)
 
         return {
           color: 'green',
