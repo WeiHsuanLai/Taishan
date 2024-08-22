@@ -14,7 +14,7 @@
       <h3>價格${{ price }}</h3>
     </v-col>
     <v-col cols="2">
-        <v-date-input v-model="model" label="訂房日期" multiple="range" :min="Today" max-weight="365"></v-date-input>
+        <v-date-input v-model="model" label="訂房日期" multiple="range" :min="Today" max-weight="365" @update:modelValue="inputdate"></v-date-input>
     </v-col>
     <v-col cols="3">
         <v-btn color="primary" type="submit" prepend-icon="mdi-cart" @click="addCart">加入購物車</v-btn>
@@ -29,6 +29,7 @@ import { useSnackbar } from 'vuetify-use-dialog'
 import { VDateInput } from 'vuetify/labs/VDateInput'
 import { computed, ref, watch, onMounted } from 'vue'
 import { useApi } from '@/composables/axios'
+import Products from '@/pages/admin/products.vue'
 
 const user = useUserStore()
 const router = useRouter()
@@ -37,7 +38,7 @@ const { apiAuth } = useApi()
 const props = defineProps(['_id', 'category', 'description', 'quantity', 'image', 'name', 'price', 'sell'])
 const model = ref(null)
 const Today = computed(() => new Date().toISOString().split('T')[0])
-const finalQuantity = ref(null) // 使用 ref 來定義 finalQuantity
+const finalQuantity = ref(0) // 使用 ref 來定義 finalQuantity
 
 const addCart = async () => {
   if (!user.isLogin) {
@@ -69,12 +70,10 @@ const addCart = async () => {
   })
 }
 
-onMounted(() => {
-  watch(model, async (newVal, newVal2) => {
-    // console.log('newVal2', newVal2)
-    if (newVal !== null || newVal2 !== null) {
+ const inputdate = async(newVal) => {
+    if (newVal !== null) {
       const dateString = newVal[0]
-      const dateString2 = newVal[1]
+      finalQuantity.value = props.quantity
       // console.log('dateString1=====', dateString)
       // console.log('dateString2=====', dateString2)
       const dateObj = new Date(dateString)
@@ -90,26 +89,34 @@ onMounted(() => {
       }
       })
     }
-  })
-})
+  }
 
 const loadItems = async (finaldate) => {
   try {
     const { data } = await apiAuth.get('/order/all')
-    const quantity1 = props.quantity
-    console.log('quantity1======', quantity1)
     data.result.forEach(order => {
-      console.log('order.cart.quantity=======', order.cart.quantity)
-      const orderDate = new Date(order.cart[0].date[0]).toISOString() // 轉換為 ISO 8601 格式的字符串
-      console.log('orderDate=============', orderDate)
-      console.log('order.cart[0].date.length==========', order.cart[0].date.length - 1)
-      if (orderDate === finaldate) {
-        const quantity2 = ((order.cart[0].date.length - 1) + order.cart[0].quantity)
-        console.log('quantity2', quantity2)
+      order.cart.forEach(date => {
+        console.log('date', date)
+        if (date.p_id._id === props._id) {
+          console.log(date.p_id._id)
+          console.log(props._id)
+          date.date.forEach(date2 => {
+            const date3 = new Date(date2)
+            date3.setHours(date3.getHours() - 8)
+            console.log('new Date(date2)', date3)
+            console.log('model.value[0]', model.value[0])
+            if (model.value.some(a => a.getTime() === date3.getTime())) {
+              console.log(456)
+              finalQuantity.value--
+            }
+          })
+        }
       }
+      )
+      console.log('finaldate', finaldate)
     })
-    finalQuantity.value = quantity // 更新 finalQuantity 的值
   } catch (error) {
+    console.log(error)
     createSnackbar({
       text: error?.response?.data?.message || '發生錯誤',
       snackbarProps: {
