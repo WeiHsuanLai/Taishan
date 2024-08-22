@@ -54,7 +54,7 @@ const headers = [
           const startDate = new Date(c.date[0]).toISOString().split('T')[0]
           const endDate = new Date(c.date[c.date.length - 1]).toISOString().split('T')[0]
           const endDatePlusOneDay = new Date(endDate)
-          endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 1) // 增加一天
+          endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 2)
           endDatePlusOneDay.setHours(0, 0, 0, 0) // 重置時間為00:00:00
           const endDatePlusOneDay2 = endDatePlusOneDay.toISOString().split('T')[0] // 轉換回 YYYY-MM-DD 格式
           return `${startDate}日 至  ${endDatePlusOneDay2}日`

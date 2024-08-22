@@ -88,79 +88,80 @@ const addCart = async () => {
     }
   }
 
-// const loadItems = async (finaldate) => {
-//   try {
-//     const { data } = await apiAuth.get('/order/all')
-//     console.log('data.result', data.result)
-//     data.result.forEach(order => {
-//       order.cart.forEach(date => {
-//         if (date.p_id._id === props._id) {
-//           // console.log('date.date[2]', date.date[2])
-//           // console.log('date.quantity', date.quantity)
-//           date.date.forEach(date2 => {
-//             // const date3 = new Date(date2)
-//             //  date3.setHours(date3.getHours() - 8)
-//             // console.log('model.value[0]', model.value[0])
-//             console.log('order.cart[0].quantity', order.cart[0].quantity)
-//             // console.log('date2', date2)
-//             // model.value.some(a => a.getTime() === date3.getTime())
-//             // if (model.value.some(a => a.getTime() === date3.getTime())) {
-//               console.log('-------------')
-//               console.log('finaldate', finaldate)
-//               // const thisDate = []
-//             if (finaldate === date2) {
-//                 finalQuantity.value -= order.cart[0].quantity // 只有當條件成立時才減少數量
-//                 console.log('finalQuantity.value', finalQuantity.value)
-//               // }
-//             }
-//           })
-//         }
-//       }
-//       )
-//       // console.log('finaldate', finaldate)
-//     })
-//   } catch (error) {
-//     console.log(error)
-//     createSnackbar({
-//       text: error?.response?.data?.message || '發生錯誤',
-//       snackbarProps: {
-//         color: 'red'
-//       }
-//     })
-//   }
-// }
-
+  // 這邊是原本的程式碼
 const loadItems = async (finaldate) => {
   try {
     const { data } = await apiAuth.get('/order/all')
     console.log('data.result', data.result)
-
-    // 提取 cart 物件中的所有符合條件的 date2
-    const relevantDates = data.result.flatMap(order =>
-      order.cart.flatMap(cartItem =>
-        cartItem.date
-          .filter(date2 => date2 === finaldate) // 過濾符合 finaldate 的日期
-          .map(() => ({
-            quantity: cartItem.quantity, // 提取相關數量
-          }))
+    data.result.forEach(order => {
+      order.cart.forEach(date => {
+        if (date.p_id._id === props._id) {
+          // console.log('date.date[2]', date.date[2])
+          // console.log('date.quantity', date.quantity)
+          date.date.forEach(date2 => {
+            // const date3 = new Date(date2)
+            //  date3.setHours(date3.getHours() - 8)
+            // console.log('model.value[0]', model.value[0])
+            console.log('order.cart[0].quantity', order.cart[0].quantity)
+            // console.log('date2', date2)
+            // model.value.some(a => a.getTime() === date3.getTime())
+            // if (model.value.some(a => a.getTime() === date3.getTime())) {
+              console.log('-------------')
+              console.log('finaldate', finaldate)
+              // const thisDate = []
+            if (finaldate === date2) {
+                finalQuantity.value -= order.cart[0].quantity // 只有當條件成立時才減少數量
+                console.log('finalQuantity.value', finalQuantity.value)
+              // }
+            }
+          })
+        }
+      }
       )
-    )
-
-    // 迭代並計算最終數量
-    if (relevantDates.length >= 0) {
-      finalQuantity.value -= relevantDates.reduce((sum, { quantity }) => sum + quantity, 0)
-    }
-
-    console.log('finalQuantity.value', finalQuantity.value)
+      // console.log('finaldate', finaldate)
+    })
   } catch (error) {
     console.log(error)
     createSnackbar({
-      text: error?.response?.data?.message || '數量不符',
+      text: error?.response?.data?.message || '發生錯誤',
       snackbarProps: {
-        color: 'red',
-      },
+        color: 'red'
+      }
     })
   }
 }
+
+// const loadItems = async (finaldate) => {
+//   try {
+//     const { data } = await apiAuth.get('/order/all')
+//     console.log('data.result', data.result)
+
+//     // 提取 cart 物件中的所有符合條件的 date2
+//     const relevantDates = data.result.flatMap(order =>
+//       order.cart.flatMap(cartItem =>
+//         cartItem.date
+//           .filter(date2 => date2 === finaldate) // 過濾符合 finaldate 的日期
+//           .map(() => ({
+//             quantity: cartItem.quantity, // 提取相關數量
+//           }))
+//       )
+//     )
+
+//     // 迭代並計算最終數量
+//     if (relevantDates.length >= 0) {
+//       finalQuantity.value -= relevantDates.reduce((sum, { quantity }) => sum + quantity, 0)
+//     }
+
+//     console.log('finalQuantity.value', finalQuantity.value)
+//   } catch (error) {
+//     console.log(error)
+//     createSnackbar({
+//       text: error?.response?.data?.message || '數量不符',
+//       snackbarProps: {
+//         color: 'red',
+//       },
+//     })
+//   }
+// }
 
 </script>

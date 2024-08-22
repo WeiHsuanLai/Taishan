@@ -65,7 +65,7 @@ const headers = [
         const startDate = new Date(dates[0]).toISOString().split('T')[0]
         const endDate = new Date(dates[dates.length - 1]).toISOString().split('T')[0]
         const endDatePlusOneDay = new Date(endDate)
-        endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 1)
+        endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 2)
         endDatePlusOneDay.setHours(0, 0, 0, 0)
         const endDatePlusOneDay2 = endDatePlusOneDay.toISOString().split('T')[0]
         return `${startDate} 至  ${endDatePlusOneDay2}`
@@ -73,7 +73,7 @@ const headers = [
       return '無日期'
     }
   },
-  { title: '天數', key: 'days', value: item => item.date.length || item.value[0].date.length },
+  { title: '天數', key: 'days', value: item => item.date.length },
   { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * item.date.length },
   { title: '操作', key: 'action' }
 ]
