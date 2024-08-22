@@ -102,15 +102,15 @@ const loadItems = async (finaldate) => {
             // const date3 = new Date(date2)
             //  date3.setHours(date3.getHours() - 8)
             // console.log('model.value[0]', model.value[0])
-            console.log('order.cart[0].quantity', order.cart[0].quantity)
-            // console.log('date2', date2)
+            // console.log('order.cart[0].quantity', order.cart[0].quantity)
+            console.log('date2', date2)
             // model.value.some(a => a.getTime() === date3.getTime())
             // if (model.value.some(a => a.getTime() === date3.getTime())) {
               console.log('-------------')
               console.log('finaldate', finaldate)
               // const thisDate = []
             if (finaldate === date2) {
-                finalQuantity.value -= order.cart[0].quantity // 只有當條件成立時才減少數量
+                finalQuantity.value -= order.cart[0].quantity
                 console.log('finalQuantity.value', finalQuantity.value)
               // }
             }
