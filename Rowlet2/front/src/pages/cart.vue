@@ -15,6 +15,8 @@
         <template #[`item.quantity`]="{item}">
           <v-btn variant="text" color="red" @click="addCart(item.p_id._id, -1)">-</v-btn>
           <span>{{ item.quantity }}</span>
+          <!-- <h2>{{ item }}</h2> -->
+          <h1>{{ item.date }}</h1>
           <v-btn variant="text" color="green" @click="addCart(item.p_id._id,1,item.date)">+</v-btn>
         </template>
 
@@ -51,7 +53,6 @@ const { apiAuth } = useApi()
 const router = useRouter()
 const createSnackbar = useSnackbar()
 const user = useUserStore()
-
 const items = ref([])
 const headers = [
   { title: '品名', key: 'p_id.name' },
@@ -67,13 +68,18 @@ const headers = [
         // 取出第一個和最後一個日期
         const startDate = new Date(dates[0]).toISOString().split('T')[0]
         const endDate = new Date(dates[dates.length - 1]).toISOString().split('T')[0]
-        return `${startDate} 至 ${endDate}`
+        const endDatePlusOneDay = new Date(endDate)
+        endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 1) // 增加一天
+        console.log(endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 1))
+        endDatePlusOneDay.setHours(0, 0, 0, 0) // 重置時間為00:00:00
+        const endDatePlusOneDay2 = endDatePlusOneDay.toISOString().split('T')[0] // 轉換回 YYYY-MM-DD 格式
+        return `${startDate} 至  ${endDatePlusOneDay2}`
       }
       return '無日期'
     }
   },
-  { title: '天數', key: 'days', value: item => (item.date.length - 1) },
-  { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * (item.date.length - 1) },
+  { title: '天數', key: 'days', value: item => item.date.length },
+  { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * item.date.length },
   { title: '操作', key: 'action' }
 ]
 
@@ -95,7 +101,7 @@ loadItems()
 
 const total = computed(() => {
   return items.value.reduce((total, current) => {
-    return total + current.quantity * current.p_id.price * (current.date.length - 1)
+    return total + current.quantity * current.p_id.price * current.date.length
   }, 0)
 })
 
@@ -138,4 +144,5 @@ const addCart = async (product, quantity, date) => {
     }
   }
 }
+
 </script>

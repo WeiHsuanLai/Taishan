@@ -15,6 +15,7 @@ export const useUserStore = defineStore(
     const cart = ref(0)
     const image = ref('')
     const name = ref('')
+    const date = ref('')
     const isLogin = computed(() => {
       return token.value.length > 0
     })
@@ -73,13 +74,13 @@ export const useUserStore = defineStore(
     }
 
     const addCart = async (product, quantity, date) => {
-      // console.log(date)
       try {
         const { data } = await apiAuth.patch('/user/cart', {
           product,
           quantity,
           date
         })
+
         cart.value = data.result.cartQuantity
 
         return {

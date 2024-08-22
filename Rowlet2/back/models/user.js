@@ -22,15 +22,19 @@ const cartSchema = Schema({
 		min: [1, '使用者購物車商品數量不符']
 	},
 	date: {
-		type: [Date] // 修改
+		type: [Date] 
 	}
 })
 cartSchema.pre('save', function(next) {
   // 確保 this.date 是一個陣列
   if (Array.isArray(this.date)) {
+    // 如果 date 陣列不為空，則刪除最後一天
+    if (this.date.length > 0) {
+      this.date.pop(); // 刪除最後一天
+    }
+    // 將日期轉換為 UTC+8 時區
     this.date = this.date.map(dateStr => {
       const dateUTC = new Date(dateStr);
-      // 將日期轉換為 UTC+8 時區
       return new Date(dateUTC.getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[0];
     });
   } else if (typeof this.date === 'string') {
