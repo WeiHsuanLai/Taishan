@@ -80,7 +80,6 @@ export const useUserStore = defineStore(
           date
         })
         cart.value = data.result.cartQuantity
-        console.log(cart.value)
 
         return {
           color: 'green',

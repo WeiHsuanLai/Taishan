@@ -4,7 +4,7 @@
       <v-img :src="image" cover height="500"></v-img>
     </v-col>
     <v-col col="1">
-      <router-link :to="'/products/' + _id">{{ name }}</router-link>
+      <router-link :to="'/products/' + _id">{{ category }}</router-link>
     </v-col>
     <v-col>
       <h3 v-if="model">剩餘數量: {{ finalQuantity }}</h3>
@@ -17,7 +17,14 @@
         <v-date-input v-model="model" label="訂房日期" multiple="range" :min="Today" max-weight="365" @update:modelValue="inputdate"></v-date-input>
     </v-col>
     <v-col cols="3">
-        <v-btn color="primary" type="submit" prepend-icon="mdi-cart" @click="addCart">加入購物車</v-btn>
+      <v-btn
+  color="primary"
+  type="submit"
+  prepend-icon="mdi-cart"
+  @click="addCart"
+  :disabled="model === null || finalQuantity <= 0">
+  {{ model === null ? '請先選擇日期' : (finalQuantity > 0 ? '加入購物車' : '已售完') }}
+</v-btn>
     </v-col>
   </v-card>
 </template>
@@ -96,29 +103,14 @@ const loadItems = async (finaldate) => {
     data.result.forEach(order => {
       order.cart.forEach(date => {
         if (date.p_id._id === props._id) {
-          // console.log('date.date[2]', date.date[2])
-          // console.log('date.quantity', date.quantity)
           date.date.forEach(date2 => {
-            // const date3 = new Date(date2)
-            //  date3.setHours(date3.getHours() - 8)
-            // console.log('model.value[0]', model.value[0])
-            // console.log('order.cart[0].quantity', order.cart[0].quantity)
-            console.log('date2', date2)
-            // model.value.some(a => a.getTime() === date3.getTime())
-            // if (model.value.some(a => a.getTime() === date3.getTime())) {
-              console.log('-------------')
-              console.log('finaldate', finaldate)
-              // const thisDate = []
             if (finaldate === date2) {
                 finalQuantity.value -= order.cart[0].quantity
-                console.log('finalQuantity.value', finalQuantity.value)
-              // }
             }
           })
         }
       }
       )
-      // console.log('finaldate', finaldate)
     })
   } catch (error) {
     console.log(error)

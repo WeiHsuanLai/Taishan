@@ -141,6 +141,7 @@ export const logout = async (req, res) => {
 export const editCart = async (req, res) => {
 	try {
 		if (!validator.isMongoId(req.body.product)) throw new Error('ID') //檢查每個 ID 是不是跟傳入的數項相同
+
 		const idx = req.user.cart.findIndex((item) => item.p_id.toString() === req.body.product)
 		if (idx > -1) {
 			// 如果購物車內有商品，檢查修改後的數量
@@ -152,9 +153,6 @@ export const editCart = async (req, res) => {
 			} else {
 				// 如果修改後還有就修改
 				req.user.cart[idx].quantity = quantity
-				req.user.cart[idx].date = date
-				console.log('req.user.cart[idx].quantity', req.user.cart[idx].quantity);
-				console.log('req.user.cart[idx].date',req.user.cart[idx].date);
 			}
 		} else {
 			// 如果購物車內沒有商品，檢查商品是否存在

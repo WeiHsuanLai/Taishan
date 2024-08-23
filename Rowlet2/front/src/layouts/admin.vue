@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer permanent>
     <v-list>
-      <v-list-item :prepend-avatar="user.image" :title="user.account" @click="openDialog(null)"></v-list-item>
+      <v-list-item :prepend-avatar="user.image" :title="user.name" @click="openDialog(null)"></v-list-item>
     </v-list>
     <v-divider></v-divider>
     <v-list>

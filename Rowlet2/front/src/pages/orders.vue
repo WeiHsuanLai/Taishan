@@ -52,12 +52,17 @@ const headers = [
       return item.cart.map(c => {
         if (c.date || c.date.length > 0) {
           const startDate = new Date(c.date[0]).toISOString().split('T')[0]
-          const endDate = new Date(c.date[c.date.length - 1]).toISOString().split('T')[0]
-          const endDatePlusOneDay = new Date(endDate)
-          endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 2)
-          endDatePlusOneDay.setHours(0, 0, 0, 0) // 重置時間為00:00:00
-          const endDatePlusOneDay2 = endDatePlusOneDay.toISOString().split('T')[0] // 轉換回 YYYY-MM-DD 格式
-          return `${startDate}日 至  ${endDatePlusOneDay2}日`
+          let endDay = ''
+          if (c.date.length === 1) {
+            // 正確地創建新日期對象並轉換成字符串
+            const endDate = new Date(new Date(startDate).setDate(new Date(startDate).getDate() + 1))
+            endDay = endDate.toISOString().split('T')[0]
+          } else if (c.date.length > 1) {
+            const lastDate = new Date(c.date[c.date.length - 1])
+            lastDate.setDate(lastDate.getDate() + 1) // 增加一天
+            endDay = lastDate.toISOString().split('T')[0]
+          }
+            return `${startDate}入住 至 ${endDay} 退房`
         }
         return '無日期'
       }).join(', ')

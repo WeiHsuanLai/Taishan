@@ -47,6 +47,7 @@ const router = useRouter()
 const createSnackbar = useSnackbar()
 const user = useUserStore()
 const model = ref(null)
+const quantity = useField('quantity')
 const product = ref({
   _id: '',
   name: '',
@@ -145,14 +146,13 @@ const { isSubmitting, handleSubmit } = useForm({
     quantity: 1
   }
 })
-const quantity = useField('quantity')
 
 const submit = handleSubmit(async (values) => {
   if (!user.isLogin) {
     router.push('/login')
     return
   }
-  const result = await user.addCart(product.value._id, values.quantity)
+  const result = await user.addCart(product.value._id, quantity.value.value, model.value)
   createSnackbar({
     text: result.text,
     snackbarProps: {

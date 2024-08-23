@@ -27,23 +27,23 @@ const cartSchema = Schema({
 })
 cartSchema.pre('save', function(next) {
   // 確保 this.date 是一個陣列
-  if (Array.isArray(this.date)) {
-    // 如果 date 陣列不為空，則刪除最後一天
-    if (this.date.length > 0) {
-      this.date.pop(); // 刪除最後一天
-    }
-    // 將日期轉換為 UTC+8 時區
-    this.date = this.date.map(dateStr => {
-      const dateUTC = new Date(dateStr);
-      return new Date(dateUTC.getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[0];
-    });
-  } else if (typeof this.date === 'string') {
-    const dateUTC = new Date(this.date);
-    // 將日期轉換為 UTC+8 時區
-    this.date = new Date(dateUTC.getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[0];
+  if (!Array.isArray(this.date)) {
+    // 如果 date 不是陣列，則將其轉換為包含一個元素的陣列
+    this.date = [this.date];
+	}
+	
+	if (this.date.length > 1) {
+    this.date.pop(); // 刪除最後一天
   }
+
+  // 將日期轉換為 UTC+8 時區
+  this.date = this.date.map(dateStr => {
+    const dateUTC = new Date(dateStr);
+    return new Date(dateUTC.getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[0];
+  });
   next();
 });
+
 
 // 建立使用者結構
 const schema = new Schema(
@@ -153,10 +153,12 @@ schema.virtual('cartQuantity').get(function () {
 	// reduce 方法用於遍歷陣列中的每個元素，並將其累加到一個總計中。在這裡，reduce 用於計算購物車中所有商品的總數量。
 	// total 是累加器，初始值設定為 0，也就是 },0 ，代表累加的結果
 	// current 是當前陣列元素的值，代表購物車中每個商品的數量。
+	console.log('user.cart',user.cart);
 	return user.cart.reduce((total, current) => {
 		return total + current.quantity
 	}, 0)
 })
+
 
 // 創建一個名為 'models_users' 的模型，該模型根據提供的 schema 定義來操作 MongoDB 集合，並將這個模型導出，以便在其他模塊中使用。這樣做的好處是，
 // 你可以在不同的文件中重用相同的模型定義，而不需要在每個文件中都重新定義。

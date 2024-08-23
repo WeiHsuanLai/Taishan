@@ -63,18 +63,23 @@ const headers = [
       const dates = item.date
       if (dates && dates.length > 0) {
         const startDate = new Date(dates[0]).toISOString().split('T')[0]
-        const endDate = new Date(dates[dates.length - 1]).toISOString().split('T')[0]
-        const endDatePlusOneDay = new Date(endDate)
-        endDatePlusOneDay.setDate(endDatePlusOneDay.getDate() + 2)
-        endDatePlusOneDay.setHours(0, 0, 0, 0)
-        const endDatePlusOneDay2 = endDatePlusOneDay.toISOString().split('T')[0]
-        return `${startDate} 至  ${endDatePlusOneDay2}`
+        let endDay = ''
+        if (dates.length === 1) {
+          // 正確地創建新日期對象並轉換成字符串
+          const endDate = new Date(new Date(startDate).setDate(new Date(startDate).getDate() + 1))
+          endDay = endDate.toISOString().split('T')[0]
+        } else if (dates.length > 1) {
+          const lastDate = new Date(dates[dates.length - 1])
+          lastDate.setDate(lastDate.getDate() + 1) // 增加一天
+          endDay = lastDate.toISOString().split('T')[0]
+        }
+        return `${startDate}日入住 至 ${endDay} 日退房`
       }
       return '無日期'
     }
   },
-  { title: '天數', key: 'days', value: item => item.date.length },
-  { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * item.date.length },
+  { title: '天數', key: 'days', value: item => item.date ? item.date.length : 0 },
+  { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * (item.date ? item.date.length : 0) },
   { title: '操作', key: 'action' }
 ]
 
