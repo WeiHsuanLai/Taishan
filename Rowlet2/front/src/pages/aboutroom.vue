@@ -5,7 +5,6 @@
       <v-col cols="12">
         <h1 class="text-center">客房介紹</h1>
       </v-col>
-
       <!-- 遍歷產品列表並顯示每個產品的卡片 -->
       <v-col
         cols="12" v-for="product in products" :key="product._id"
