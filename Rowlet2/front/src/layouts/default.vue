@@ -170,12 +170,6 @@
         text: '登入',
         icon: 'mdi-account-arrow-left',
         show: !user.isLogin
-      }, // 如果用戶未登錄，顯示「關於我們」按鈕
-      {
-        to: '/about',
-        text: '關於我們',
-        icon: 'mdi-alpha-a-box-outline',
-        show: !user.isLogin || user.isLogin
       }, // 如果用戶未登錄，顯示「登入」按鈕
       { to: '/cart', text: '購物車', icon: 'mdi-cart', show: !user.isLogin || user.isLogin }, // 如果用戶已登錄，顯示「購物車」按鈕
       { to: '/orders', text: '訂單', icon: 'mdi-list-box', show: user.isLogin }, // 如果用戶已登錄，顯示「訂單」按鈕
@@ -184,7 +178,13 @@
         text: '管理',
         icon: 'mdi-cog',
         show: user.isLogin && user.isAdmin
-      } // 如果用戶是管理員，顯示「管理」按鈕
+      }, // 如果用戶是管理員，顯示「管理」按鈕,
+      {
+        to: '/about',
+        text: '關於我們',
+        icon: 'mdi-alpha-a-box-outline',
+        show: !user.isLogin || user.isLogin
+      }// 如果用戶未登錄，顯示「關於我們」按鈕
     ]
   })
 

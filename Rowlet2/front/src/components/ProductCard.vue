@@ -30,13 +30,13 @@
 </template>
 
 <script setup>
-import { definePage } from 'vue-router/auto'
 import { useUserStore } from '@/stores/user'
-import { useApi } from '@/composables/axios'
 import { useRouter } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
-import { VDateInput } from 'vuetify/labs/VDateInput'
 import { computed, ref } from 'vue'
+import { definePage } from 'vue-router/auto'
+import { useApi } from '@/composables/axios'
+import { VDateInput } from 'vuetify/labs/VDateInput'
 
 definePage({
   meta: {

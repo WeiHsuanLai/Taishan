@@ -20,6 +20,10 @@
     src="@/assets/images/image3.jpg"
     cover
   ></v-carousel-item>
+  <v-carousel-item
+    src="@/assets/images/image5.jpg"
+    cover
+  ></v-carousel-item>
 </v-carousel>
 </template>
 <script>

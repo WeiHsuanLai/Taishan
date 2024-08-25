@@ -48,7 +48,7 @@ const handleEventClick = (event) => {
   const details = eventDetails.value[eventId]
 
   if (details) {
-    alert(`Event Details:\nTitle: ${details.title}\nDate: ${details.date}\nAdditional Info: ${details.info}`)
+    alert(`訂購人 : ${details.title}\n房間名稱: ${details.info} \n 房間數量:${details.quantity}`)
   } else {
     alert('沒有訂單')
   }
@@ -71,10 +71,11 @@ const loadItems = async () => {
           }
 
           events.value.push(event)
+          // console.log('cartItem', cartItem)
           eventDetails.value[eventId] = {
             title: order.user.account,
-            date,
-            info: cartItem.p_id.name
+            info: cartItem.p_id.name,
+            quantity: cartItem.quantity
           }
         })
       })
@@ -97,8 +98,8 @@ const getButtonClass = (eventTitle) => {
   // Here you can define your own logic to generate class names
   const baseClass = 'event-button'
   const classMap = {
-    user1: 'user1-style',
-    user2: 'user2-style',
+    user1: 'aaaa',
+    user2: 'bbbb',
     // Add more mappings as needed
   }
 
@@ -118,7 +119,6 @@ loadItems()
   text-transform: none; /* Prevents uppercase transformation */
 }
 
-/* Example specific styles */
 .user1-style {
   background-color: hsl(120, 78%, 42%);
 }
@@ -132,6 +132,10 @@ loadItems()
 }
 
 .event-button:hover {
-  background-color: #0d47a1;
+  background-color: #ff3a17;
 }
 </style>
+<route lang="yaml">
+  meta:
+    layout: admin
+  </route>
