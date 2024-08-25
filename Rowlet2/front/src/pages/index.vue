@@ -1,12 +1,10 @@
-<template>
+<template class="page-background">
 <!-- 輪播圖 -->
 <Carousel></Carousel>
-  <v-container>
-    <v-row>
       <!-- 地圖 -->
-      <Map></Map>
-    </v-row>
-  </v-container>
+       <div class="bg-black">
+         <Map></Map>
+       </div>
   <v-container>
     <v-row>
       <!-- 遍歷產品列表並顯示每個產品的卡片 -->
@@ -56,3 +54,8 @@ const loadProducts = async () => {
 
 loadProducts()
 </script>
+<style>
+.page-background {
+  background-color: #c1b5b5;
+}
+</style>

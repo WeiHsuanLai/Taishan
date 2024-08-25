@@ -77,7 +77,7 @@
     </v-dialog>
   </template>
   <!-- 主要內容 -->
-  <v-main>
+  <v-main class="page-background">
     <router-view></router-view>
   </v-main>
 </template>
@@ -154,12 +154,6 @@
   const navItems = computed(() => {
     return [
       {
-        to: '/about',
-        text: '關於我們',
-        icon: 'mdi-alpha-a-box-outline',
-        show: !user.isLogin || user.isLogin
-      }, // 如果用戶未登錄，顯示「關於我們」按鈕
-      {
         to: '/aboutroom',
         text: '客房介紹',
         icon: 'mdi-seat-individual-suite',
@@ -176,8 +170,13 @@
         text: '登入',
         icon: 'mdi-account-arrow-left',
         show: !user.isLogin
+      }, // 如果用戶未登錄，顯示「關於我們」按鈕
+      {
+        to: '/about',
+        text: '關於我們',
+        icon: 'mdi-alpha-a-box-outline',
+        show: !user.isLogin || user.isLogin
       }, // 如果用戶未登錄，顯示「登入」按鈕
-
       { to: '/cart', text: '購物車', icon: 'mdi-cart', show: !user.isLogin || user.isLogin }, // 如果用戶已登錄，顯示「購物車」按鈕
       { to: '/orders', text: '訂單', icon: 'mdi-list-box', show: user.isLogin }, // 如果用戶已登錄，顯示「訂單」按鈕
       {
@@ -214,4 +213,8 @@
     justify-content: center;
     align-items: center;
   }
+
+  .page-background {
+  background-color: #f0f0f0;
+}
 </style>

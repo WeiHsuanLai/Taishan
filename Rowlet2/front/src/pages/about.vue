@@ -4,8 +4,6 @@
       <h1 class="text-center">關於我們</h1>
     </v-col>
     <v-divider></v-divider>
-    <!-- <cardtest></cardtest> -->
-    <cardtest2></cardtest2>
   </v-container>
 
 </template>

@@ -31,7 +31,7 @@
       </v-card>
     </v-form>
   </v-dialog>
-  <v-main>
+  <v-main class="page-background">
     <router-view></router-view>
   </v-main>
 </template>
@@ -91,10 +91,17 @@
   }
 
   const user = useUserStore()
-  const navItems = [
+const navItems = [
+    { to: '/admin/calendar', text: '行事曆', icon: 'mdi-calendar-account' },
     { to: '/admin/products', text: '商品管理', icon: 'mdi-shopping' },
     { to: '/admin/orders', text: '訂單管理', icon: 'mdi-list-box' },
     { to: '/aboutroom', text: '客房介紹', icon: 'mdi-seat-individual-suite' },
     { to: '/', text: '回首頁', icon: 'mdi-home' }
   ]
 </script>
+
+<style scoped>
+  .page-background {
+  background-color: #f0f0f0;
+}
+</style>

@@ -45,11 +45,20 @@
       key: 'date',
       value: item => {
         return item.cart.map(c => {
-          if (c.date && c.date.length > 0) {
-            const startDate = new Date(c.date[0]).toISOString().split('T')[0]
-            const endDate = new Date(c.date[c.date.length - 1]).toISOString().split('T')[0]
-            return `${startDate}入住 至  ${endDate}退房`
+          if (c.date || c.date.length > 0) {
+          const startDate = new Date(c.date[0]).toISOString().split('T')[0]
+          let endDay = ''
+          if (c.date.length === 1) {
+            // 正確地創建新日期對象並轉換成字符串
+            const endDate = new Date(new Date(startDate).setDate(new Date(startDate).getDate() + 1))
+            endDay = endDate.toISOString().split('T')[0]
+          } else if (c.date.length > 1) {
+            const lastDate = new Date(c.date[c.date.length - 1])
+            lastDate.setDate(lastDate.getDate() + 1) // 增加一天
+            endDay = lastDate.toISOString().split('T')[0]
           }
+            return `${startDate}入住 至 ${endDay} 退房`
+        }
           return '無日期'
         }).join(', ')
       }
