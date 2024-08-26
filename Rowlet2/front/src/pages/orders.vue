@@ -73,8 +73,6 @@ const headers = [
     key: 'price',
     value: item => {
       return item.cart.reduce((total, current) => {
-        console.log('current', current)
-        console.log('total', total)
         return `${total + current.quantity * current.p_id.price * current.date.length}元`
       }, 0)
     }

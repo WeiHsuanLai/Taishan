@@ -83,11 +83,12 @@ const headers = [
   { title: '總價', key: 'total', value: item => item.p_id.price * item.quantity * (item.date ? item.date.length : 0) },
   { title: '操作', key: 'action' }
 ]
-
+const props = defineProps(['_id', 'category', 'description', 'quantity', 'image', 'name', 'price', 'sell', 'room'])
 const loadItems = async () => {
   try {
     const { data } = await apiAuth.get('/user/cart')
     items.value = data.result
+    const quantities = items.value.map(item => item.quantity)
   } catch (error) {
     console.log(error)
     createSnackbar({
@@ -99,10 +100,6 @@ const loadItems = async () => {
   }
 }
 loadItems()
-
-// const days = computed(() => {
-
-// })
 
 const total = computed(() => {
   return items.value.reduce((total, current) => {
@@ -118,7 +115,6 @@ const loading = ref(false)
 const checkout = async () => {
   loading.value = true
   const result = await user.checkout()
-
   createSnackbar({
     text: result.text,
     snackbarProps: {
@@ -134,6 +130,29 @@ const checkout = async () => {
 }
 
 const addCart = async (product, quantity, date) => {
+  const { data } = await apiAuth.get('/order/all')
+  const lastOrder = data.result[data.result.length - 1]
+  const lastCartItem = lastOrder.cart[0]
+  console.log('aaaaaa', data.result[data.result.length - 1].cart[0].p_id.quantity)
+  let startroom = data.result[data.result.length - 1].cart[0].p_id.quantity
+  data.result.forEach(order => {
+    order.cart.forEach(date => {
+      // console.log('date', date)
+      // console.log('...data.result', data.result[data.result.length - 1]._id)
+      const idid = data.result[data.result.length - 1].cart[0].p_id._id
+      console.log('idid--------', idid)
+      console.log('date---------', date)
+      console.log('date.quantity---------', date.quantity)
+      // console.log('bbbb', data.result[data.result.length - 1].cart[0].quantity)
+      if (date.p_id._id === idid) {
+        const middlroom = date.quantity
+        startroom -= middlroom
+          console.log(startroom)
+        }
+      }
+      )
+  })
+
   const result = await user.addCart(product, quantity, date)
   createSnackbar({
     text: result.text,
@@ -141,6 +160,7 @@ const addCart = async (product, quantity, date) => {
       color: result.color
     }
   })
+  loadItems()
   if (result.color === 'green') {
     const idx = items.value.findIndex(item => item.p_id._id === product)
     console.log('Date parameter:', date) // 確認 date 參數的值

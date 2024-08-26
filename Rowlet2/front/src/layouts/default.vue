@@ -155,10 +155,10 @@
     return [
       {
         to: '/aboutroom',
-        text: '客房介紹',
+        text: '立即訂房',
         icon: 'mdi-seat-individual-suite',
         show: !user.isLogin || user.isLogin
-      }, // 如果用戶未登錄，顯示「客房介紹」按鈕
+      }, // 如果用戶未登錄，顯示「立即訂房」按鈕
       {
         to: '/register',
         text: '註冊',
