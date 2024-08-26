@@ -19,7 +19,7 @@
         </template>
 
         <template #[`item.action`]="{item}">
-          <v-btn variant="text" color="red" icon="mdi-delete" @click="addCart(item.p_id._id, item.quantity * -1)"></v-btn>
+          <v-btn variant="text" color="red" icon="mdi-delete" @click="addCart(item.p_id._id, item.quantity * -1,item.date*1)"></v-btn>
         </template>
       </v-data-table>
     </v-col>
@@ -69,8 +69,9 @@ const headers = [
           const endDate = new Date(new Date(startDate).setDate(new Date(startDate).getDate() + 1))
           endDay = endDate.toISOString().split('T')[0]
         } else if (dates.length > 1) {
+          console.log('dates.length', dates.length)
           const lastDate = new Date(dates[dates.length - 1])
-          lastDate.setDate(lastDate.getDate()) // 增加一天
+          lastDate.setDate(lastDate.getDate() + 1) // 增加一天
           endDay = lastDate.toISOString().split('T')[0]
         }
         return `${startDate}日入住 至 ${endDay} 日退房`

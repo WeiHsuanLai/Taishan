@@ -1,6 +1,5 @@
 import Order from '../models/order.js'
 import User from '../models/user.js'
-import Product from '../models/product.js'
 import { StatusCodes } from 'http-status-codes'
 
 export const create = async (req, res) => {
@@ -14,7 +13,7 @@ export const create = async (req, res) => {
     // 建立訂單
     await Order.create({
       user: req.user._id,
-      cart: req.user.cart
+      cart: req.user.cart,
     })
     // 清空購物車
     req.user.cart = []

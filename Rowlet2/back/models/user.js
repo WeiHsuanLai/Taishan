@@ -117,18 +117,35 @@ schema.virtual('cartQuantity').get(function () {
   }, 0);
 });
 
-// 保存購物車並刪除最後一天
-async function saveUserCart(user) {
-  if (user.cart.length > 0) {
-    user.cart.forEach(cartItem => {
-      if (cartItem.date.length > 1) {
-        cartItem.date.pop(); // 送出前刪除最後一天
-      }
-    });
+schema.pre('save', async function (next) {
+  const user = this;
+  
+  if (user.isModified('cart')) {
+    // 處理購物車
+    if (user.cart.length > 0) {
+      user.cart.forEach(cartItem => {
+        if (cartItem.date.length > 1) {
+          cartItem.date.pop(); // 送出前刪除最後一天
+        }
+      });
+    }
   }
+  
+  next();
+});
 
-  await user.save();
-}
+// // 保存購物車並刪除最後一天
+// async function saveUserCart(user) {
+//   if (user.cart.length > 0) {
+//     user.cart.forEach(cartItem => {
+//       if (cartItem.date.length > 1) {
+//         cartItem.date.pop(); // 送出前刪除最後一天
+//       }
+//     });
+    
+//     await user.save(); // 保存用戶
+//   }
+// }
 
 // 導出模型
 export default model('users', schema);

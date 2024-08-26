@@ -108,7 +108,8 @@ const addCart = async () => {
 const loadItems = async (finaldate) => {
   try {
     const { data } = await apiAuth.get('/order/all')
-    console.log('data.result', data.result)
+    // console.log('data.result', data.result)
+    // console.log('data.result[0].p_id.quantity', data.result[0].p_id.quantity)
     data.result.forEach(order => {
       order.cart.forEach(date => {
         if (date.p_id._id === props._id) {

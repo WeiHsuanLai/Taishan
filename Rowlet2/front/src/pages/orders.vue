@@ -59,7 +59,7 @@ const headers = [
             endDay = endDate.toISOString().split('T')[0]
           } else if (c.date.length > 1) {
             const lastDate = new Date(c.date[c.date.length - 1])
-            lastDate.setDate(lastDate.getDate()) // 增加一天
+            lastDate.setDate(lastDate.getDate() + 1) // 增加一天
             endDay = lastDate.toISOString().split('T')[0]
           }
             return `${startDate}入住 至 ${endDay} 退房`
@@ -73,7 +73,9 @@ const headers = [
     key: 'price',
     value: item => {
       return item.cart.reduce((total, current) => {
-        return total + current.quantity * current.p_id.price
+        console.log('current', current)
+        console.log('total', total)
+        return `${total + current.quantity * current.p_id.price * current.date.length}元`
       }, 0)
     }
   }
