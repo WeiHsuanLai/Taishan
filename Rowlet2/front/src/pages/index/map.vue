@@ -14,10 +14,10 @@
     </v-col>
     <v-col class="d-flex flex-row">
       <v-col cols="6">
-        <v-btn class="w-100">交通資訊</v-btn>
+        <v-btn class="w-100" href="https://www.google.com/maps?ll=25.017226,121.506378&z=14&t=m&hl=zh-TW&gl=TW&mapclient=embed&q=%E8%87%BA%E5%8C%97">交通資訊</v-btn>
       </v-col>
       <v-col cols="6">
-        <v-btn class="w-100 bg-orange">周邊景點</v-btn>
+        <v-btn class="w-100 bg-orange" href="https://www.youtube.com/watch?v=Q0CKB-KqlJk">周邊景點</v-btn>
       </v-col>
     </v-col>
   </v-col>

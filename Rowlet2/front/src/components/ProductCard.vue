@@ -4,8 +4,43 @@
       <v-img :src="image" cover height="500"></v-img>
     </v-col>
     <v-col col="1">
-      <router-link :to="'/products/' + _id">{{ name }}</router-link>
+      <h3>{{ name }}</h3>
     </v-col>
+    <v-col >
+            <v-dialog max-width="500">
+              <template v-slot:activator="{ props: activatorProps }">
+                <v-btn
+                  v-bind="activatorProps"
+                  color="surface-variant"
+                  text="MORE"
+                  variant="flat"
+                ></v-btn>
+              </template>
+
+              <template v-slot:default="{ isActive }">
+                <v-card>
+                  <v-card-text>
+                    <div>
+                      <div
+                        v-for="(line, index) in formattedDescription"
+                        :key="index"
+                        :class="getLineClass(index)">
+                        {{ line }}
+                      </div>
+                    </div>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn
+                      text="關閉介紹"
+                      @click="isActive.value = false"
+                      color="black" variant="flat"
+                    ></v-btn>
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
+              </template>
+            </v-dialog>
+          </v-col>
     <v-col>
       <h3 v-if="model">剩餘數量: {{ finalQuantity }}</h3>
       <h3 v-else>請選擇日期</h3>
@@ -174,4 +209,25 @@ const addCart = async () => {
   }
 }
 
+// 將描述字段按換行符分割成數組
+const formattedDescription = computed(() => {
+  return props.description.split('\n')
+})
+
+// 根據索引應用不同的 CSS 樣式
+const getLineClass = (index) => {
+  if (index === 0 || index === 1) return 'title'
+  if (index === 3) return 'red-text'
+  return ''
+}
 </script>
+<style>
+.title {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.red-text {
+  color: red;
+}
+</style>

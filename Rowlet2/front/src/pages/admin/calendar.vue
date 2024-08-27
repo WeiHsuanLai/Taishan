@@ -46,9 +46,9 @@ const eventDetails = ref({}) // 用于存储从后端获取的事件详细信息
 const handleEventClick = (event) => {
   const eventId = event.title
   const details = eventDetails.value[eventId]
-
+  const allorder = event.order
   if (details) {
-    alert(`訂購人 : ${details.title}\n房間名稱: ${details.info} \n 房間數量:${details.quantity}`)
+    alert(`訂購人 : ${details.title}\n房間名稱: ${details.info} \n 房間數量:${allorder}`)
   } else {
     alert('沒有訂單')
   }
@@ -63,15 +63,15 @@ const loadItems = async () => {
       order.cart.forEach(cartItem => {
         cartItem.date.forEach(date => {
           const eventId = order.user.account
-
+          const orderquantity = cartItem.quantity
           const event = {
             title: eventId,
             start: new Date(date),
-            end: new Date(new Date(date).getTime() + 60 * 60 * 1000)
+            end: new Date(new Date(date).getTime() + 60 * 60 * 1000),
+            order: orderquantity
           }
 
           events.value.push(event)
-          // console.log('cartItem', cartItem)
           eventDetails.value[eventId] = {
             title: order.user.account,
             info: cartItem.p_id.name,
@@ -80,8 +80,6 @@ const loadItems = async () => {
         })
       })
     })
-
-    console.log('Updated events:', events.value)
   } catch (error) {
     console.log(error)
     createSnackbar({

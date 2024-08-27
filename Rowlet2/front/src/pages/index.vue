@@ -31,7 +31,7 @@ import RoomCard from '../components/RoomCard.vue'
 
 definePage({
   meta: {
-    title: '木木梟飯店首頁',
+    title: '未來飯店首頁',
     login: false,
     admin: false
   }
